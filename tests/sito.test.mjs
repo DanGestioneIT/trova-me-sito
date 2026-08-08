@@ -306,3 +306,36 @@ test('la pagina iniziale non promette quello che le app non danno ancora', () =>
     );
   }
 });
+
+// --- scheda di Minta --------------------------------------------------------
+// La pagina si legge e si giudica a occhio: qui non si verifica come e'
+// scritta. Queste quattro frasi sono pero' le sole che, riscritte, non
+// diventerebbero brutte ma false — lo stato reale dell'app, dove finisce la
+// chiave di chi ne ha una, cosa il server non conserva, e il limite vero della
+// trascrizione. Sono promesse fatte a chi legge, e vanno protette una per una.
+//
+// Il confronto si fa sul testo senza tag e con le entita' decodificate
+// (testoSemplice): il compilatore rende l'apostrofo come &#39;, quindi una
+// ricerca sul file grezzo non troverebbe le frasi che ne contengono uno.
+
+const FRASI_MINTA = [
+  'In testing — not on the App Store yet.',
+  "It stays in the iPhone's keychain. I never see it.",
+  'it keeps neither your audio nor your text',
+  'Minta Cloud transcribes up to an hour per file.',
+];
+
+function paginaMinta() {
+  const trovata = pagine.find((p) => p.nome === 'app/minta/index.html');
+  assert.ok(trovata, 'Manca dist/app/minta/index.html');
+  return trovata.html;
+}
+
+for (const frase of FRASI_MINTA) {
+  test(`la scheda di Minta dice ancora, parola per parola: "${frase}"`, () => {
+    assert.ok(
+      testoSemplice(paginaMinta()).includes(frase),
+      `app/minta/index.html: la frase "${frase}" non c'e' piu' cosi' com'e' — e' una promessa fatta a chi legge, e riscriverla la rende falsa`,
+    );
+  });
+}
