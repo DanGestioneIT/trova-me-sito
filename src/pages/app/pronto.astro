@@ -1,21 +1,74 @@
 ---
 import Base from '../../layouts/Base.astro';
 import SegnapostoSchermata from '../../components/SegnapostoSchermata.astro';
+
+// Le sezioni della scheda, nell'ordine in cui rispondono alle domande di chi
+// legge: cosa capisce, come mette in ordine, cosa succede se manca la rete,
+// che tono ha, e dove finiscono i dati.
+//
+// Due frasi qui dentro sono state corrette contro i documenti di Pronto e non
+// vanno "migliorate" senza rileggerli: la lista corta in vista (la specifica
+// vieta l'overwhelm visivo, ma nulla viene nascosto o perso) e la spinta, che
+// e' un incoraggiamento breve e non un primo passo operativo inventato dall'AI.
+const sezioni = [
+  {
+    titolo: 'It understands the job, not just the sentence.',
+    testo:
+      'Add a task, move it to Thursday, mark it as done, delete it, or ask what is due today. Pronto understands ordinary speech as an action on your list. If it is not sure which task you mean, it asks. Deleting always requires confirmation.',
+  },
+  {
+    titolo: 'It decides what comes first.',
+    testo:
+      'Every task gets a weight, and dated tasks become more urgent as their deadline approaches. Pronto uses those signals to keep a short list in view while everything else remains safely stored. The order changes as the days pass, so you never have to sort the whole backlog yourself.',
+  },
+  {
+    titolo: 'Nothing gets lost while the AI thinks.',
+    testo:
+      'Your words are saved on your iPhone before any AI processing begins, so capture still works offline. When a connection is available, Pronto catches up in the background and reads any dates or times you mentioned. If that processing fails, the task stays in your list and you can try again.',
+  },
+  {
+    titolo: 'A nudge, not a plan.',
+    testo:
+      'Instead of inventing a first step for you, Pronto adds a short, relevant line of encouragement. It changes so it does not turn into wallpaper. The nudge is Pronto’s; the plan stays yours.',
+  },
+  {
+    titolo: 'Less guilt. A better place to begin.',
+    testo:
+      'Pronto never counts how many times you postpone something, tells you off, or treats procrastination as a character flaw. Optional reminders bring back only the tasks you choose.',
+  },
+  {
+    titolo: 'Your key, your list.',
+    testo:
+      'Pronto uses the AI provider you choose, with your own key kept in the iPhone’s keychain. Your list lives on your phone. There is no Pronto account, and none of your list is stored on a Pronto server.',
+  },
+];
+
+const stato = 'In testing — not on the App Store yet.';
 ---
 
 <Base
-  titolo="Pronto — the list that decides where to start | TROVA.ME"
-  descrizione="Pronto is a to-do list that understands speech: say what you have to do, and it sorts it by priority and hands you the first concrete step."
+  titolo="Pronto — say it once, and the list sorts itself | TROVA.ME"
+  descrizione="Pronto is a to-do list you talk to. Say what you have to do, and it captures the task immediately, understands it, and decides what comes first."
 >
-  <h1>Pronto</h1>
-  <p class="stato">Coming to the App Store</p>
+  <h1>Say it once. The list sorts itself.</h1>
+  <p class="stato">{stato}</p>
   <p>
-    Say what you have to do, in your own words. Pronto works out what you meant, sorts it
-    by priority, and hands you the first concrete step.
+    Pronto is a to-do list for people who put things off. Say what you have to do the way
+    you would say it to a friend: call the accountant before Friday, move the dentist to
+    Thursday. Pronto saves your words immediately, then understands what you meant and
+    turns them into an action on your list.
   </p>
+
+  {sezioni.map((sezione) => (
+    <section>
+      <h2>{sezione.titolo}</h2>
+      <p>{sezione.testo}</p>
+    </section>
+  ))}
+
   <p>
-    It is built for people who put things off. It is not one more list — it is a list that
-    decides where to start for you.
+    You probably do not need another place to store what you should do. Pronto is for the
+    smaller, harder moment: getting it out of your head and making the list feel possible.
   </p>
 
   <SegnapostoSchermata app="Pronto" />
@@ -29,5 +82,9 @@ import SegnapostoSchermata from '../../components/SegnapostoSchermata.astro';
     background: var(--sfondo-tenue);
     color: var(--testo-tenue);
     font-size: 0.875rem;
+  }
+
+  section p {
+    margin: 0 0 1rem;
   }
 </style>
