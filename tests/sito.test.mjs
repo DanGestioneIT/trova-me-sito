@@ -1,6 +1,7 @@
 // Controlli sul sito gia' compilato (cartella dist/).
 // Non verificano l'estetica: verificano i vincoli del brief che, se saltano,
-// saltano in silenzio — leggibilita' da telefono, indicizzazione, link interni.
+// saltano in silenzio — lingua dichiarata, leggibilita' da telefono,
+// indicizzazione, link interni.
 //
 // Si eseguono con `npm test`, che prima compila il sito.
 
@@ -48,9 +49,15 @@ test('il sito compilato contiene le pagine attese', () => {
   }
 });
 
-test('ogni pagina e dichiarata in italiano', () => {
+// Il sito e' in inglese: serve ad Apple, che esamina le app leggendo in inglese.
+// I documenti interni restano in italiano — vedi BRIEF.md, sezione "La lingua".
+test('ogni pagina e dichiarata in inglese', () => {
   for (const { nome, html } of pagine) {
-    assert.match(html, /<html[^>]*\slang="it"/, `${nome}: manca lang="it"`);
+    assert.match(
+      html,
+      /<html[^>]*\slang="en"/,
+      `${nome}: manca lang="en" — senza, i lettori di schermo pronunciano il testo con la fonetica sbagliata`,
+    );
   }
 });
 

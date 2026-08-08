@@ -60,7 +60,20 @@ farli una volta sola quando le app sono ultimate.
   sull'indirizzo standard di GitHub Pages, e il dominio si aggancia dopo, quando il
   contenuto piace. Cambiare il DNS mentre si sta ancora scrivendo il sito aggiunge una
   variabile che non c'entra con il sito.
-- Niente inglese: il sito è in italiano.
+- Nessuna localizzazione: una sola lingua, senza selettore e senza indirizzi doppi.
+  L'italiano potrà arrivare più avanti, con un lavoro dedicato.
+
+## La lingua
+
+**Il sito è in inglese.** Serve ad Apple: è l'indirizzo che accompagna le app sull'App
+Store, e chi le esamina legge in inglese.
+
+I documenti interni — questo brief, `AGENTS.md`, il README, i messaggi di commit e i
+nomi nel codice — restano **in italiano**: li leggo io, e tradurli non darebbe niente ad
+Apple togliendomi leggibilità.
+
+La lingua è dichiarata in un punto solo (`src/layouts/Base.astro`), così una eventuale
+versione italiana non richiede di riaprire ogni pagina.
 
 ## Come verifico che sia venuto bene
 

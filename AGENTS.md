@@ -6,7 +6,17 @@ si scrive il codice qui**.
 
 ## Vincoli che non si negoziano
 
-- **Il sito e' in italiano.** Nessuna pagina, nessuna scritta in inglese.
+- **Due lingue, e non si mescolano.**
+  - **Inglese** tutto cio' che vede un visitatore: testi delle pagine, titoli, meta
+    description, testi alternativi delle immagini, etichette `aria-label`. Il sito
+    accompagna le app sull'App Store e chi le esamina legge in inglese.
+  - **Italiano** tutto cio' che legge il proprietario: `BRIEF.md`, questo file, il
+    README, i commenti nel codice, i nomi di file, variabili e componenti, i nomi dei
+    test, i messaggi di commit.
+
+  La lingua del sito e' dichiarata **in un punto solo**, l'attributo `lang` in
+  `src/layouts/Base.astro`. Non aggiungerne altri e non introdurre localizzazione:
+  una eventuale versione italiana sara' un lavoro a se'.
 - **Prima il telefono.** Ogni modifica si valuta a schermo stretto. Se serve ingrandire
   con le dita per leggere, e' sbagliata.
 - **Niente contenuti inventati.** Nessuno screenshot finto, nessuna data di uscita,
@@ -42,8 +52,8 @@ npm run check   # controllo dei tipi
 ```
 
 `npm test` non giudica l'estetica: verifica i vincoli che sbagliano in silenzio —
-lingua dichiarata, adattamento al telefono, titolo e descrizione presenti, collegamenti
-interni che portano da qualche parte, sitemap prodotta. **Se aggiungi una pagina,
+lingua dichiarata (`lang="en"`), adattamento al telefono, titolo e descrizione presenti,
+collegamenti interni che portano da qualche parte, sitemap prodotta. **Se aggiungi una pagina,
 aggiungila anche all'elenco delle pagine attese in `tests/sito.test.mjs`.**
 
 Gli stessi controlli girano su ogni pull request (`.github/workflows/ci.yml`).

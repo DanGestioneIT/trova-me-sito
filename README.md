@@ -1,7 +1,10 @@
 # TROVA.ME — il sito
 
 Vetrina delle app iOS pubblicate sotto il marchio TROVA.ME: **Minta**, **Pronto** e
-**ClaudePal**. Sito statico, in italiano, pensato prima di tutto per il telefono.
+**ClaudePal**. Sito statico, pensato prima di tutto per il telefono.
+
+**Il sito e' in inglese** (serve ad Apple); **la documentazione interna e' in italiano**.
+Il perche' sta in `BRIEF.md`, sezione "La lingua".
 
 Pubblicato su GitHub Pages: https://dangestioneit.github.io/trova-me-sito/
 Il dominio `trova.me` verra' agganciato piu' avanti, con un lavoro dedicato.
