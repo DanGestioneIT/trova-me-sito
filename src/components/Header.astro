@@ -10,7 +10,7 @@ const voci = [
 
 <header>
   <nav aria-label="Main navigation">
-    <a class="marchio" href={path('')}>TROVA.ME</a>
+    <a class="marchio" href={path('')}>TROVA<span class="punto">.</span>ME</a>
     <ul>
       {voci.map((voce) => (
         <li><a href={voce.href}>{voce.testo}</a></li>
@@ -25,34 +25,52 @@ const voci = [
   }
 
   nav {
-    max-width: var(--larghezza);
+    max-width: var(--colonna-larga);
     margin: 0 auto;
-    padding: 0.875rem 1.25rem;
+    padding: 16px var(--margine);
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
-    gap: 0.5rem 1rem;
+    justify-content: space-between;
+    gap: 8px 24px;
   }
 
   .marchio {
+    font-size: 14px;
+    line-height: 20px;
     font-weight: 700;
-    letter-spacing: 0.04em;
-    color: var(--testo);
+    letter-spacing: 0.12em;
+    color: var(--inchiostro);
     text-decoration: none;
+  }
+
+  /* L'unico punto di colore dell'intestazione sta dentro il nome, dove il
+     dominio ha davvero un punto. Non e' un ornamento: e' il marchio. */
+  .punto {
+    color: var(--accento);
   }
 
   ul {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 20px;
     list-style: none;
     margin: 0;
     padding: 0;
   }
 
-  a {
-    /* bersaglio comodo da toccare col pollice */
+  ul a {
     display: inline-block;
-    padding: 0.25rem 0;
+    padding: 4px 0;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--tenue);
+    text-decoration: none;
+  }
+
+  ul a:hover {
+    color: var(--inchiostro);
+    text-decoration: underline;
+    text-underline-offset: 4px;
   }
 </style>

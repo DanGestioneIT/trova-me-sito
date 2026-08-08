@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Firma from '../../components/Firma.astro';
 import SegnapostoSchermata from '../../components/SegnapostoSchermata.astro';
 
 // La scheda di un esperimento, non di un prodotto. Le due sezioni scomode —
@@ -40,7 +41,13 @@ const stato = 'An experiment — not a release or an App Store product.';
 >
   <h1>Leave the desk. Keep the session.</h1>
   <p class="stato">{stato}</p>
-  <p>
+
+  <Firma
+    detto="continue the refactor and run the tests"
+    ottenuto="Prompt sent to Claude Code on the Mac. The response returns to your iPhone."
+  />
+
+  <p class="apertura">
     The refactor is running, you are in the kitchen, and Claude Code stops to ask whether
     it may delete a file. ClaudePal turns your iPhone into a remote for that session:
     dictate or type a prompt, watch the response arrive, and answer from where you are.
@@ -53,7 +60,7 @@ const stato = 'An experiment — not a release or an App Store product.';
     </section>
   ))}
 
-  <p>
+  <p class="chiusura">
     If those twenty minutes never feel worth repeating, the experiment stops there and
     will still have done its job. ClaudePal may become a product, or it may end as
     something I learned from. Both are honest outcomes.
@@ -63,16 +70,8 @@ const stato = 'An experiment — not a release or an App Store product.';
 </Base>
 
 <style>
-  .stato {
-    display: inline-block;
-    padding: 0.125rem 0.625rem;
-    border-radius: 999px;
-    background: var(--sfondo-tenue);
-    color: var(--testo-tenue);
-    font-size: 0.875rem;
-  }
-
   section p {
-    margin: 0 0 1rem;
+    max-width: var(--colonna);
+    margin: 0;
   }
 </style>
