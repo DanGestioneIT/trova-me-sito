@@ -26,6 +26,9 @@ const canonico = new URL(Astro.url.pathname, Astro.site);
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/favicon.svg`} type="image/svg+xml" />
+    <meta name="theme-color" content="#F6F7F9" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#14161A" media="(prefers-color-scheme: dark)" />
     <title>{titolo}</title>
     <meta name="description" content={descrizione} />
     {nonIndicizzare && <meta name="robots" content="noindex" />}

@@ -3,7 +3,9 @@
 // Il brief lo impone: gli screenshot veri arriveranno con un lavoro dedicato,
 // e nel frattempo non si inventa nulla.
 //
-// Il testo mostrato e' in inglese, come tutto cio' che vede un visitatore.
+// Volutamente povero: un rettangolo con un bordo tratteggiato e una riga di
+// testo. Se fosse bello sembrerebbe un'immagine, ed e' esattamente cio' che
+// non deve sembrare.
 interface Props {
   app: string;
 }
@@ -20,23 +22,31 @@ const { app } = Astro.props;
 
 <style>
   figure {
-    margin: 1.5rem 0;
+    max-width: var(--colonna);
+    margin: 48px 0 0;
   }
 
+  /* Compatto di proposito. Alto come una schermata di telefono, dominava la
+     pagina e comunicava "sito incompleto" piu' forte di quanto le pagine
+     raccontino le app: una dichiarazione onesta non deve gridare. */
   .riquadro {
     display: grid;
     place-items: center;
-    aspect-ratio: 9 / 16;
-    max-height: 60vh;
-    background: var(--sfondo-tenue);
+    min-height: 96px;
+    padding: 24px;
+    background: var(--superficie);
     border: 1px dashed var(--bordo);
-    border-radius: 0.75rem;
-    color: var(--testo-tenue);
+    color: var(--tenue);
+    font-family: var(--detto);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
 
   figcaption {
-    margin-top: 0.5rem;
-    font-size: 0.9375rem;
-    color: var(--testo-tenue);
+    margin-top: 12px;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--tenue);
   }
 </style>
