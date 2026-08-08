@@ -185,3 +185,124 @@ test('la pagina di errore resta fuori dalla sitemap', () => {
     );
   }
 });
+
+// --- pagina iniziale --------------------------------------------------------
+// Il testo della pagina iniziale e' il messaggio che le tre schede erediteranno.
+// Questi controlli non giudicano come e' scritto — quello si legge — ma tengono
+// i tre vincoli che cederebbero in silenzio: lo stato reale delle app detto
+// fino in fondo, la lunghezza che la rende leggibile da telefono, e le promesse
+// che il sito non puo' ancora fare.
+
+const RIGA_STATO = 'None of these are on the App Store yet.';
+const PAROLE_MASSIME = 90;
+const PROMESSE_VIETATE = ['apps.apple.com', 'download', 'available now', 'coming soon'];
+
+// Elementi senza tag di chiusura: senza questo elenco il conteggio della
+// profondita' non tornerebbe mai a zero e i figli diretti sarebbero sbagliati.
+const SENZA_CHIUSURA = new Set([
+  'area', 'base', 'br', 'col', 'embed', 'hr', 'img',
+  'input', 'link', 'meta', 'param', 'source', 'track', 'wbr',
+]);
+
+function paginaIniziale() {
+  const trovata = pagine.find((p) => p.nome === 'index.html');
+  assert.ok(trovata, 'Manca dist/index.html');
+  return trovata.html;
+}
+
+function contenutoMain(html) {
+  const main = html.match(/<main\b[^>]*>([\s\S]*)<\/main>/i);
+  assert.ok(main, 'index.html: manca <main>');
+  return main[1];
+}
+
+function decodifica(testo) {
+  return testo
+    .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)))
+    .replace(/&#x([0-9a-f]+);/gi, (_, n) => String.fromCodePoint(parseInt(n, 16)))
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;/g, "'")
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&amp;/g, '&'); // per ultimo: &amp;lt; deve restare &lt;
+}
+
+// I tag diventano uno spazio invece di sparire: il compilatore toglie gli a
+// capo fra un tag e l'altro, e cancellandoli due parole vicine diventerebbero
+// una sola, facendo contare meno parole di quante ce ne sono davvero.
+function testoSemplice(html) {
+  return decodifica(html.replace(/<[^>]*>/g, ' ')).replace(/\s+/g, ' ').trim();
+}
+
+function contaParole(testo) {
+  return testo.split(/\s+/).filter((parola) => /[\p{L}\p{N}]/u.test(parola)).length;
+}
+
+// Divide il contenuto di <main> nei suoi figli diretti seguendo la profondita'
+// dei tag. Serve solo a sapere qual e' l'ultimo: un analizzatore HTML vero
+// sarebbe una dipendenza in piu', e qui non si aggiungono dipendenze.
+function figliDiretti(interno) {
+  const figli = [];
+  const tag = /<(\/?)([a-zA-Z][^\s/>]*)((?:"[^"]*"|'[^']*'|[^>"'])*)>/g;
+  let profondita = 0;
+  let inizio = 0;
+  let trovato;
+
+  while ((trovato = tag.exec(interno)) !== null) {
+    const chiusura = trovato[1] === '/';
+    const nome = trovato[2].toLowerCase();
+    const senzaContenuto = SENZA_CHIUSURA.has(nome) || /\/\s*$/.test(trovato[3]);
+
+    if (profondita === 0 && trovato.index > inizio) {
+      figli.push(interno.slice(inizio, trovato.index)); // testo fra due elementi
+      inizio = trovato.index;
+    }
+
+    if (chiusura) {
+      profondita -= 1;
+      if (profondita === 0) {
+        figli.push(interno.slice(inizio, tag.lastIndex));
+        inizio = tag.lastIndex;
+      }
+    } else if (senzaContenuto) {
+      if (profondita === 0) {
+        figli.push(interno.slice(inizio, tag.lastIndex));
+        inizio = tag.lastIndex;
+      }
+    } else {
+      profondita += 1;
+    }
+  }
+
+  if (inizio < interno.length) figli.push(interno.slice(inizio));
+  return figli.filter((figlio) => testoSemplice(figlio) !== '');
+}
+
+test('la pagina iniziale finisce dicendo che le app non sono ancora sullo Store', () => {
+  const figli = figliDiretti(contenutoMain(paginaIniziale()));
+  assert.ok(figli.length > 0, 'index.html: <main> non ha contenuto');
+  assert.equal(
+    testoSemplice(figli[figli.length - 1]),
+    RIGA_STATO,
+    `index.html: l'ultima cosa dentro <main> deve dire esattamente "${RIGA_STATO}" — chi legge fino in fondo deve trovarci lo stato reale, non una promessa`,
+  );
+});
+
+test('il testo della pagina iniziale resta corto quanto uno schermo di telefono', () => {
+  const parole = contaParole(testoSemplice(contenutoMain(paginaIniziale())));
+  assert.ok(
+    parole <= PAROLE_MASSIME,
+    `index.html: ${parole} parole dentro <main>, il massimo e' ${PAROLE_MASSIME} — oltre, chi arriva da telefono deve scorrere prima di capire cosa sia TROVA.ME`,
+  );
+});
+
+test('la pagina iniziale non promette quello che le app non danno ancora', () => {
+  const html = paginaIniziale().toLowerCase();
+  for (const promessa of PROMESSE_VIETATE) {
+    assert.ok(
+      !html.includes(promessa),
+      `index.html: compare "${promessa}" — nessuna delle tre app e' pubblicata, e annunciarlo qui sarebbe falso`,
+    );
+  }
+});
