@@ -39,6 +39,9 @@ const pagine = elencaHtml(DIST).map((percorso) => ({
 test('il sito compilato contiene le pagine attese', () => {
   const attese = [
     'index.html',
+    // GitHub Pages serve questo file a chi sbaglia indirizzo: senza, il
+    // visitatore vede la pagina di errore di GitHub e non sa dov'e' finito.
+    '404.html',
     'app/minta/index.html',
     'app/pronto/index.html',
     'app/claudepal/index.html',
@@ -131,4 +134,54 @@ test('la sitemap per i motori di ricerca viene prodotta', () => {
     existsSync(join(DIST, 'sitemap-index.xml')),
     'Manca sitemap-index.xml: senza, i motori di ricerca scoprono le pagine solo per caso',
   );
+});
+
+// --- pagina di errore -------------------------------------------------------
+// Chi arriva su un indirizzo inesistente e' gia' a un passo dall'andarsene.
+// Questi controlli tengono in piedi l'unica via di ritorno che gli resta.
+
+function pagina404() {
+  const trovata = pagine.find((p) => p.nome === '404.html');
+  assert.ok(trovata, "Manca dist/404.html: chi sbaglia indirizzo vedrebbe la pagina di GitHub");
+  return trovata.html;
+}
+
+test('la pagina di errore riporta alla pagina iniziale', () => {
+  const collegamenti = [...pagina404().matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/g)].map((m) => ({
+    href: (m[1].match(/\shref="([^"]*)"/) ?? [])[1],
+    testo: m[2].replace(/<[^>]*>/g, '').trim(),
+  }));
+
+  const ritorno = collegamenti.find((c) => c.testo === 'Go to the homepage');
+  assert.ok(
+    ritorno,
+    "404.html: manca il collegamento 'Go to the homepage' — senza, il visitatore ha solo il tasto indietro",
+  );
+  assert.equal(
+    ritorno.href,
+    `${BASE}/`,
+    `404.html: il collegamento di ritorno punta a ${ritorno.href} invece che a ${BASE}/ — usa path() da src/lib/paths.ts`,
+  );
+});
+
+test('la pagina di errore chiede di non essere indicizzata', () => {
+  const robots = pagina404().match(/<meta[^>]*name="robots"[^>]*content="([^"]*)"/i);
+  assert.ok(robots, '404.html: manca <meta name="robots">');
+  assert.match(
+    robots[1],
+    /\bnoindex\b/,
+    '404.html: il meta robots non dice noindex — la pagina di errore finirebbe fra i risultati di ricerca per TROVA.ME',
+  );
+});
+
+test('la pagina di errore resta fuori dalla sitemap', () => {
+  const sitemap = readdirSync(DIST).filter((nome) => /^sitemap-.*\.xml$/.test(nome));
+  assert.ok(sitemap.length > 0, 'Nessun file sitemap-*.xml da controllare');
+
+  for (const nome of sitemap) {
+    assert.ok(
+      !readFileSync(join(DIST, nome), 'utf8').includes('404'),
+      `${nome}: contiene la pagina di errore — non va segnalata ai motori di ricerca`,
+    );
+  }
 });

@@ -1,0 +1,37 @@
+---
+// Pagina di errore del sito. Il nome del file non e' negoziabile: GitHub Pages
+// serve `404.html` dalla radice del sito pubblicato, e Astro produce quel file
+// solo da `src/pages/404.astro`.
+//
+// Chi ci arriva ha gia' sbagliato strada: la pagina dice cosa e' successo e da'
+// una sola via d'uscita, senza altro contenuto intorno.
+import Base from '../layouts/Base.astro';
+import { path } from '../lib/paths';
+---
+
+<Base
+  titolo="Page not found — TROVA.ME"
+  descrizione="The page you're looking for doesn't exist."
+  nonIndicizzare
+>
+  <h1>Page not found</h1>
+  <p>The page you're looking for doesn't exist.</p>
+  <a class="ritorno" href={path('')}>Go to the homepage</a>
+</Base>
+
+<style>
+  .ritorno {
+    /* 44 px e' il bersaglio minimo che un pollice colpisce al primo tentativo:
+       chi e' finito qui per sbaglio non deve sbagliare anche l'uscita. */
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-top: 1rem;
+    padding: 0.625rem 1.25rem;
+    border-radius: 0.75rem;
+    background: var(--accento);
+    color: var(--sfondo);
+    font-weight: 600;
+    text-decoration: none;
+  }
+</style>

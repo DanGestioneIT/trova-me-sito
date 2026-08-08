@@ -6,9 +6,15 @@ import '../styles/global.css';
 interface Props {
   titolo: string;
   descrizione: string;
+  /**
+   * Tiene la pagina fuori dai risultati di ricerca. Serve alla sola pagina di
+   * errore: comparire fra i risultati per TROVA.ME manderebbe i visitatori su
+   * un vicolo cieco. Le pagine vere non la impostano.
+   */
+  nonIndicizzare?: boolean;
 }
 
-const { titolo, descrizione } = Astro.props;
+const { titolo, descrizione, nonIndicizzare = false } = Astro.props;
 
 // L'indirizzo canonico dice ai motori di ricerca qual e' la versione ufficiale
 // di questa pagina. Si ricava da `site` + `base` in astro.config.mjs.
@@ -22,6 +28,7 @@ const canonico = new URL(Astro.url.pathname, Astro.site);
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{titolo}</title>
     <meta name="description" content={descrizione} />
+    {nonIndicizzare && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonico} />
     <meta property="og:site_name" content="TROVA.ME" />
     <meta property="og:title" content={titolo} />
