@@ -17,12 +17,17 @@ che il visitatore legga le singole schede.
 | | Cosa fa | Come si usa |
 |---|---|---|
 | **Minta** | registra, trascrive, rielabora | detti, e ottieni un testo lavorato — con un prompt specializzato per ogni situazione |
-| **Pronto** | to-do list che capisce il parlato | detti un impegno in linguaggio naturale, l'AI lo interpreta, lo ordina per priorità e suggerisce il primo passo concreto |
+| **Pronto** | to-do list che capisce il parlato | detti un impegno in linguaggio naturale, l'AI lo interpreta, lo ordina per priorità e aggiunge una spinta breve |
 | **ClaudePal** | il telefono come telecomando | comandi una sessione di Claude Code sul Mac parlando dal telefono, e leggi la risposta lì |
 
 Pronto è pensata **per chi tende a procrastinare**: non è una lista in più, è una lista
-che decide al posto tuo da dove cominciare. È il dettaglio che la distingue, e sul sito
-deve vedersi.
+che si mette in ordine da sola. È il dettaglio che la distingue, e sul sito deve vedersi.
+
+> **Correzione, 9 agosto 2026.** Questo brief diceva che Pronto «suggerisce il primo passo
+> concreto». Non è più vero, e la contraddizione è emersa da una review: la specifica
+> dell'app (`PRONTO_SPEC.md`, revisione 0.9) prescrive **una frase di incoraggiamento
+> breve, mai istruzioni operative**. L'ordinamento invece è davvero automatico — peso e
+> urgenza calcolati dall'app — quindi su quello il brief aveva ragione.
 
 ## Stato reale, da non abbellire
 
