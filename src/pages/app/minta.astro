@@ -1,17 +1,64 @@
 ---
 import Base from '../../layouts/Base.astro';
 import SegnapostoSchermata from '../../components/SegnapostoSchermata.astro';
+
+// I tre motori fra cui si sceglie, nell'ordine in cui li si incontra: prima
+// quello che non costa nulla, poi la chiave che si ha gia', infine il credito.
+// Il testo e' stato approvato da una persona: qui non si riscrive.
+const motori = [
+  {
+    titolo: 'On your iPhone',
+    testo:
+      'Transcription and summaries run on the device. Nothing leaves your phone, and it costs nothing.',
+  },
+  {
+    titolo: 'With your own key',
+    testo:
+      "Already paying for OpenAI, Claude or Gemini? Minta uses your key. It stays in the iPhone's keychain. I never see it.",
+  },
+  {
+    titolo: 'Minta Cloud',
+    testo:
+      "Top up a little credit and spend it as you go. The server transcribes, summarises, and then forgets: it keeps neither your audio nor your text. There's a free trial to start with.",
+  },
+];
+
+// Lo stato reale dell'app, detto prima di qualunque descrizione: chi legge
+// deve saperlo subito, non alla fine. Un test fallisce se questa riga cambia.
+const stato = 'In testing — not on the App Store yet.';
 ---
 
 <Base
-  titolo="Minta — record, transcribe, rewrite | TROVA.ME"
-  descrizione="Minta records your voice, transcribes it and rewrites it, with a prompt tuned to the situation you are in."
+  titolo="Minta — speak, and get back something you can send | TROVA.ME"
+  descrizione="Minta records what you say and rewrites it into meeting notes, a lecture summary or a client follow-up — on your iPhone, with your own key, or in the cloud."
 >
-  <h1>Minta</h1>
-  <p class="stato">Coming to the App Store</p>
+  <h1>Speak. Get back something you can send.</h1>
+  <p class="stato">{stato}</p>
   <p>
-    Record, transcribe, rewrite. You speak, and you get back a finished piece of writing —
-    shaped by a prompt tuned to the situation you are in.
+    Minta records what you say, writes it down, and then rewrites it into the thing you
+    actually needed: the notes from that meeting, the summary of that lecture, the
+    follow-up after that client call.
+  </p>
+
+  <h2>You choose where the work happens.</h2>
+  {motori.map((motore) => (
+    <div class="motore">
+      <h3>{motore.titolo}</h3>
+      <p>{motore.testo}</p>
+    </div>
+  ))}
+
+  <h2>Five ways to be rewritten.</h2>
+  <p>
+    A meeting becomes decisions, actions and next steps. A lecture becomes something you
+    can study from. A client call becomes what they asked for and what you promised. A
+    brainstorm keeps the ideas and drops the noise. Personal notes just get tidied. And if
+    none of those fit, two of the prompts are yours to write.
+  </p>
+
+  <p>
+    Record for as long as you need — hours, in the background, pausing whenever. Minta
+    Cloud transcribes up to an hour per file.
   </p>
 
   <SegnapostoSchermata app="Minta" />
@@ -25,5 +72,23 @@ import SegnapostoSchermata from '../../components/SegnapostoSchermata.astro';
     background: var(--sfondo-tenue);
     color: var(--testo-tenue);
     font-size: 0.875rem;
+  }
+
+  .motore {
+    margin-top: 1.25rem;
+  }
+
+  /* global.css non definisce h3: senza questa regola i tre motori
+     arriverebbero con la dimensione predefinita del browser, piu' grande dei
+     titoli di sezione che stanno sopra di loro. */
+  .motore h3 {
+    font-size: 1.0625rem;
+    line-height: 1.4;
+    margin: 0 0 0.25rem;
+    color: var(--accento);
+  }
+
+  .motore p {
+    margin: 0;
   }
 </style>
