@@ -2,6 +2,9 @@
 import Base from '../layouts/Base.astro';
 import { path } from '../lib/paths';
 
+// Una riga sola per app: il resto lo racconta la scheda.
+// ClaudePal dichiara di essere un esperimento, perche' lo e'.
+// Pronto suggerisce e non decide: attribuirle una decisione sarebbe falso.
 const app = [
   {
     nome: 'Minta',
@@ -10,25 +13,30 @@ const app = [
   },
   {
     nome: 'Pronto',
-    riga: 'Say what you have to do. It decides where to start.',
+    riga: 'Say what you have to do, and it suggests where to start.',
     href: path('app/pronto/'),
   },
   {
     nome: 'ClaudePal',
-    riga: 'Your phone as a remote control for your Mac. An experiment.',
+    riga: 'An experiment: your phone as a voice remote for Claude Code on your Mac.',
     href: path('app/claudepal/'),
   },
 ];
+
+// Lo stato reale, detto in fondo alla pagina e non solo dentro le schede: chi
+// arriva da un link deve poterlo scoprire senza entrare da nessuna parte.
+// Il testo e' letterale, e un test fallisce se cambia.
+const stato = 'None of these are on the App Store yet.';
 ---
 
 <Base
-  titolo="TROVA.ME — apps you use by talking"
-  descrizione="Three iPhone apps that get the keyboard out of the way: you speak, and something useful happens."
+  titolo="TROVA.ME — iPhone apps you use by talking, not typing"
+  descrizione="I make three iPhone apps you use by talking, not typing. Speak, and something useful happens — none of them are on the App Store yet."
 >
-  <h1>You speak. Something useful happens.</h1>
+  <h1>I make iPhone apps you use by talking, not typing.</h1>
   <p>
-    TROVA.ME is the name I publish my iPhone apps under. One idea holds them together:
-    they get the keyboard out of the way.
+    I publish three of them under the name TROVA.ME, and each turns something you say
+    into something useful.
   </p>
 
   <ul class="elenco">
@@ -41,6 +49,8 @@ const app = [
       </li>
     ))}
   </ul>
+
+  <p class="stato">{stato}</p>
 </Base>
 
 <style>
@@ -67,6 +77,12 @@ const app = [
   }
 
   .elenco span {
+    color: var(--testo-tenue);
+  }
+
+  .stato {
+    /* Non e' un avviso da schivare: si legge, ma non compete con le tre app. */
+    margin-top: 1.5rem;
     color: var(--testo-tenue);
   }
 </style>
