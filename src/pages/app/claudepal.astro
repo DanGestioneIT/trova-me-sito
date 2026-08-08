@@ -1,17 +1,62 @@
 ---
 import Base from '../../layouts/Base.astro';
 import SegnapostoSchermata from '../../components/SegnapostoSchermata.astro';
+
+// La scheda di un esperimento, non di un prodotto. Le due sezioni scomode —
+// i limiti e il test che non e' ancora avvenuto — stanno dentro la pagina e non
+// in fondo in piccolo: sono la ragione per cui questa pagina e' credibile.
+//
+// La riga sulla cifratura e quella sulla cartella di test vengono dal README
+// del progetto, sezione "Sicurezza". Non ammorbidirle.
+const sezioni = [
+  {
+    titolo: 'Permissions stay with you.',
+    testo:
+      'When Claude Code requests permission for a tool action, the request appears on your phone for you to allow or refuse. You can also answer its questions, interrupt a turn, and change the model or effort level. The point is not automation, but staying in charge from somewhere else.',
+  },
+  {
+    titolo: 'The session stays on the Mac.',
+    testo:
+      'A small bridge connects the phone to Claude Code over your local network. The Mac runs the tools; the iPhone shows the response, tool activity, and session state.',
+  },
+  {
+    titolo: 'The limits are part of the experiment.',
+    testo:
+      'ClaudePal works only when the Mac and iPhone are on the same local network, with the bridge running and the app open on screen. The traffic is not encrypted, and the pairing code prevents an accident, not an attacker. The current setup is restricted to a dedicated test folder and must never be used on public Wi-Fi or with real work.',
+  },
+  {
+    titolo: 'The real test has not happened yet.',
+    testo:
+      'Everything planned for this phase is built. What is missing is the only test that matters: twenty uninterrupted minutes of real work from the phone that leave you wanting to do it again.',
+  },
+];
+
+const stato = 'An experiment — not a release or an App Store product.';
 ---
 
 <Base
-  titolo="ClaudePal — your phone as a remote control | TROVA.ME"
-  descrizione="ClaudePal is an experiment: drive a Claude Code session on your Mac by talking to your phone."
+  titolo="ClaudePal — leave the desk, keep the Claude Code session | TROVA.ME"
+  descrizione="ClaudePal is a local-network experiment for guiding a Claude Code session on your Mac from your iPhone by voice or text, including questions and permission requests."
 >
-  <h1>ClaudePal</h1>
-  <p class="stato">An experiment, not a release</p>
+  <h1>Leave the desk. Keep the session.</h1>
+  <p class="stato">{stato}</p>
   <p>
-    Drive a Claude Code session running on your Mac by talking to your phone, and read the
-    answer there. This is a declared experiment — not a product on its way.
+    The refactor is running, you are in the kitchen, and Claude Code stops to ask whether
+    it may delete a file. ClaudePal turns your iPhone into a remote for that session:
+    dictate or type a prompt, watch the response arrive, and answer from where you are.
+  </p>
+
+  {sezioni.map((sezione) => (
+    <section>
+      <h2>{sezione.titolo}</h2>
+      <p>{sezione.testo}</p>
+    </section>
+  ))}
+
+  <p>
+    If those twenty minutes never feel worth repeating, the experiment stops there and
+    will still have done its job. ClaudePal may become a product, or it may end as
+    something I learned from. Both are honest outcomes.
   </p>
 
   <SegnapostoSchermata app="ClaudePal" />
@@ -25,5 +70,9 @@ import SegnapostoSchermata from '../../components/SegnapostoSchermata.astro';
     background: var(--sfondo-tenue);
     color: var(--testo-tenue);
     font-size: 0.875rem;
+  }
+
+  section p {
+    margin: 0 0 1rem;
   }
 </style>
