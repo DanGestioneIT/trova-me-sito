@@ -1,0 +1,40 @@
+---
+// Riquadro che dichiara apertamente che la schermata non c'e' ancora.
+// Il brief lo impone: gli screenshot veri arriveranno con un lavoro dedicato,
+// e nel frattempo non si inventa nulla.
+interface Props {
+  app: string;
+}
+
+const { app } = Astro.props;
+---
+
+<figure>
+  <div class="riquadro" role="img" aria-label={`Schermata di ${app} non ancora disponibile`}>
+    <span>Schermata in arrivo</span>
+  </div>
+  <figcaption>Le immagini di {app} saranno pubblicate quando l'app sara' ultimata.</figcaption>
+</figure>
+
+<style>
+  figure {
+    margin: 1.5rem 0;
+  }
+
+  .riquadro {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 9 / 16;
+    max-height: 60vh;
+    background: var(--sfondo-tenue);
+    border: 1px dashed var(--bordo);
+    border-radius: 0.75rem;
+    color: var(--testo-tenue);
+  }
+
+  figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.9375rem;
+    color: var(--testo-tenue);
+  }
+</style>

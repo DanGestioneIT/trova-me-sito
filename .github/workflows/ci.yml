@@ -1,0 +1,29 @@
+name: Controlli
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  verifica:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Installa le dipendenze
+        run: npm ci
+
+      - name: Controllo dei tipi e delle pagine Astro
+        run: npm run check
+
+      - name: Compila il sito
+        run: npm run build
+
+      - name: Test sul sito compilato
+        run: node --test "tests/**/*.test.mjs"

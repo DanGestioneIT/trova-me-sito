@@ -1,0 +1,29 @@
+---
+import Base from '../../layouts/Base.astro';
+import SegnapostoSchermata from '../../components/SegnapostoSchermata.astro';
+---
+
+<Base
+  titolo="ClaudePal — il telefono come telecomando | TROVA.ME"
+  descrizione="ClaudePal e' un esperimento: comandare una sessione di Claude Code sul Mac parlando dal telefono."
+>
+  <h1>ClaudePal</h1>
+  <p class="stato">Esperimento, non una release</p>
+  <p>
+    Comandi una sessione di Claude Code sul Mac parlando dal telefono, e leggi la risposta
+    li'. E' un esperimento dichiarato: non e' un prodotto in arrivo.
+  </p>
+
+  <SegnapostoSchermata app="ClaudePal" />
+</Base>
+
+<style>
+  .stato {
+    display: inline-block;
+    padding: 0.125rem 0.625rem;
+    border-radius: 999px;
+    background: var(--sfondo-tenue);
+    color: var(--testo-tenue);
+    font-size: 0.875rem;
+  }
+</style>

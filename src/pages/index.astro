@@ -1,0 +1,72 @@
+---
+import Base from '../layouts/Base.astro';
+import { path } from '../lib/paths';
+
+const app = [
+  {
+    nome: 'Minta',
+    riga: 'Detti, e ottieni un testo lavorato.',
+    href: path('app/minta/'),
+  },
+  {
+    nome: 'Pronto',
+    riga: "Detti un impegno, l'AI decide da dove cominciare.",
+    href: path('app/pronto/'),
+  },
+  {
+    nome: 'ClaudePal',
+    riga: 'Il telefono come telecomando del Mac. Esperimento.',
+    href: path('app/claudepal/'),
+  },
+];
+---
+
+<Base
+  titolo="TROVA.ME — app che si usano parlando"
+  descrizione="Tre app per iPhone che tolgono di mezzo la tastiera: si parla, e qualcosa di utile succede."
+>
+  <h1>Si parla, e qualcosa di utile succede.</h1>
+  <p>
+    TROVA.ME e' il marchio sotto cui pubblico le mie app per iPhone. Il filo che le tiene
+    insieme e' uno solo: tolgono di mezzo la tastiera.
+  </p>
+
+  <ul class="elenco">
+    {app.map((voce) => (
+      <li>
+        <a href={voce.href}>
+          <strong>{voce.nome}</strong>
+          <span>{voce.riga}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</Base>
+
+<style>
+  .elenco {
+    list-style: none;
+    margin: 2rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .elenco a {
+    display: block;
+    padding: 1rem;
+    border: 1px solid var(--bordo);
+    border-radius: 0.75rem;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .elenco strong {
+    display: block;
+    color: var(--accento);
+  }
+
+  .elenco span {
+    color: var(--testo-tenue);
+  }
+</style>

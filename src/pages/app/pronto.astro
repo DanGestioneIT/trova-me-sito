@@ -1,0 +1,29 @@
+---
+import Base from '../../layouts/Base.astro';
+import SegnapostoSchermata from '../../components/SegnapostoSchermata.astro';
+---
+
+<Base
+  titolo="Pronto — la lista che decide da dove cominciare | TROVA.ME"
+  descrizione="Pronto e' una to-do list che capisce il parlato: detti un impegno, viene interpretato, ordinato per priorita' e ridotto a un primo passo concreto."
+>
+  <h1>Pronto</h1>
+  <p class="stato">In arrivo su App Store</p>
+  <p>
+    Detti un impegno in linguaggio naturale. Pronto lo interpreta, lo ordina per priorita'
+    e ti suggerisce il primo passo concreto.
+  </p>
+
+  <SegnapostoSchermata app="Pronto" />
+</Base>
+
+<style>
+  .stato {
+    display: inline-block;
+    padding: 0.125rem 0.625rem;
+    border-radius: 999px;
+    background: var(--sfondo-tenue);
+    color: var(--testo-tenue);
+    font-size: 0.875rem;
+  }
+</style>

@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+import SegnapostoSchermata from '../../components/SegnapostoSchermata.astro';
+---
+
+<Base
+  titolo="Minta — registra, trascrive, rielabora | TROVA.ME"
+  descrizione="Minta registra la voce, la trascrive e la rielabora con un prompt specializzato per ogni situazione."
+>
+  <h1>Minta</h1>
+  <p class="stato">In arrivo su App Store</p>
+  <p>Registra, trascrive, rielabora. Detti, e ottieni un testo lavorato.</p>
+
+  <SegnapostoSchermata app="Minta" />
+</Base>
+
+<style>
+  .stato {
+    display: inline-block;
+    padding: 0.125rem 0.625rem;
+    border-radius: 999px;
+    background: var(--sfondo-tenue);
+    color: var(--testo-tenue);
+    font-size: 0.875rem;
+  }
+</style>
