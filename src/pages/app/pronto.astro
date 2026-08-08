@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Firma from '../../components/Firma.astro';
 import SegnapostoSchermata from '../../components/SegnapostoSchermata.astro';
 
 // Le sezioni della scheda, nell'ordine in cui rispondono alle domande di chi
@@ -52,7 +53,13 @@ const stato = 'In testing — not on the App Store yet.';
 >
   <h1>Say it once. The list sorts itself.</h1>
   <p class="stato">{stato}</p>
-  <p>
+
+  <Firma
+    detto="call the accountant before friday and move the dentist to thursday"
+    ottenuto="Call the accountant — before Friday. Dentist — Thursday."
+  />
+
+  <p class="apertura">
     Pronto is a to-do list for people who put things off. Say what you have to do the way
     you would say it to a friend: call the accountant before Friday, move the dentist to
     Thursday. Pronto saves your words immediately, then understands what you meant and
@@ -66,7 +73,7 @@ const stato = 'In testing — not on the App Store yet.';
     </section>
   ))}
 
-  <p>
+  <p class="chiusura">
     You probably do not need another place to store what you should do. Pronto is for the
     smaller, harder moment: getting it out of your head and making the list feel possible.
   </p>
@@ -75,16 +82,8 @@ const stato = 'In testing — not on the App Store yet.';
 </Base>
 
 <style>
-  .stato {
-    display: inline-block;
-    padding: 0.125rem 0.625rem;
-    border-radius: 999px;
-    background: var(--sfondo-tenue);
-    color: var(--testo-tenue);
-    font-size: 0.875rem;
-  }
-
   section p {
-    margin: 0 0 1rem;
+    max-width: var(--colonna);
+    margin: 0;
   }
 </style>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dangestioneit.github.io/trova-me-sito/sitemap-index.xml

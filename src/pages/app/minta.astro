@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Firma from '../../components/Firma.astro';
 import SegnapostoSchermata from '../../components/SegnapostoSchermata.astro';
 
 // I tre motori fra cui si sceglie, nell'ordine in cui li si incontra: prima
@@ -34,7 +35,13 @@ const stato = 'In testing — not on the App Store yet.';
 >
   <h1>Speak. Get back something you can send.</h1>
   <p class="stato">{stato}</p>
-  <p>
+
+  <Firma
+    detto="we agreed to send the revised quote and confirm the schedule"
+    ottenuto="Next steps: send the revised quote; confirm the schedule."
+  />
+
+  <p class="apertura">
     Minta records what you say, writes it down, and then rewrites it into the thing you
     actually needed: the notes from that meeting, the summary of that lecture, the
     follow-up after that client call.
@@ -56,7 +63,7 @@ const stato = 'In testing — not on the App Store yet.';
     none of those fit, two of the prompts are yours to write.
   </p>
 
-  <p>
+  <p class="chiusura">
     Record for as long as you need — hours, in the background, pausing whenever. Minta
     Cloud transcribes up to an hour per file.
   </p>
@@ -65,30 +72,15 @@ const stato = 'In testing — not on the App Store yet.';
 </Base>
 
 <style>
-  .stato {
-    display: inline-block;
-    padding: 0.125rem 0.625rem;
-    border-radius: 999px;
-    background: var(--sfondo-tenue);
-    color: var(--testo-tenue);
-    font-size: 0.875rem;
-  }
-
   .motore {
-    margin-top: 1.25rem;
-  }
-
-  /* global.css non definisce h3: senza questa regola i tre motori
-     arriverebbero con la dimensione predefinita del browser, piu' grande dei
-     titoli di sezione che stanno sopra di loro. */
-  .motore h3 {
-    font-size: 1.0625rem;
-    line-height: 1.4;
-    margin: 0 0 0.25rem;
-    color: var(--accento);
+    max-width: var(--colonna);
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--bordo);
   }
 
   .motore p {
     margin: 0;
+    color: var(--tenue);
   }
 </style>
