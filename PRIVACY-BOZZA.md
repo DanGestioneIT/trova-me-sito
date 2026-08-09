@@ -10,10 +10,26 @@
 > **Le tre affermazioni da verificare tu**, perché se sono sbagliate il danno è serio, sono
 > segnate con ⚠️.
 >
-> Manca un punto che non posso decidere io: il **titolare del trattamento**. Se le app le
-> pubblichi come persona fisica va il tuo nome; se hai una partita IVA o una società, vanno
-> quelli, con l'indirizzo. Serve anche un contatto — e il brief oggi esclude di pubblicare
-> un indirizzo email. Sono due cose che vanno decise insieme.
+> **Deciso il 9 agosto 2026:** titolare del trattamento è Daniele Eric Carandente come
+> persona fisica; contatto `dan@trova.me`. Questo supera la riga del brief che escludeva
+> di pubblicare un indirizzo email: là riguardava i moduli di contatto e la raccolta di
+> indirizzi, qui è un obbligo di legge. Un indirizzo scritto in chiaro su una pagina
+> pubblica viene raccolto dai robot nel giro di giorni: mettilo in conto, oppure decidi di
+> offuscarlo quando la bozza diventa pagina.
+>
+> **Nota sul ruolo, perché la domanda è venuta ed è giusta.** Titolare non significa «chi
+> conserva i dati», significa «chi decide perché e come vengono trattati». Sei tu ad avere
+> deciso che l'audio di Minta Cloud vada a Groq per essere trascritto: quella decisione è
+> il trattamento, anche se sul tuo server non resta niente. Groq è il **responsabile**,
+> che elabora per conto tuo — quindi serve il loro accordo sul trattamento dei dati, da
+> citare qui, tanto più che è un trasferimento fuori dall'Unione Europea.
+>
+> E c'è un secondo motivo, indipendente da Groq: l'identificatore Apple e il saldo dei
+> crediti li conservi davvero. **Un identificatore senza nome non è anonimo, è pseudonimo**:
+> se un saldo si può ricollegare a una persona — e si può, altrimenti il credito non
+> funzionerebbe — resta un dato personale.
+>
+> Niente di tutto questo è un parere legale.
 
 ---
 
@@ -21,6 +37,9 @@
 
 TROVA.ME is one person making three iPhone apps. This page says what each app does with
 your data, in plain terms. It is short because the apps collect very little.
+
+The data controller is **Daniele Eric Carandente**, acting as an individual. For anything
+on this page, write to **dan@trova.me**.
 
 ### This website
 
@@ -51,9 +70,11 @@ Groq does with a request while it processes it is governed by Groq's own terms. 
 verifiche: che nessun log del server conservi, anche temporaneamente, il contenuto delle
 richieste; e qual e' la politica di conservazione dati di Groq, da citare qui.*
 
-To use Minta Cloud you sign in with Apple. TROVA.ME receives the anonymous identifier Apple
-issues for you, and uses it for one purpose only: keeping track of your credit balance.
-Purchases are handled by Apple; TROVA.ME never sees your payment details.
+To use Minta Cloud you sign in with Apple. TROVA.ME receives the identifier Apple issues
+for you — not your name, not your email — and uses it for one purpose only: keeping track
+of your credit balance. That identifier and your balance are the only things kept, and they
+are kept for as long as you have credit. Purchases are handled by Apple; TROVA.ME never
+sees your payment details.
 
 Your recordings, transcripts and summaries are stored on your iPhone. Deleting a session
 deletes them.
