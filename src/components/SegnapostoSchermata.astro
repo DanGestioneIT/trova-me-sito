@@ -22,27 +22,24 @@ const { app } = Astro.props;
 
 <style>
   figure {
-    max-width: var(--lettura);
-    margin: 64px 0 0;
+    max-width: var(--colonna);
+    margin: 48px 0 0;
   }
 
   /* Compatto di proposito. Alto come una schermata di telefono, dominava la
      pagina e comunicava "sito incompleto" piu' forte di quanto le pagine
      raccontino le app: una dichiarazione onesta non deve gridare. */
-  /* Non un telefono vuoto: una fascia che dichiara uno spazio riservato.
-     Chiudere ogni pagina con quasi uno schermo bianco urlava "incompleto" e
-     spegneva tutto quello che veniva prima. */
   .riquadro {
     display: grid;
     place-items: center;
-    min-height: 120px;
-    padding: 32px 24px;
-    border: 2px dashed var(--tenue);
+    min-height: 96px;
+    padding: 24px;
+    background: var(--superficie);
+    border: 1px dashed var(--bordo);
     color: var(--tenue);
     font-family: var(--detto);
-    font-size: clamp(0.875rem, 2.4vw, 1.125rem);
-    font-weight: 600;
-    letter-spacing: 0.14em;
+    font-size: 12px;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
   }
 
