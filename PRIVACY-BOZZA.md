@@ -10,10 +10,26 @@
 > **Le tre affermazioni da verificare tu**, perché se sono sbagliate il danno è serio, sono
 > segnate con ⚠️.
 >
-> Manca un punto che non posso decidere io: il **titolare del trattamento**. Se le app le
-> pubblichi come persona fisica va il tuo nome; se hai una partita IVA o una società, vanno
-> quelli, con l'indirizzo. Serve anche un contatto — e il brief oggi esclude di pubblicare
-> un indirizzo email. Sono due cose che vanno decise insieme.
+> **Deciso il 9 agosto 2026:** titolare del trattamento è Daniele Eric Carandente come
+> persona fisica; contatto `dan@trova.me`. Questo supera la riga del brief che escludeva
+> di pubblicare un indirizzo email: là riguardava i moduli di contatto e la raccolta di
+> indirizzi, qui è un obbligo di legge. Un indirizzo scritto in chiaro su una pagina
+> pubblica viene raccolto dai robot nel giro di giorni: mettilo in conto, oppure decidi di
+> offuscarlo quando la bozza diventa pagina.
+>
+> **Nota sul ruolo, perché la domanda è venuta ed è giusta.** Titolare non significa «chi
+> conserva i dati», significa «chi decide perché e come vengono trattati». Sei tu ad avere
+> deciso che l'audio di Minta Cloud vada a Groq per essere trascritto: quella decisione è
+> il trattamento, anche se sul tuo server non resta niente. Groq è il **responsabile**,
+> che elabora per conto tuo — quindi serve il loro accordo sul trattamento dei dati, da
+> citare qui, tanto più che è un trasferimento fuori dall'Unione Europea.
+>
+> E c'è un secondo motivo, indipendente da Groq: l'identificatore Apple e il saldo dei
+> crediti li conservi davvero. **Un identificatore senza nome non è anonimo, è pseudonimo**:
+> se un saldo si può ricollegare a una persona — e si può, altrimenti il credito non
+> funzionerebbe — resta un dato personale.
+>
+> Niente di tutto questo è un parere legale.
 
 ---
 
@@ -21,6 +37,9 @@
 
 TROVA.ME is one person making three iPhone apps. This page says what each app does with
 your data, in plain terms. It is short because the apps collect very little.
+
+The data controller is **Daniele Eric Carandente**, acting as an individual. For anything
+on this page, write to **dan@trova.me**.
 
 ### This website
 
@@ -34,9 +53,9 @@ Minta records audio, transcribes it, and rewrites the transcript. **You choose w
 work happens, and the choice decides where your words go.**
 
 **On your iPhone.** Transcription uses Apple's on-device speech recognition and summaries
-use Apple's on-device models. Your audio and your text never leave the phone. ⚠️ *Da
-verificare: che nella modalità on-device non venga effettuata alcuna chiamata di rete, in
-nessuna circostanza.*
+use Apple's on-device models. Your audio and your text never leave the phone. ✅ *Verificato
+il 9 agosto 2026: in modalità aereo, con il motore Minta (on device) attivo, registrazione,
+trascrizione e riassunto funzionano.*
 
 **With your own API key.** Your transcript is sent directly from your iPhone to the AI
 provider you chose — OpenAI, Anthropic or Google — under your own account and their terms.
@@ -44,14 +63,46 @@ TROVA.ME is not part of that exchange and never sees your key, which is stored i
 iPhone's keychain.
 
 **Minta Cloud.** Audio and transcripts are sent to `api.trova.me`, which forwards them to
-the processing providers it uses (Groq for transcription and summarisation). **The server
-stores neither your audio nor your text**: it processes the request, returns the result,
-and keeps only a ledger entry recording that credit was spent. ⚠️ *Da verificare: che
-nessun log del server conservi, anche temporaneamente, il contenuto delle richieste.*
+**Groq**, the provider that performs the transcription and the summarisation. **The
+TROVA.ME server stores neither your audio nor your text**: it processes the request,
+returns the result, and keeps only a ledger entry recording that credit was spent.
 
-To use Minta Cloud you sign in with Apple. TROVA.ME receives the anonymous identifier Apple
-issues for you, and uses it for one purpose only: keeping track of your credit balance.
-Purchases are handled by Apple; TROVA.ME never sees your payment details.
+The processing itself is done by **Groq**, as a processor acting on TROVA.ME's
+instructions, under Groq's Data Processing Addendum. **Zero Data Retention is switched on
+for this account: Groq keeps nothing** — not the audio, not the transcript, not the
+summary, not even the short-lived logs it would otherwise keep to troubleshoot its own
+platform. Groq operates in the United States, and the transfer is covered by the EU
+Standard Contractual Clauses included in that addendum.
+
+So, end to end: your words are processed and then they are gone. Nobody in this chain keeps
+them — not TROVA.ME, not Groq. The only thing that survives a Minta Cloud request is the
+line in the ledger saying that some credit was spent.
+
+> **Nota interna, non da pubblicare.** ✅ I log del backend TROVA.ME: verificato dal
+> proprietario, nessun contenuto sensibile, solo l'identificatore interno.
+>
+> ✅ L'accordo con Groq **ce l'hai già**: il DPA è incorporato automaticamente nel Services
+> Agreement, non c'è niente da firmare, e le clausole contrattuali tipo per il
+> trasferimento fuori dall'Unione Europea si considerano sottoscritte.
+>
+> ✅ **Zero Data Retention attivato il 9 agosto 2026** nella console Groq. Per questo la
+> pagina può dire che non resta niente, senza eccezioni.
+>
+> ⚠️ **E questa è la verità più fragile di tutto il documento**, perché è l'unica che non
+> vive nel repository: sta in un interruttore dentro la console di Groq. Nessun test del
+> sito potrà mai accorgersi se un giorno viene spento — da te, o da un cambio di piano, o
+> da una migrazione di account. Se si spegne, questa pagina diventa falsa nel momento
+> stesso in cui accade, e nessuno lo saprà.
+>
+> Va quindi tenuta a mano: quando toccherai le impostazioni di Groq, rileggi questa riga.
+> È il caso da manuale di una promessa che un controllo automatico non può proteggere, e
+> dirlo è più onesto che fingere di averla coperta.
+
+To use Minta Cloud you sign in with Apple. TROVA.ME receives the identifier Apple issues
+for you — not your name, not your email — and uses it for one purpose only: keeping track
+of your credit balance. That identifier and your balance are the only things kept, and they
+are kept for as long as you have credit. Purchases are handled by Apple; TROVA.ME never
+sees your payment details.
 
 Your recordings, transcripts and summaries are stored on your iPhone. Deleting a session
 deletes them.
@@ -60,10 +111,15 @@ deletes them.
 
 Your list lives on your iPhone. **There is no Pronto account and no Pronto server.**
 
-To understand what you dictate, Pronto sends the text of your entry to the AI provider you
-chose, with your own key, under your own account. ⚠️ *Da verificare: che oltre al testo
-dell'impegno non venga inviato altro contesto della lista.* The key is stored in the
-iPhone's keychain. If you never configure a provider, nothing is sent anywhere.
+To understand what you dictate, Pronto sends the AI provider you chose two things: the text
+of what you just said, **and a compact list of your active tasks**. The second is necessary
+— without it, "move the dentist to Thursday" has nothing to refer to — but it means part of
+your list leaves the phone, not only the sentence you just spoke.
+
+That exchange happens directly between your iPhone and the provider, with your own key,
+under your own account and their terms. TROVA.ME is not part of it and never sees the key,
+which is stored in the iPhone's keychain. If you never configure a provider, nothing is
+sent anywhere.
 
 ### ClaudePal
 
