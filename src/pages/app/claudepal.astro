@@ -21,6 +21,7 @@ const sezioni = [
       'A small bridge connects the phone to Claude Code over your local network. The Mac runs the tools; the iPhone shows the response, tool activity, and session state.',
   },
   {
+    campo: 'campo campo-inchiostro',
     titolo: 'The limits are part of the experiment.',
     testo:
       'ClaudePal works only when the Mac and iPhone are on the same local network, with the bridge running and the app open on screen. The traffic is not encrypted, and the pairing code prevents an accident, not an attacker. The current setup is restricted to a dedicated test folder and must never be used on public Wi-Fi or with real work.',
@@ -54,9 +55,11 @@ const stato = 'An experiment — not a release or an App Store product.';
   </p>
 
   {sezioni.map((sezione) => (
-    <section>
-      <h2>{sezione.titolo}</h2>
-      <p>{sezione.testo}</p>
+    <section class:list={[sezione.campo && 'pieno', sezione.campo]}>
+      <div class="dentro">
+        <h2>{sezione.titolo}</h2>
+        <p>{sezione.testo}</p>
+      </div>
     </section>
   ))}
 
@@ -70,8 +73,48 @@ const stato = 'An experiment — not a release or an App Store product.';
 </Base>
 
 <style>
+  section {
+    margin-top: 48px;
+  }
+
+  .dentro {
+    max-width: var(--contenuto);
+    margin-inline: auto;
+  }
+
+  section h2 {
+    margin-top: 0;
+  }
+
   section p {
-    max-width: var(--colonna);
+    max-width: var(--lettura);
     margin: 0;
+  }
+
+  /* Su schermo largo il titolo si stacca dal testo e le sezioni si alternano:
+     senza questo la pagina ricade nella sequenza educata titolo-paragrafo. */
+  @media (min-width: 64rem) {
+    section:not(.campo) .dentro {
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      gap: 0 48px;
+      align-items: start;
+    }
+
+    section:not(.campo):nth-of-type(even) .dentro {
+      grid-template-columns: 7fr 5fr;
+    }
+
+    section:not(.campo):nth-of-type(even) h2 {
+      grid-column: 2;
+      grid-row: 1;
+      text-align: right;
+    }
+
+    section:not(.campo):nth-of-type(even) p {
+      grid-column: 1;
+      grid-row: 1;
+      justify-self: end;
+    }
   }
 </style>

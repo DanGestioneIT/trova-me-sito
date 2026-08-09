@@ -18,6 +18,7 @@ const sezioni = [
       'Add a task, move it to Thursday, mark it as done, delete it, or ask what is due today. Pronto understands ordinary speech as an action on your list. If it is not sure which task you mean, it asks. Deleting always requires confirmation.',
   },
   {
+    campo: 'campo campo-segnale',
     titolo: 'It decides what comes first.',
     testo:
       'Every task gets a weight, and dated tasks become more urgent as their deadline approaches. Pronto uses those signals to keep a short list in view while everything else remains safely stored. The order changes as the days pass, so you never have to sort the whole backlog yourself.',
@@ -67,9 +68,11 @@ const stato = 'In testing — not on the App Store yet.';
   </p>
 
   {sezioni.map((sezione) => (
-    <section>
-      <h2>{sezione.titolo}</h2>
-      <p>{sezione.testo}</p>
+    <section class:list={[sezione.campo && 'pieno', sezione.campo]}>
+      <div class="dentro">
+        <h2>{sezione.titolo}</h2>
+        <p>{sezione.testo}</p>
+      </div>
     </section>
   ))}
 
@@ -82,8 +85,48 @@ const stato = 'In testing — not on the App Store yet.';
 </Base>
 
 <style>
+  section {
+    margin-top: 48px;
+  }
+
+  .dentro {
+    max-width: var(--contenuto);
+    margin-inline: auto;
+  }
+
+  section h2 {
+    margin-top: 0;
+  }
+
   section p {
-    max-width: var(--colonna);
+    max-width: var(--lettura);
     margin: 0;
+  }
+
+  /* Su schermo largo il titolo si stacca dal testo e le sezioni si alternano:
+     senza questo la pagina ricade nella sequenza educata titolo-paragrafo. */
+  @media (min-width: 64rem) {
+    section:not(.campo) .dentro {
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      gap: 0 48px;
+      align-items: start;
+    }
+
+    section:not(.campo):nth-of-type(even) .dentro {
+      grid-template-columns: 7fr 5fr;
+    }
+
+    section:not(.campo):nth-of-type(even) h2 {
+      grid-column: 2;
+      grid-row: 1;
+      text-align: right;
+    }
+
+    section:not(.campo):nth-of-type(even) p {
+      grid-column: 1;
+      grid-row: 1;
+      justify-self: end;
+    }
   }
 </style>
