@@ -68,6 +68,19 @@ farli una volta sola quando le app sono ultimate.
 - Nessuna localizzazione: una sola lingua, senza selettore e senza indirizzi doppi.
   L'italiano potrà arrivare più avanti, con un lavoro dedicato.
 
+> **Aggiornamento, 9 agosto 2026.** Due voci di questo perimetro sono state superate
+> consapevolmente, e sono le uniche:
+>
+> - **la privacy policy esiste** (`privacy/`), perché Apple la pretende per pubblicare
+>   un'app. Contiene anche un recapito, `dan@trova.me`: un titolare del trattamento senza
+>   un modo per essere raggiunto è un documento incompleto. Non è un permesso ad
+>   aggiungere indirizzi altrove;
+> - **il sito ha un carattere ospitato** (`public/fonts/`). Non contraddice il divieto di
+>   tracciamento: proprio per rispettarlo il file è servito dal dominio del sito e non da
+>   un servizio esterno.
+>
+> Le note e le verifiche dietro la pagina privacy stanno in `PRIVACY-BOZZA.md`.
+
 ## La lingua
 
 **Il sito è in inglese.** Serve ad Apple: è l'indirizzo che accompagna le app sull'App
