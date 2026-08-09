@@ -1,71 +1,59 @@
 /*
- * TROVA.ME — manifesto tipografico.
+ * TROVA.ME — sistema tipografico.
  *
- * Una sola famiglia: Recursive, variabile, ospitata qui dentro. Non e' una
- * scelta d'estetica ma di sostanza: Recursive ha un asse MONO e un asse CASL,
- * quindi lo stesso carattere contiene i due stati del prodotto — il parlato
- * grezzo e la cosa composta. Il sito non illustra la trasformazione: la esegue.
+ * L'identita' nasce da un solo passaggio: il parlato grezzo che diventa una
+ * cosa composta. Per questo i caratteri sono due e non tre — il monospazio per
+ * cio' che e' stato detto, il carattere di sistema di Apple per tutto il resto —
+ * e il salto fra i due e' l'illustrazione. Non ci sono immagini da nessuna
+ * parte: sono strumenti per iPhone, e il carattere dell'iPhone e' la loro voce.
  *
- * Nessuna richiesta di rete verso terzi. Il font sta in public/fonts/ con la
- * sua licenza (SIL Open Font License 1.1): Google Fonts avrebbe tracciato, un
- * file servito dal nostro dominio no.
+ * Un solo colore vivo per tutto il progetto, mai uno per app: sono parti della
+ * stessa cosa. Niente schede, niente ombre, niente angoli arrotondati da
+ * catalogo: le tre app sono capitoli consecutivi, non prodotti in competizione.
  *
- * Zero JavaScript, anche per il movimento: le animazioni sono legate allo
- * scorrimento con animation-timeline. Dove il browser non le sostiene, la
- * pagina appare gia' nel suo stato finale — la composizione statica deve
- * reggere da sola, ed e' quella che vede chi apre da iPhone.
+ * Ritmo su 4px. Nessun font esterno, nessuna richiesta di rete a terzi.
  */
-
-@font-face {
-  font-family: 'Recursive';
-  src: url('/trova-me-sito/fonts/recursive.woff2') format('woff2-variations');
-  font-weight: 300 1000;
-  font-stretch: 100%;
-  font-style: oblique 0deg 15deg;
-  font-display: swap;
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
-    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
-    U+FEFF, U+FFFD;
-}
 
 :root {
   color-scheme: light dark;
 
-  --carta: #f2efe7;
-  --inchiostro: #11100f;
-  --tenue: #6b665c;
-  --segnale: #ff4d24;
-  --su-segnale: #11100f;
-  --bordo: #d5cfc1;
+  /* Colore. Un ruolo per riga, chiaro e scuro definiti insieme. */
+  --carta: #f6f7f9;
+  --inchiostro: #14161a;
+  --tenue: #5b616b;
+  --superficie: #ffffff;
+  --bordo: #d9dde4;
+  --accento: #b93626;
+  --accento-contrasto: #ffffff;
 
-  /* Il rosso pieno non ha contrasto sufficiente come testo piccolo su carta:
-     per i link si usa la variante scura, il pieno resta per i campi. */
-  --link: #c0300f;
+  /* Tipografia */
+  --composto:
+    -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', sans-serif;
+  --detto:
+    ui-monospace, 'SFMono-Regular', 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono',
+    monospace;
 
+  /* Misure */
+  --colonna: 40rem;
+  --colonna-larga: 54rem;
   --margine: 20px;
-  --lettura: 38rem;
-  --contenuto: 64rem;
-
-  /* I due stati del carattere, dichiarati una volta sola. */
-  --parlato: 'MONO' 1, 'CASL' 1, 'CRSV' 0;
-  --composto: 'MONO' 0, 'CASL' 0, 'CRSV' 0;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --carta: #0f0f0e;
-    --inchiostro: #f3f0e7;
-    --tenue: #9a938a;
-    --segnale: #ff6a43;
-    --su-segnale: #0f0f0e;
-    --bordo: #33312d;
-    --link: #ff8a68;
+    --carta: #14161a;
+    --inchiostro: #f6f7f9;
+    --tenue: #aeb4be;
+    --superficie: #1b1e24;
+    --bordo: #343943;
+    --accento: #ff7a66;
+    --accento-contrasto: #14161a;
   }
 }
 
 @media (min-width: 48rem) {
   :root {
-    --margine: 40px;
+    --margine: 32px;
   }
 }
 
@@ -75,140 +63,120 @@
   box-sizing: border-box;
 }
 
-html {
-  /* Con i titoli fuori scala un solo carattere di troppo puo' far comparire la
-     barra orizzontale: qui si taglia il problema alla radice. */
-  overflow-x: hidden;
-}
-
 body {
   margin: 0;
   background: var(--carta);
   color: var(--inchiostro);
-  font-family: 'Recursive', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  font-variation-settings: var(--composto);
-  font-weight: 400;
+  font-family: var(--composto);
   font-size: 18px;
   line-height: 28px;
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
 }
 
-@media (min-width: 48rem) {
-  body {
-    font-size: 20px;
-    line-height: 31px;
-  }
-}
-
-/* La griglia che rende possibile il pieno schermo senza contenitori annidati:
-   tutto sta in colonna, chi vuole tutta la larghezza chiede `full`. */
 main {
-  display: grid;
-  grid-template-columns:
-    [full-start] minmax(var(--margine), 1fr)
-    [content-start] minmax(0, var(--contenuto)) [content-end]
-    minmax(var(--margine), 1fr) [full-end];
-  padding: 0 0 96px;
+  max-width: var(--colonna-larga);
+  margin: 0 auto;
+  padding: 48px var(--margine) 96px;
 }
 
-main > * {
-  grid-column: content;
-}
-
-.pieno {
-  grid-column: full;
-}
-
+/* La colonna di lettura resta stretta; solo titoli e firma la superano. */
 main > p,
 main > section > p,
-.lettura {
-  max-width: var(--lettura);
+main > ul,
+main > ol {
+  max-width: var(--colonna);
 }
 
 h1 {
-  margin: 0 0 24px;
-  font-size: clamp(3rem, 11vw, 8rem);
-  line-height: 0.9;
-  font-weight: 800;
-  letter-spacing: -0.05em;
+  max-width: var(--colonna-larga);
+  margin: 0 0 20px;
+  font-size: 44px;
+  line-height: 48px;
+  font-weight: 700;
+  letter-spacing: -0.035em;
   text-wrap: balance;
 }
 
 h2 {
-  margin: 64px 0 16px;
-  font-size: clamp(1.75rem, 5vw, 3rem);
-  line-height: 1;
-  font-weight: 750;
-  letter-spacing: -0.03em;
+  max-width: var(--colonna);
+  margin: 48px 0 12px;
+  font-size: 28px;
+  line-height: 32px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
   text-wrap: balance;
 }
 
 h3 {
-  margin: 0 0 8px;
-  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
-  line-height: 1.2;
+  margin: 0 0 4px;
+  font-size: 18px;
+  line-height: 28px;
   font-weight: 700;
   letter-spacing: -0.01em;
 }
 
 p {
-  margin: 0 0 20px;
+  margin: 0 0 16px;
 }
 
+@media (min-width: 48rem) {
+  h1 {
+    font-size: 64px;
+    line-height: 68px;
+  }
+
+  h2 {
+    font-size: 32px;
+    line-height: 36px;
+    margin-top: 64px;
+  }
+}
+
+/* Lo stato reale dell'app: piccolo, ma mai nascosto. Nessuna pastiglia
+   colorata — non e' un premio, e' un fatto. */
+.stato {
+  display: block;
+  margin: 0 0 32px;
+  font-family: var(--detto);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--tenue);
+}
+
+/* Ritmo editoriale delle schede: senza questo, dopo la firma le pagine
+   diventano una fila uniforme di titolo-paragrafo e leggono come
+   documentazione ben impaginata. L'apertura pesa, il corpo respira, la
+   chiusura torna a pesare. */
 .apertura {
-  font-size: clamp(1.25rem, 3vw, 1.75rem);
-  line-height: 1.35;
-  font-weight: 450;
+  max-width: var(--colonna);
+  font-size: 22px;
+  line-height: 32px;
 }
 
 .chiusura {
-  margin-top: 64px;
+  max-width: var(--colonna);
+  margin-top: 48px;
   padding-top: 24px;
-  border-top: 2px solid var(--inchiostro);
-  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
-  line-height: 1.35;
-}
-
-/* Lo stato reale dell'app. In monospazio perche' e' un fatto registrato, non
-   una promessa: la stessa voce del parlato grezzo. */
-.stato {
-  margin: 0 0 40px;
-  font-variation-settings: var(--parlato);
-  font-size: 13px;
-  line-height: 18px;
-  letter-spacing: 0.02em;
-  color: var(--tenue);
-}
-
-.etichetta {
-  margin: 0 0 8px;
-  font-variation-settings: var(--parlato);
-  font-size: 12px;
-  line-height: 16px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--tenue);
-}
-
-.etichetta.segnale {
-  color: var(--link);
+  border-top: 1px solid var(--bordo);
+  font-size: 22px;
+  line-height: 32px;
 }
 
 a {
-  color: var(--link);
+  color: var(--accento);
   text-decoration-thickness: 1px;
-  text-underline-offset: 4px;
+  text-underline-offset: 3px;
 }
 
 a:hover {
-  text-decoration-thickness: 3px;
+  text-decoration-thickness: 2px;
 }
 
 :focus-visible {
-  outline: 3px solid var(--segnale);
+  outline: 2px solid var(--accento);
   outline-offset: 3px;
+  border-radius: 2px;
 }
 
 img,
@@ -217,43 +185,18 @@ svg {
   height: auto;
 }
 
-/* Campi di colore usati come architettura, non come decorazione: sono i fogli
-   sovrapposti di un manifesto stampato. */
-.campo {
-  padding: 64px var(--margine);
-  margin: 96px 0;
-}
-
-.campo-segnale {
-  background: var(--segnale);
-  color: var(--su-segnale);
-}
-
-.campo-segnale a,
-.campo-segnale .etichetta {
-  color: inherit;
-}
-
-.campo-inchiostro {
-  background: var(--inchiostro);
-  color: var(--carta);
-}
-
-.campo-inchiostro .etichetta {
-  color: var(--carta);
-  opacity: 0.7;
-}
-
-.campo > * {
-  max-width: var(--contenuto);
-  margin-inline: auto;
+hr {
+  height: 1px;
+  border: 0;
+  margin: 0;
+  background: var(--bordo);
 }
 
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
-    animation: none !important;
-    transition: none !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
 }
