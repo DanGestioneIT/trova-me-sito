@@ -1,72 +1,130 @@
 ---
-// L'elemento firma del sito: quello che e' stato DETTO, e quello che ne e'
-// USCITO. Due caratteri, e il salto fra loro e' il prodotto.
+// La scena in cui il parlato prende forma.
 //
-// Perche' cosi' e non un'onda audio o un mockup: di queste app non esiste
-// nemmeno uno screenshot, e inventarne uno sarebbe una bugia. Ma la
-// trasformazione si puo' mostrare con la sola tipografia, e mostrarla con
-// parole vere e' piu' onesto — e piu' preciso — di qualunque illustrazione.
+// Non e' un'illustrazione della trasformazione: e' la trasformazione. Recursive
+// ha un asse MONO e uno CASL, quindi la riga detta e la riga composta sono lo
+// stesso carattere in due stati, e scorrendo si passa dall'uno all'altro —
+// senza una riga di JavaScript, con animation-timeline legata allo scorrimento.
 //
-// La riga detta e' minuscola e senza punteggiatura perche' e' cosi' che appare
-// una trascrizione grezza. Non e' uno stile: e' la cosa.
+// Dove il browser non sostiene le animazioni da scorrimento (oggi, Safari) la
+// scena appare gia' composta: la versione statica deve reggere da sola, ed e'
+// quella che vede chi apre da iPhone. Per questo la differenza fra i due stati
+// e' affidata al carattere e alla scala, non al movimento.
 interface Props {
   detto: string;
   ottenuto: string;
+  scena?: boolean;
 }
 
-const { detto, ottenuto } = Astro.props;
+const { detto, ottenuto, scena = false } = Astro.props;
 ---
 
-<div class="firma">
-  <p class="etichetta">Said</p>
-  <p class="detto">{detto}</p>
-  <p class="etichetta accento">Became</p>
-  <p class="ottenuto">{ottenuto}</p>
+<div class:list={['firma', scena && 'firma-scena']}>
+  <div class="dentro">
+    <p class="etichetta">Said</p>
+    <p class="detto">{detto}</p>
+    <p class="etichetta segnale sopra">Became</p>
+    <p class="ottenuto">{ottenuto}</p>
+  </div>
 </div>
 
 <style>
   .firma {
-    max-width: var(--colonna-larga);
-    margin: 32px 0 48px;
+    margin: 48px 0 64px;
   }
 
-  .etichetta {
-    margin: 0 0 8px;
-    font-family: var(--detto);
-    font-size: 12px;
-    line-height: 16px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--tenue);
+  .sopra {
+    position: relative;
+    z-index: 1;
+    margin: -0.5em 0 4px clamp(12px, 6vw, 72px);
+    background: var(--carta);
+    padding: 2px 8px 2px 0;
+    width: fit-content;
   }
 
-  .accento {
-    color: var(--accento);
-  }
-
+  /* La collisione. Il parlato sta dentro un riquadro; il risultato composto ne
+     esce sfondandolo. Il colpo si vede da fermo — che e' come lo vede chi apre
+     da iPhone, dove le animazioni da scorrimento non partono — e l'animazione,
+     dove c'e', lo mette solo in scena. */
   .detto {
-    max-width: var(--colonna);
-    margin: 0 0 24px;
-    font-family: var(--detto);
-    font-size: 14px;
-    line-height: 24px;
+    max-width: 30ch;
+    margin: 0;
+    padding: 20px 20px 32px;
+    border: 2px solid var(--tenue);
+    font-variation-settings: var(--parlato);
+    font-size: clamp(0.9375rem, 3.2vw, 1.375rem);
+    line-height: 1.5;
+    font-weight: 450;
+    font-style: oblique 8deg;
     color: var(--tenue);
   }
 
   .ottenuto {
-    margin: 0;
-    font-size: 28px;
-    line-height: 32px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    position: relative;
+    max-width: 20ch;
+    /* Sfonda il bordo inferiore del riquadro, e da destra rientra oltre il suo
+       margine sinistro: e' il gesto, non un accostamento. */
+    margin: -1.1em 0 0 clamp(12px, 6vw, 72px);
+    font-size: clamp(2.25rem, 9vw, 5.5rem);
+    line-height: 0.92;
+    font-weight: 850;
+    letter-spacing: -0.045em;
     text-wrap: balance;
   }
 
-  @media (min-width: 48rem) {
-    .ottenuto {
-      font-size: 36px;
-      line-height: 40px;
+  /* La scena della pagina iniziale: alta abbastanza da lasciare spazio allo
+     scorrimento, con il contenuto che resta fermo mentre la frase si compone. */
+  .firma-scena {
+    margin: 64px 0 96px;
+  }
+
+  @supports (animation-timeline: view()) {
+    @media (min-width: 48rem) and (prefers-reduced-motion: no-preference) {
+      .firma-scena {
+        height: 135svh;
+        view-timeline-name: --trasformazione;
+      }
+
+      .firma-scena .dentro {
+        position: sticky;
+        top: 20svh;
+      }
+
+      .firma-scena .detto {
+        animation: si-compone linear both;
+        animation-timeline: --trasformazione;
+        animation-range: entry 60% cover 55%;
+      }
+
+      .firma-scena .ottenuto {
+        animation: si-scopre linear both;
+        animation-timeline: --trasformazione;
+        animation-range: entry 75% cover 60%;
+      }
+    }
+  }
+
+  @keyframes si-compone {
+    from {
+      font-variation-settings: var(--parlato);
+      font-style: oblique 8deg;
+      opacity: 1;
+    }
+    to {
+      font-variation-settings: var(--composto);
+      font-style: oblique 0deg;
+      opacity: 0.4;
+    }
+  }
+
+  @keyframes si-scopre {
+    from {
+      clip-path: inset(0 100% 0 0);
+      font-weight: 400;
+    }
+    to {
+      clip-path: inset(0 0 0 0);
+      font-weight: 850;
     }
   }
 </style>
