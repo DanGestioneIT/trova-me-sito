@@ -3,10 +3,6 @@ import Base from '../../layouts/Base.astro';
 import Firma from '../../components/Firma.astro';
 import SegnapostoSchermata from '../../components/SegnapostoSchermata.astro';
 
-// Le sezioni della scheda, nell'ordine in cui rispondono alle domande di chi
-// legge: cosa capisce, come mette in ordine, cosa succede se manca la rete,
-// che tono ha, e dove finiscono i dati.
-//
 // Due frasi qui dentro sono state corrette contro i documenti di Pronto e non
 // vanno "migliorate" senza rileggerli: la lista corta in vista (la specifica
 // vieta l'overwhelm visivo, ma nulla viene nascosto o perso) e la spinta, che
@@ -51,39 +47,66 @@ const stato = 'In testing — not on the App Store yet.';
   titolo="Pronto — say it once, and the list sorts itself | TROVA.ME"
   descrizione="Pronto is a to-do list you talk to. Say what you have to do, and it captures the task immediately, understands it, and decides what comes first."
 >
-  <h1>Say it once. The list sorts itself.</h1>
-  <p class="stato">{stato}</p>
+  <div class="contenitore">
+    <div class="testata">
+      <h1>Say it once. The list sorts itself.</h1>
+      <p class="stato">{stato}</p>
+      <p class="apertura">
+        Pronto is a to-do list for people who put things off. Say what you have to do the way
+        you would say it to a friend: call the accountant before Friday, move the dentist to
+        Thursday. Pronto saves your words immediately, then understands what you meant and
+        turns them into an action on your list.
+      </p>
+      <div class="firma-scheda">
+        <Firma
+          detto="call the accountant before friday and move the dentist to thursday"
+          ottenuto="Call the accountant — before Friday. Dentist — Thursday."
+        />
+      </div>
+    </div>
 
-  <Firma
-    detto="call the accountant before friday and move the dentist to thursday"
-    ottenuto="Call the accountant — before Friday. Dentist — Thursday."
-  />
+    <div class="elenco-sezioni">
+      {sezioni.map((sezione) => (
+        <section class="sezione">
+          <h2>{sezione.titolo}</h2>
+          <p>{sezione.testo}</p>
+        </section>
+      ))}
+    </div>
 
-  <p class="apertura">
-    Pronto is a to-do list for people who put things off. Say what you have to do the way
-    you would say it to a friend: call the accountant before Friday, move the dentist to
-    Thursday. Pronto saves your words immediately, then understands what you meant and
-    turns them into an action on your list.
-  </p>
+    <p class="chiusura">
+      You probably do not need another place to store what you should do. Pronto is for the
+      smaller, harder moment: getting it out of your head and making the list feel possible.
+    </p>
 
-  {sezioni.map((sezione) => (
-    <section>
-      <h2>{sezione.titolo}</h2>
-      <p>{sezione.testo}</p>
-    </section>
-  ))}
-
-  <p class="chiusura">
-    You probably do not need another place to store what you should do. Pronto is for the
-    smaller, harder moment: getting it out of your head and making the list feel possible.
-  </p>
-
-  <SegnapostoSchermata app="Pronto" />
+    <SegnapostoSchermata app="Pronto" />
+  </div>
 </Base>
 
 <style>
-  section p {
-    max-width: var(--colonna);
+  .testata {
+    padding: 48px 0 0;
+  }
+
+  .firma-scheda {
+    max-width: 640px;
+    margin-top: 28px;
+  }
+
+  .elenco-sezioni section p {
     margin: 0;
+    color: var(--tenue);
+  }
+
+  @media (min-width: 48rem) {
+    .testata {
+      padding-top: 72px;
+    }
+
+    .elenco-sezioni {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 48px;
+    }
   }
 </style>

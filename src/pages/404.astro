@@ -14,28 +14,29 @@ import { path } from '../lib/paths';
   descrizione="The page you're looking for doesn't exist."
   nonIndicizzare
 >
-  <h1>Page not found</h1>
-  <p>The page you're looking for doesn't exist.</p>
-  <a class="ritorno" href={path('')}>Go to the homepage</a>
+  <div class="contenitore">
+    <h1>Page not found</h1>
+    <p>The page you're looking for doesn't exist.</p>
+    <a class="ritorno" href={path('')}>Go to the homepage</a>
+  </div>
 </Base>
 
 <style>
+  .contenitore {
+    padding-top: 96px;
+    padding-bottom: 64px;
+  }
+
   .ritorno {
-    /* 44 px e' il bersaglio minimo che un pollice colpisce al primo tentativo:
-       chi e' finito qui per sbaglio non deve sbagliare anche l'uscita. */
     display: inline-flex;
     align-items: center;
     min-height: 44px;
-    margin-top: 1rem;
-    padding: 12px 24px;
+    margin-top: 16px;
+    padding: 12px 22px;
+    border-radius: 10px;
     background: var(--accento);
-    color: var(--accento-contrasto);
+    color: #fff;
     font-weight: 600;
     text-decoration: none;
-  }
-
-  .ritorno:hover {
-    text-decoration: underline;
-    text-underline-offset: 4px;
   }
 </style>

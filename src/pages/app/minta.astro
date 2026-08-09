@@ -33,54 +33,90 @@ const stato = 'In testing — not on the App Store yet.';
   titolo="Minta — speak, and get back something you can send | TROVA.ME"
   descrizione="Minta records what you say and rewrites it into meeting notes, a lecture summary or a client follow-up — on your iPhone, with your own key, or in the cloud."
 >
-  <h1>Speak. Get back something you can send.</h1>
-  <p class="stato">{stato}</p>
-
-  <Firma
-    detto="we agreed to send the revised quote and confirm the schedule"
-    ottenuto="Next steps: send the revised quote; confirm the schedule."
-  />
-
-  <p class="apertura">
-    Minta records what you say, writes it down, and then rewrites it into the thing you
-    actually needed: the notes from that meeting, the summary of that lecture, the
-    follow-up after that client call.
-  </p>
-
-  <h2>You choose where the work happens.</h2>
-  {motori.map((motore) => (
-    <div class="motore">
-      <h3>{motore.titolo}</h3>
-      <p>{motore.testo}</p>
+  <div class="contenitore">
+    <div class="testata">
+      <h1>Speak. Get back something you can send.</h1>
+      <p class="stato">{stato}</p>
+      <p class="apertura">
+        Minta records what you say, writes it down, and then rewrites it into the thing you
+        actually needed: the notes from that meeting, the summary of that lecture, the
+        follow-up after that client call.
+      </p>
+      <div class="firma-scheda">
+        <Firma
+          detto="we agreed to send the revised quote and confirm the schedule"
+          ottenuto="Next steps: send the revised quote; confirm the schedule."
+        />
+      </div>
     </div>
-  ))}
 
-  <h2>Five ways to be rewritten.</h2>
-  <p>
-    A meeting becomes decisions, actions and next steps. A lecture becomes something you
-    can study from. A client call becomes what they asked for and what you promised. A
-    brainstorm keeps the ideas and drops the noise. Personal notes just get tidied. And if
-    none of those fit, two of the prompts are yours to write.
-  </p>
+    <section class="sezione">
+      <h2>You choose where the work happens.</h2>
+      <div class="motori">
+        {motori.map((motore) => (
+          <div class="motore">
+            <h3>{motore.titolo}</h3>
+            <p>{motore.testo}</p>
+          </div>
+        ))}
+      </div>
+    </section>
 
-  <p class="chiusura">
-    Record for as long as you need — hours, in the background, pausing whenever. Minta
-    Cloud transcribes up to an hour per file.
-  </p>
+    <section class="sezione">
+      <h2>Five ways to be rewritten.</h2>
+      <p>
+        A meeting becomes decisions, actions and next steps. A lecture becomes something you
+        can study from. A client call becomes what they asked for and what you promised. A
+        brainstorm keeps the ideas and drops the noise. Personal notes just get tidied. And
+        if none of those fit, two of the prompts are yours to write.
+      </p>
+      <p class="chiusura">
+        Record for as long as you need — hours, in the background, pausing whenever. Minta
+        Cloud transcribes up to an hour per file.
+      </p>
+    </section>
 
-  <SegnapostoSchermata app="Minta" />
+    <SegnapostoSchermata app="Minta" />
+  </div>
 </Base>
 
 <style>
-  .motore {
-    max-width: var(--colonna);
-    margin-top: 20px;
-    padding-top: 20px;
+  .testata {
+    padding: 48px 0 0;
+  }
+
+  .firma-scheda {
+    max-width: 640px;
+    margin-top: 28px;
+  }
+
+  /* Righe, non schede: la scheda resta solo alla trasformazione Said/Became,
+     che e' l'unica cosa che merita di stare sollevata dalla pagina. */
+  .motori {
+    margin-top: 4px;
     border-top: 1px solid var(--bordo);
+  }
+
+  .motore {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--bordo);
   }
 
   .motore p {
     margin: 0;
     color: var(--tenue);
+  }
+
+  @media (min-width: 48rem) {
+    .testata {
+      padding-top: 72px;
+    }
+
+    .motore {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 32px;
+      align-items: baseline;
+    }
   }
 </style>

@@ -3,27 +3,24 @@ import Base from '../layouts/Base.astro';
 import Firma from '../components/Firma.astro';
 import { path } from '../lib/paths';
 
-// Le tre app come tre capitoli consecutivi, non come tre schede in
-// competizione: sono parti della stessa cosa, e la pagina deve farlo sentire
-// prima ancora che il visitatore legga i nomi.
-//
-// Niente numerazione 01/02/03: implicherebbe un ordine da seguire, e qui non
-// c'e' — si sceglie quella che serve, non si legge una sequenza.
 const app = [
   {
     nome: 'Minta',
     riga: 'Speak, and get back a finished piece of writing.',
     href: path('app/minta/'),
+    stato: 'In testing',
   },
   {
     nome: 'Pronto',
     riga: 'Say what you have to do, and it suggests where to start.',
     href: path('app/pronto/'),
+    stato: 'In testing',
   },
   {
     nome: 'ClaudePal',
     riga: 'An experiment: your phone as a voice remote for Claude Code on your Mac.',
     href: path('app/claudepal/'),
+    stato: 'Experiment',
   },
 ];
 
@@ -37,64 +34,132 @@ const stato = 'None of these are on the App Store yet.';
   titolo="TROVA.ME — iPhone apps you use by talking, not typing"
   descrizione="I make three iPhone apps you use by talking, not typing. Speak, and something useful happens — none of them are on the App Store yet."
 >
-  <h1>I make iPhone apps you use by talking, not typing.</h1>
+  <div class="contenitore">
+    <div class="apertura-pagina">
+      <h1>I make iPhone apps you use by talking, not typing.</h1>
+      <div class="vetrina">
+        <Firma
+          detto="so the thing is i need to write that up and also call the accountant"
+          ottenuto="A finished text. A list in order. A Claude Code session within reach."
+        />
+      </div>
+    </div>
 
-  <Firma
-    detto="so the thing is i need to write that up and also call the accountant"
-    ottenuto="A finished text. A list in order. A Claude Code session within reach."
-  />
-
-  <ul class="capitoli">
-    {app.map((voce) => (
-      <li>
-        <a href={voce.href}>
+    <div class="griglia">
+      {app.map((voce) => (
+        <a class="scheda" href={voce.href}>
+          <span class="pastiglia">{voce.stato}</span>
           <span class="nome">{voce.nome}</span>
           <span class="riga">{voce.riga}</span>
+          <span class="vai">Read more →</span>
         </a>
-      </li>
-    ))}
-  </ul>
+      ))}
+    </div>
 
-  <p class="stato">{stato}</p>
+    <p class="stato">{stato}</p>
+  </div>
 </Base>
 
 <style>
-  .capitoli {
-    max-width: var(--colonna);
-    list-style: none;
-    margin: 0 0 32px;
-    padding: 0;
-    border-top: 1px solid var(--bordo);
+  .apertura-pagina {
+    padding: 48px 0 8px;
   }
 
-  .capitoli li {
-    border-bottom: 1px solid var(--bordo);
+  .vetrina {
+    max-width: 640px;
+    margin-top: 32px;
   }
 
-  /* Tutta la voce e' il bersaglio: su un telefono un pollice non mira a una
-     parola di sette caratteri. */
-  .capitoli a {
-    display: block;
-    padding: 20px 0;
+  h1 {
+    max-width: 16ch;
+    margin: 0;
+  }
+
+  .griglia {
+    display: grid;
+    gap: 16px;
+    margin-top: 56px;
+  }
+
+  .scheda {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+    border: 1px solid var(--bordo);
+    border-radius: 16px;
+    background: var(--sfondo);
     color: inherit;
     text-decoration: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+  }
+
+  .scheda:hover {
+    border-color: color-mix(in srgb, var(--accento) 45%, var(--bordo));
+    box-shadow: var(--ombra);
+    transform: translateY(-2px);
+  }
+
+  .pastiglia {
+    padding: 3px 9px;
+    border: 1px solid var(--bordo);
+    border-radius: 999px;
+    background: var(--superficie);
+    font-variation-settings: var(--parlato);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--tenue);
   }
 
   .nome {
-    display: block;
-    font-size: 28px;
-    line-height: 32px;
+    margin-top: 16px;
+    font-size: 1.5rem;
+    line-height: 1.2;
     font-weight: 700;
     letter-spacing: -0.02em;
   }
 
   .riga {
-    display: block;
-    margin-top: 4px;
+    margin-top: 6px;
     color: var(--tenue);
   }
 
-  .capitoli a:hover .nome {
+  .vai {
+    margin-top: 20px;
+    font-size: 15px;
+    font-weight: 600;
     color: var(--accento);
+  }
+
+  .stato {
+    margin-top: 48px;
+  }
+
+  @media (min-width: 48rem) {
+    .apertura-pagina {
+      padding-top: 72px;
+    }
+
+    .griglia {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+  }
+
+  /* A schermo largo la colonna dichiarata va usata davvero: titolo a sinistra,
+     la trasformazione a destra, invece di mezza pagina vuota. */
+  @media (min-width: 64rem) {
+    .apertura-pagina {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 56px;
+      padding-top: 88px;
+    }
+
+    .vetrina {
+      margin-top: 0;
+    }
   }
 </style>

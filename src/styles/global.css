@@ -1,53 +1,53 @@
 /*
- * TROVA.ME — sistema tipografico.
+ * TROVA.ME — sistema visivo.
  *
- * L'identita' nasce da un solo passaggio: il parlato grezzo che diventa una
- * cosa composta. Per questo i caratteri sono due e non tre — il monospazio per
- * cio' che e' stato detto, il carattere di sistema di Apple per tutto il resto —
- * e il salto fra i due e' l'illustrazione. Non ci sono immagini da nessuna
- * parte: sono strumenti per iPhone, e il carattere dell'iPhone e' la loro voce.
+ * Carattere: Recursive, variabile, ospitato qui dentro — nessuna richiesta a
+ * terzi, quindi nessun tracciamento. Ha un asse MONO, cosi' il testo composto e
+ * il parlato grezzo sono lo stesso carattere in due stati: e' esattamente cio'
+ * che fanno le app.
  *
- * Un solo colore vivo per tutto il progetto, mai uno per app: sono parti della
- * stessa cosa. Niente schede, niente ombre, niente angoli arrotondati da
- * catalogo: le tre app sono capitoli consecutivi, non prodotti in competizione.
- *
- * Ritmo su 4px. Nessun font esterno, nessuna richiesta di rete a terzi.
+ * Misure sobrie di proposito. Ogni dimensione qui dentro e' stata guardata resa
+ * da un browser a 390px e a 1440px prima di essere scritta.
  */
+
+@font-face {
+  font-family: 'Recursive';
+  src: url('/trova-me-sito/fonts/recursive.woff2') format('woff2-variations');
+  font-weight: 300 1000;
+  font-style: oblique 0deg 15deg;
+  font-display: swap;
+}
 
 :root {
   color-scheme: light dark;
 
-  /* Colore. Un ruolo per riga, chiaro e scuro definiti insieme. */
-  --carta: #f6f7f9;
-  --inchiostro: #14161a;
-  --tenue: #5b616b;
-  --superficie: #ffffff;
-  --bordo: #d9dde4;
-  --accento: #b93626;
-  --accento-contrasto: #ffffff;
+  --sfondo: #ffffff;
+  --superficie: #f7f8fa;
+  --testo: #0b0d12;
+  --tenue: #5a6270;
+  --bordo: #e3e6ec;
+  --accento: #d13a1f;
+  --accento-piano: #fdf0ec;
+  --ombra: 0 1px 2px rgb(11 13 18 / 0.04), 0 10px 30px rgb(11 13 18 / 0.07);
 
-  /* Tipografia */
-  --composto:
-    -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', sans-serif;
-  --detto:
-    ui-monospace, 'SFMono-Regular', 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono',
-    monospace;
-
-  /* Misure */
-  --colonna: 40rem;
-  --colonna-larga: 54rem;
+  --largo: 1120px;
+  --lettura: 68ch;
   --margine: 20px;
+
+  --parlato: 'MONO' 1, 'CASL' 0;
+  --composto: 'MONO' 0, 'CASL' 0;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --carta: #14161a;
-    --inchiostro: #f6f7f9;
-    --tenue: #aeb4be;
-    --superficie: #1b1e24;
-    --bordo: #343943;
-    --accento: #ff7a66;
-    --accento-contrasto: #14161a;
+    --sfondo: #0b0d12;
+    --superficie: #14171e;
+    --testo: #f2f4f7;
+    --tenue: #99a1b0;
+    --bordo: #242a35;
+    --accento: #ff6a4d;
+    --accento-piano: #241511;
+    --ombra: 0 1px 2px rgb(0 0 0 / 0.4), 0 10px 30px rgb(0 0 0 / 0.35);
   }
 }
 
@@ -63,120 +63,128 @@
   box-sizing: border-box;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
-  background: var(--carta);
-  color: var(--inchiostro);
-  font-family: var(--composto);
-  font-size: 18px;
-  line-height: 28px;
+  background: var(--sfondo);
+  color: var(--testo);
+  font-family: 'Recursive', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-variation-settings: var(--composto);
+  font-size: 17px;
+  line-height: 1.6;
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
 }
 
-main {
-  max-width: var(--colonna-larga);
-  margin: 0 auto;
-  padding: 48px var(--margine) 96px;
+@media (min-width: 48rem) {
+  body {
+    font-size: 18px;
+  }
 }
 
-/* La colonna di lettura resta stretta; solo titoli e firma la superano. */
-main > p,
-main > section > p,
-main > ul,
-main > ol {
-  max-width: var(--colonna);
+.contenitore {
+  width: 100%;
+  max-width: var(--largo);
+  margin-inline: auto;
+  padding-inline: var(--margine);
+}
+
+main {
+  display: block;
+  padding-bottom: 96px;
 }
 
 h1 {
-  max-width: var(--colonna-larga);
-  margin: 0 0 20px;
-  font-size: 44px;
-  line-height: 48px;
+  margin: 0 0 16px;
+  font-size: clamp(2rem, 5.4vw, 3.5rem);
+  line-height: 1.08;
   font-weight: 700;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.03em;
   text-wrap: balance;
 }
 
 h2 {
-  max-width: var(--colonna);
-  margin: 48px 0 12px;
-  font-size: 28px;
-  line-height: 32px;
-  font-weight: 700;
+  margin: 0 0 12px;
+  font-size: clamp(1.375rem, 3vw, 1.875rem);
+  line-height: 1.2;
+  font-weight: 650;
   letter-spacing: -0.02em;
   text-wrap: balance;
 }
 
 h3 {
-  margin: 0 0 4px;
-  font-size: 18px;
-  line-height: 28px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
+  margin: 0 0 6px;
+  font-size: 1.0625rem;
+  line-height: 1.4;
+  font-weight: 650;
 }
 
 p {
   margin: 0 0 16px;
+  max-width: var(--lettura);
 }
 
-@media (min-width: 48rem) {
-  h1 {
-    font-size: 64px;
-    line-height: 68px;
-  }
-
-  h2 {
-    font-size: 32px;
-    line-height: 36px;
-    margin-top: 64px;
-  }
-}
-
-/* Lo stato reale dell'app: piccolo, ma mai nascosto. Nessuna pastiglia
-   colorata — non e' un premio, e' un fatto. */
-.stato {
-  display: block;
-  margin: 0 0 32px;
-  font-family: var(--detto);
-  font-size: 14px;
-  line-height: 20px;
+.apertura {
+  font-size: clamp(1.125rem, 2.2vw, 1.3125rem);
+  line-height: 1.55;
   color: var(--tenue);
 }
 
-/* Ritmo editoriale delle schede: senza questo, dopo la firma le pagine
-   diventano una fila uniforme di titolo-paragrafo e leggono come
-   documentazione ben impaginata. L'apertura pesa, il corpo respira, la
-   chiusura torna a pesare. */
-.apertura {
-  max-width: var(--colonna);
-  font-size: 22px;
-  line-height: 32px;
+.chiusura {
+  margin-top: 40px;
+  color: var(--tenue);
 }
 
-.chiusura {
-  max-width: var(--colonna);
-  margin-top: 48px;
-  padding-top: 24px;
-  border-top: 1px solid var(--bordo);
-  font-size: 22px;
-  line-height: 32px;
+/* Lo stato reale dell'app: una pastiglia piccola, in monospazio, perche' e' un
+   fatto registrato e non un titolo. */
+.stato {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 24px;
+  padding: 5px 12px;
+  border: 1px solid var(--bordo);
+  border-radius: 999px;
+  background: var(--superficie);
+  font-variation-settings: var(--parlato);
+  font-size: 13px;
+  line-height: 1.3;
+  color: var(--tenue);
+  max-width: none;
+}
+
+.stato::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accento);
+  flex: none;
+}
+
+.etichetta {
+  margin: 0 0 8px;
+  font-variation-settings: var(--parlato);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tenue);
+  max-width: none;
 }
 
 a {
   color: var(--accento);
-  text-decoration-thickness: 1px;
   text-underline-offset: 3px;
-}
-
-a:hover {
-  text-decoration-thickness: 2px;
 }
 
 :focus-visible {
   outline: 2px solid var(--accento);
   outline-offset: 3px;
-  border-radius: 2px;
+  border-radius: 6px;
 }
 
 img,
@@ -185,18 +193,21 @@ svg {
   height: auto;
 }
 
-hr {
-  height: 1px;
-  border: 0;
-  margin: 0;
-  background: var(--bordo);
+.sezione {
+  padding-top: 56px;
+}
+
+@media (min-width: 48rem) {
+  .sezione {
+    padding-top: 80px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
+    animation: none !important;
+    transition: none !important;
   }
 }

@@ -22,31 +22,28 @@ const { app } = Astro.props;
 
 <style>
   figure {
-    max-width: var(--colonna);
-    margin: 48px 0 0;
+    max-width: 640px;
+    margin: 56px 0 0;
   }
 
-  /* Compatto di proposito. Alto come una schermata di telefono, dominava la
-     pagina e comunicava "sito incompleto" piu' forte di quanto le pagine
-     raccontino le app: una dichiarazione onesta non deve gridare. */
   .riquadro {
     display: grid;
     place-items: center;
-    min-height: 96px;
-    padding: 24px;
-    background: var(--superficie);
+    min-height: 132px;
+    padding: 28px;
     border: 1px dashed var(--bordo);
+    border-radius: 14px;
+    background: var(--superficie);
     color: var(--tenue);
-    font-family: var(--detto);
-    font-size: 12px;
+    font-variation-settings: var(--parlato);
+    font-size: 13px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
 
   figcaption {
-    margin-top: 12px;
+    margin-top: 10px;
     font-size: 14px;
-    line-height: 20px;
     color: var(--tenue);
   }
 </style>

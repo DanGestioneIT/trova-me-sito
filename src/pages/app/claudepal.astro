@@ -39,39 +39,66 @@ const stato = 'An experiment — not a release or an App Store product.';
   titolo="ClaudePal — leave the desk, keep the Claude Code session | TROVA.ME"
   descrizione="ClaudePal is a local-network experiment for guiding a Claude Code session on your Mac from your iPhone by voice or text, including questions and permission requests."
 >
-  <h1>Leave the desk. Keep the session.</h1>
-  <p class="stato">{stato}</p>
+  <div class="contenitore">
+    <div class="testata">
+      <h1>Leave the desk. Keep the session.</h1>
+      <p class="stato">{stato}</p>
+      <p class="apertura">
+        The refactor is running, you are in the kitchen, and Claude Code stops to ask whether
+        it may delete a file. ClaudePal turns your iPhone into a remote for that session:
+        dictate or type a prompt, watch the response arrive, and answer from where you are.
+      </p>
+      <div class="firma-scheda">
+        <Firma
+          detto="continue the refactor and run the tests"
+          ottenuto="Prompt sent to Claude Code on the Mac. The response returns to your iPhone."
+        />
+      </div>
+    </div>
 
-  <Firma
-    detto="continue the refactor and run the tests"
-    ottenuto="Prompt sent to Claude Code on the Mac. The response returns to your iPhone."
-  />
+    <div class="elenco-sezioni">
+      {sezioni.map((sezione) => (
+        <section class="sezione">
+          <h2>{sezione.titolo}</h2>
+          <p>{sezione.testo}</p>
+        </section>
+      ))}
+    </div>
 
-  <p class="apertura">
-    The refactor is running, you are in the kitchen, and Claude Code stops to ask whether
-    it may delete a file. ClaudePal turns your iPhone into a remote for that session:
-    dictate or type a prompt, watch the response arrive, and answer from where you are.
-  </p>
+    <p class="chiusura">
+      If those twenty minutes never feel worth repeating, the experiment stops there and
+      will still have done its job. ClaudePal may become a product, or it may end as
+      something I learned from. Both are honest outcomes.
+    </p>
 
-  {sezioni.map((sezione) => (
-    <section>
-      <h2>{sezione.titolo}</h2>
-      <p>{sezione.testo}</p>
-    </section>
-  ))}
-
-  <p class="chiusura">
-    If those twenty minutes never feel worth repeating, the experiment stops there and
-    will still have done its job. ClaudePal may become a product, or it may end as
-    something I learned from. Both are honest outcomes.
-  </p>
-
-  <SegnapostoSchermata app="ClaudePal" />
+    <SegnapostoSchermata app="ClaudePal" />
+  </div>
 </Base>
 
 <style>
-  section p {
-    max-width: var(--colonna);
+  .testata {
+    padding: 48px 0 0;
+  }
+
+  .firma-scheda {
+    max-width: 640px;
+    margin-top: 28px;
+  }
+
+  .elenco-sezioni section p {
     margin: 0;
+    color: var(--tenue);
+  }
+
+  @media (min-width: 48rem) {
+    .testata {
+      padding-top: 72px;
+    }
+
+    .elenco-sezioni {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 48px;
+    }
   }
 </style>
