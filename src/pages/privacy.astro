@@ -1,0 +1,172 @@
+---
+// La pagina che Apple pretende per pubblicare un'app. Il testo viene dai
+// documenti veri dei tre progetti, non da un modello generico: e' per questo
+// che dice cose diverse per ciascuno dei tre motori di Minta invece di una
+// riga sola buona per tutto.
+//
+// Le note interne, le verifiche e il ragionamento sul ruolo di titolare
+// restano in PRIVACY-BOZZA.md e non si pubblicano.
+//
+// ATTENZIONE alla frase sullo Zero Data Retention di Groq: e' vera finche'
+// quell'interruttore resta acceso nella console di Groq, e nessun test di
+// questo sito puo' accorgersi se viene spento. Se tocchi le impostazioni di
+// Groq, rileggi questa pagina.
+import Base from '../layouts/Base.astro';
+
+const aggiornata = '9 August 2026';
+---
+
+<Base
+  titolo="Privacy — TROVA.ME"
+  descrizione="What each TROVA.ME app does with your data, in plain terms. On your iPhone nothing leaves the phone; with Minta Cloud nothing is kept, by anyone."
+>
+  <h1>Privacy</h1>
+
+  <p class="apertura">
+    TROVA.ME is one person making three iPhone apps. This page says what each app does with
+    your data, in plain terms. It is short because the apps collect very little.
+  </p>
+
+  <p>
+    The data controller is <strong>Daniele Eric Carandente</strong>, acting as an
+    individual. For anything on this page, write to <a href="mailto:dan@trova.me"
+      >dan@trova.me</a
+    >.
+  </p>
+
+  <h2>This website</h2>
+  <p>
+    This site has no analytics, no cookies, no trackers and no contact form. Nothing you do
+    here is recorded. It is a set of static pages served by GitHub Pages which — like any
+    web server — logs requests at its own level; TROVA.ME neither receives nor stores those
+    logs.
+  </p>
+
+  <h2>Minta</h2>
+  <p>
+    Minta records audio, transcribes it, and rewrites the transcript. <strong
+      >You choose where that work happens, and the choice decides where your words go.</strong
+    >
+  </p>
+
+  <div class="motore">
+    <h3>On your iPhone</h3>
+    <p>
+      Transcription uses Apple’s on-device speech recognition and summaries use Apple’s
+      on-device models. Your audio and your text never leave the phone. This has been
+      checked the plain way: in airplane mode, with this engine selected, recording,
+      transcription and summarising all still work.
+    </p>
+  </div>
+
+  <div class="motore">
+    <h3>With your own API key</h3>
+    <p>
+      Your transcript is sent directly from your iPhone to the AI provider you chose —
+      OpenAI, Anthropic or Google — under your own account and their terms. TROVA.ME is not
+      part of that exchange and never sees your key, which is stored in the iPhone’s
+      keychain.
+    </p>
+  </div>
+
+  <div class="motore">
+    <h3>Minta Cloud</h3>
+    <p>
+      Audio and transcripts are sent to <code>api.trova.me</code>, which forwards them to
+      Groq, the provider that performs the transcription and the summarisation. The
+      TROVA.ME server stores neither your audio nor your text: it processes the request,
+      returns the result, and keeps only a ledger entry recording that credit was spent.
+    </p>
+    <p>
+      Groq acts as a processor on TROVA.ME’s instructions, under Groq’s Data Processing
+      Addendum, and <strong>Zero Data Retention is switched on for this account: Groq keeps
+      nothing</strong> — not the audio, not the transcript, not the summary, not even the
+      short-lived logs it would otherwise keep to troubleshoot its own platform. Groq
+      operates in the United States, and the transfer is covered by the EU Standard
+      Contractual Clauses included in that addendum.
+    </p>
+    <p>
+      So, end to end: your words are processed and then they are gone. Nobody in this chain
+      keeps them. The only thing that survives a Minta Cloud request is the line in the
+      ledger saying that some credit was spent.
+    </p>
+    <p>
+      To use Minta Cloud you sign in with Apple. TROVA.ME receives the identifier Apple
+      issues for you — not your name, not your email — and uses it for one purpose only:
+      keeping track of your credit balance. That identifier and your balance are kept for
+      as long as you have credit. Purchases are handled by Apple; TROVA.ME never sees your
+      payment details.
+    </p>
+  </div>
+
+  <p>
+    Your recordings, transcripts and summaries are stored on your iPhone. Deleting a
+    session deletes them.
+  </p>
+
+  <h2>Pronto</h2>
+  <p>
+    Your list lives on your iPhone. <strong>There is no Pronto account and no Pronto
+    server.</strong>
+  </p>
+  <p>
+    To understand what you dictate, Pronto sends the AI provider you chose two things: the
+    text of what you just said, and a compact list of your active tasks. The second is
+    necessary — without it, “move the dentist to Thursday” has nothing to refer to — but it
+    means part of your list leaves the phone, not only the sentence you just spoke.
+  </p>
+  <p>
+    That exchange happens directly between your iPhone and the provider, with your own key,
+    under your own account and their terms. TROVA.ME is not part of it and never sees the
+    key, which is stored in the iPhone’s keychain. If you never configure a provider,
+    nothing is sent anywhere.
+  </p>
+
+  <h2>ClaudePal</h2>
+  <p>
+    ClaudePal is an experiment and is not distributed. It connects your iPhone to a Claude
+    Code session running on your own Mac, over your own local network. Nothing is sent to
+    TROVA.ME. What Claude Code itself sends to Anthropic is governed by Anthropic’s terms
+    and by your own account.
+  </p>
+  <p>
+    The connection is not encrypted and is intended for a trusted network only. This is
+    stated plainly on the ClaudePal page as well.
+  </p>
+
+  <h2>Children</h2>
+  <p>None of these apps are directed at children.</p>
+
+  <h2>Changes</h2>
+  <p>
+    If any of this changes, this page changes with it, and the date below changes too.
+  </p>
+
+  <p class="stato">Last updated: {aggiornata}</p>
+</Base>
+
+<style>
+  .motore {
+    max-width: var(--colonna);
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--bordo);
+  }
+
+  .motore p {
+    margin: 0 0 12px;
+  }
+
+  .motore p:last-child {
+    margin-bottom: 0;
+  }
+
+  code {
+    font-family: var(--detto);
+    font-size: 0.9em;
+  }
+
+  .stato {
+    margin-top: 48px;
+  }
+</style>

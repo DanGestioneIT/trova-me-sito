@@ -45,6 +45,9 @@ test('il sito compilato contiene le pagine attese', () => {
     'app/minta/index.html',
     'app/pronto/index.html',
     'app/claudepal/index.html',
+    // La pagina che Apple pretende per pubblicare un'app: se sparisce, sparisce
+    // anche l'indirizzo che sara' dichiarato su App Store Connect.
+    'privacy/index.html',
   ];
   const presenti = pagine.map((p) => p.nome);
   for (const attesa of attese) {
