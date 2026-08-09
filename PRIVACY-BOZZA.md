@@ -53,9 +53,9 @@ Minta records audio, transcribes it, and rewrites the transcript. **You choose w
 work happens, and the choice decides where your words go.**
 
 **On your iPhone.** Transcription uses Apple's on-device speech recognition and summaries
-use Apple's on-device models. Your audio and your text never leave the phone. ⚠️ *Da
-verificare: che nella modalità on-device non venga effettuata alcuna chiamata di rete, in
-nessuna circostanza.*
+use Apple's on-device models. Your audio and your text never leave the phone. ✅ *Verificato
+il 9 agosto 2026: in modalità aereo, con il motore Minta (on device) attivo, registrazione,
+trascrizione e riassunto funzionano.*
 
 **With your own API key.** Your transcript is sent directly from your iPhone to the AI
 provider you chose — OpenAI, Anthropic or Google — under your own account and their terms.
@@ -65,10 +65,27 @@ iPhone's keychain.
 **Minta Cloud.** Audio and transcripts are sent to `api.trova.me`, which forwards them to
 **Groq**, the provider that performs the transcription and the summarisation. **The
 TROVA.ME server stores neither your audio nor your text**: it processes the request,
-returns the result, and keeps only a ledger entry recording that credit was spent. What
-Groq does with a request while it processes it is governed by Groq's own terms. ⚠️ *Due
-verifiche: che nessun log del server conservi, anche temporaneamente, il contenuto delle
-richieste; e qual e' la politica di conservazione dati di Groq, da citare qui.*
+returns the result, and keeps only a ledger entry recording that credit was spent.
+
+The processing itself is done by **Groq**, as a processor acting on TROVA.ME's
+instructions, under Groq's Data Processing Addendum. Groq does not retain the contents of
+inference requests by default; it may keep short-lived logs of inputs and outputs — up to
+30 days — only to troubleshoot platform errors or investigate abuse. Groq operates in the
+United States, and the transfer is covered by the EU Standard Contractual Clauses included
+in that addendum.
+
+> **Nota interna, non da pubblicare.** ✅ I log del backend TROVA.ME: verificato dal
+> proprietario, nessun contenuto sensibile, solo l'identificatore interno.
+>
+> ✅ L'accordo con Groq **ce l'hai già**: il DPA è incorporato automaticamente nel Services
+> Agreement, non c'è niente da firmare, e le clausole contrattuali tipo per il
+> trasferimento fuori dall'Unione Europea si considerano sottoscritte.
+>
+> ⚙️ **Cosa conviene fare, ed è a portata di clic:** Groq offre lo **Zero Data Retention**,
+> attivabile da solo nella pagina *Data Controls* della console. Con quello acceso non
+> restano nemmeno i log di 30 giorni. Se lo attivi, questa pagina può dire che Groq non
+> conserva niente, punto — invece della versione con l'eccezione. È la differenza fra una
+> frase vera con una nota a piè di pagina e una frase vera e basta.
 
 To use Minta Cloud you sign in with Apple. TROVA.ME receives the identifier Apple issues
 for you — not your name, not your email — and uses it for one purpose only: keeping track
