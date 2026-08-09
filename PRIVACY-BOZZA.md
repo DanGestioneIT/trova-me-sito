@@ -44,10 +44,12 @@ TROVA.ME is not part of that exchange and never sees your key, which is stored i
 iPhone's keychain.
 
 **Minta Cloud.** Audio and transcripts are sent to `api.trova.me`, which forwards them to
-the processing providers it uses (Groq for transcription and summarisation). **The server
-stores neither your audio nor your text**: it processes the request, returns the result,
-and keeps only a ledger entry recording that credit was spent. ⚠️ *Da verificare: che
-nessun log del server conservi, anche temporaneamente, il contenuto delle richieste.*
+**Groq**, the provider that performs the transcription and the summarisation. **The
+TROVA.ME server stores neither your audio nor your text**: it processes the request,
+returns the result, and keeps only a ledger entry recording that credit was spent. What
+Groq does with a request while it processes it is governed by Groq's own terms. ⚠️ *Due
+verifiche: che nessun log del server conservi, anche temporaneamente, il contenuto delle
+richieste; e qual e' la politica di conservazione dati di Groq, da citare qui.*
 
 To use Minta Cloud you sign in with Apple. TROVA.ME receives the anonymous identifier Apple
 issues for you, and uses it for one purpose only: keeping track of your credit balance.
@@ -60,10 +62,15 @@ deletes them.
 
 Your list lives on your iPhone. **There is no Pronto account and no Pronto server.**
 
-To understand what you dictate, Pronto sends the text of your entry to the AI provider you
-chose, with your own key, under your own account. ⚠️ *Da verificare: che oltre al testo
-dell'impegno non venga inviato altro contesto della lista.* The key is stored in the
-iPhone's keychain. If you never configure a provider, nothing is sent anywhere.
+To understand what you dictate, Pronto sends the AI provider you chose two things: the text
+of what you just said, **and a compact list of your active tasks**. The second is necessary
+— without it, "move the dentist to Thursday" has nothing to refer to — but it means part of
+your list leaves the phone, not only the sentence you just spoke.
+
+That exchange happens directly between your iPhone and the provider, with your own key,
+under your own account and their terms. TROVA.ME is not part of it and never sees the key,
+which is stored in the iPhone's keychain. If you never configure a provider, nothing is
+sent anywhere.
 
 ### ClaudePal
 
