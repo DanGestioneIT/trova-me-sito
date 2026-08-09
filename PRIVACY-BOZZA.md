@@ -10,7 +10,7 @@
 > **Le tre affermazioni da verificare tu**, perché se sono sbagliate il danno è serio, sono
 > segnate con ⚠️.
 >
-> **Deciso il 9 agosto 2026:** titolare del trattamento è Daniele Eric Carandente come
+> **Deciso il 9 agosto 2026:** titolare del trattamento è Daniele Riccarand come
 > persona fisica; contatto `dan@trova.me`. Questo supera la riga del brief che escludeva
 > di pubblicare un indirizzo email: là riguardava i moduli di contatto e la raccolta di
 > indirizzi, qui è un obbligo di legge. Un indirizzo scritto in chiaro su una pagina
@@ -38,7 +38,7 @@
 TROVA.ME is one person making three iPhone apps. This page says what each app does with
 your data, in plain terms. It is short because the apps collect very little.
 
-The data controller is **Daniele Eric Carandente**, acting as an individual. For anything
+The data controller is **Daniele Riccarand**, acting as an individual. For anything
 on this page, write to **dan@trova.me**.
 
 ### This website
@@ -111,15 +111,24 @@ deletes them.
 
 Your list lives on your iPhone. **There is no Pronto account and no Pronto server.**
 
-To understand what you dictate, Pronto sends the AI provider you chose two things: the text
-of what you just said, **and a compact list of your active tasks**. The second is necessary
-— without it, "move the dentist to Thursday" has nothing to refer to — but it means part of
-your list leaves the phone, not only the sentence you just spoke.
+To understand what you dictate, Pronto sends what you said — together with the tasks
+already on your list, so that "move the dentist to Thursday" has something to refer to — to
+the AI provider you chose. That exchange happens directly between your iPhone and the
+provider, with your own key, under your own account and their terms. TROVA.ME is not part
+of it and never sees the key, which is stored in the iPhone's keychain. If you never
+configure a provider, nothing is sent anywhere.
 
-That exchange happens directly between your iPhone and the provider, with your own key,
-under your own account and their terms. TROVA.ME is not part of it and never sees the key,
-which is stored in the iPhone's keychain. If you never configure a provider, nothing is
-sent anywhere.
+> **Nota interna, non da pubblicare.** Il proprietario ha chiesto di togliere il paragrafo
+> che sottolineava «parte anche un pezzo della tua lista», con questa motivazione: quei
+> task erano già stati inviati allo stesso fornitore quando sono stati creati, quindi
+> rimandarli come contesto non rivela nulla di nuovo. È un'osservazione corretta sulla
+> divulgazione *marginale*.
+>
+> Ho tolto l'enfasi ma **non il fatto**, ridotto a un inciso. Il motivo: una pagina che
+> dice «Pronto invia quello che hai detto» mentre invia anche la lista sarebbe inesatta, e
+> l'inesattezza costerebbe più di quanto faccia risparmiare — è esattamente il tipo di
+> frase che qualcuno va a verificare. Se preferisci toglierlo del tutto, si può: è una tua
+> decisione, e va presa sapendo questo.
 
 ### ClaudePal
 
