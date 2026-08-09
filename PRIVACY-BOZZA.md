@@ -68,11 +68,15 @@ TROVA.ME server stores neither your audio nor your text**: it processes the requ
 returns the result, and keeps only a ledger entry recording that credit was spent.
 
 The processing itself is done by **Groq**, as a processor acting on TROVA.ME's
-instructions, under Groq's Data Processing Addendum. Groq does not retain the contents of
-inference requests by default; it may keep short-lived logs of inputs and outputs — up to
-30 days — only to troubleshoot platform errors or investigate abuse. Groq operates in the
-United States, and the transfer is covered by the EU Standard Contractual Clauses included
-in that addendum.
+instructions, under Groq's Data Processing Addendum. **Zero Data Retention is switched on
+for this account: Groq keeps nothing** — not the audio, not the transcript, not the
+summary, not even the short-lived logs it would otherwise keep to troubleshoot its own
+platform. Groq operates in the United States, and the transfer is covered by the EU
+Standard Contractual Clauses included in that addendum.
+
+So, end to end: your words are processed and then they are gone. Nobody in this chain keeps
+them — not TROVA.ME, not Groq. The only thing that survives a Minta Cloud request is the
+line in the ledger saying that some credit was spent.
 
 > **Nota interna, non da pubblicare.** ✅ I log del backend TROVA.ME: verificato dal
 > proprietario, nessun contenuto sensibile, solo l'identificatore interno.
@@ -81,11 +85,18 @@ in that addendum.
 > Agreement, non c'è niente da firmare, e le clausole contrattuali tipo per il
 > trasferimento fuori dall'Unione Europea si considerano sottoscritte.
 >
-> ⚙️ **Cosa conviene fare, ed è a portata di clic:** Groq offre lo **Zero Data Retention**,
-> attivabile da solo nella pagina *Data Controls* della console. Con quello acceso non
-> restano nemmeno i log di 30 giorni. Se lo attivi, questa pagina può dire che Groq non
-> conserva niente, punto — invece della versione con l'eccezione. È la differenza fra una
-> frase vera con una nota a piè di pagina e una frase vera e basta.
+> ✅ **Zero Data Retention attivato il 9 agosto 2026** nella console Groq. Per questo la
+> pagina può dire che non resta niente, senza eccezioni.
+>
+> ⚠️ **E questa è la verità più fragile di tutto il documento**, perché è l'unica che non
+> vive nel repository: sta in un interruttore dentro la console di Groq. Nessun test del
+> sito potrà mai accorgersi se un giorno viene spento — da te, o da un cambio di piano, o
+> da una migrazione di account. Se si spegne, questa pagina diventa falsa nel momento
+> stesso in cui accade, e nessuno lo saprà.
+>
+> Va quindi tenuta a mano: quando toccherai le impostazioni di Groq, rileggi questa riga.
+> È il caso da manuale di una promessa che un controllo automatico non può proteggere, e
+> dirlo è più onesto che fingere di averla coperta.
 
 To use Minta Cloud you sign in with Apple. TROVA.ME receives the identifier Apple issues
 for you — not your name, not your email — and uses it for one purpose only: keeping track
