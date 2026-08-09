@@ -3,27 +3,27 @@ import Base from '../layouts/Base.astro';
 import Firma from '../components/Firma.astro';
 import { path } from '../lib/paths';
 
-// Tre capitoli a tutta larghezza, non tre schede: ognuno prende il suo campo
-// di colore e il nome diventa un'immagine. Non avendo screenshot, l'unica
-// materia visiva onesta e' la tipografia portata alla scala di un manifesto.
+// Le tre app come tre capitoli consecutivi, non come tre schede in
+// competizione: sono parti della stessa cosa, e la pagina deve farlo sentire
+// prima ancora che il visitatore legga i nomi.
+//
+// Niente numerazione 01/02/03: implicherebbe un ordine da seguire, e qui non
+// c'e' — si sceglie quella che serve, non si legge una sequenza.
 const app = [
   {
     nome: 'Minta',
     riga: 'Speak, and get back a finished piece of writing.',
     href: path('app/minta/'),
-    campo: '',
   },
   {
     nome: 'Pronto',
     riga: 'Say what you have to do, and it suggests where to start.',
     href: path('app/pronto/'),
-    campo: 'campo-segnale',
   },
   {
     nome: 'ClaudePal',
     riga: 'An experiment: your phone as a voice remote for Claude Code on your Mac.',
     href: path('app/claudepal/'),
-    campo: 'campo-inchiostro',
   },
 ];
 
@@ -40,66 +40,61 @@ const stato = 'None of these are on the App Store yet.';
   <h1>I make iPhone apps you use by talking, not typing.</h1>
 
   <Firma
-    scena
     detto="so the thing is i need to write that up and also call the accountant"
     ottenuto="A finished text. A list in order. A Claude Code session within reach."
   />
 
-  {app.map((voce) => (
-    <a class:list={['capitolo', 'pieno', voce.campo]} href={voce.href}>
-      <span class="dentro">
-        <span class="nome">{voce.nome}</span>
-        <span class="riga">{voce.riga}</span>
-      </span>
-    </a>
-  ))}
+  <ul class="capitoli">
+    {app.map((voce) => (
+      <li>
+        <a href={voce.href}>
+          <span class="nome">{voce.nome}</span>
+          <span class="riga">{voce.riga}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
 
   <p class="stato">{stato}</p>
 </Base>
 
 <style>
-  .capitolo {
+  .capitoli {
+    max-width: var(--colonna);
+    list-style: none;
+    margin: 0 0 32px;
+    padding: 0;
+    border-top: 1px solid var(--bordo);
+  }
+
+  .capitoli li {
+    border-bottom: 1px solid var(--bordo);
+  }
+
+  /* Tutta la voce e' il bersaglio: su un telefono un pollice non mira a una
+     parola di sette caratteri. */
+  .capitoli a {
     display: block;
-    padding: 56px var(--margine);
-    border-top: 2px solid var(--inchiostro);
+    padding: 20px 0;
     color: inherit;
     text-decoration: none;
   }
 
-  .capitolo.campo-segnale,
-  .capitolo.campo-inchiostro {
-    border-top-color: transparent;
-  }
-
   .nome {
     display: block;
-    /* Il nome esce dalla colonna e diventa la figura della pagina. */
-    font-size: clamp(2.75rem, 15vw, 11rem);
-    line-height: 0.85;
-    font-weight: 900;
-    letter-spacing: -0.055em;
+    font-size: 28px;
+    line-height: 32px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
   }
 
   .riga {
     display: block;
-    max-width: 30ch;
-    margin-top: 20px;
-    font-size: clamp(1rem, 2.6vw, 1.375rem);
-    line-height: 1.35;
+    margin-top: 4px;
+    color: var(--tenue);
   }
 
-  .dentro {
-    display: block;
-    max-width: var(--contenuto);
-    margin-inline: auto;
-  }
-
-  .capitolo:hover .nome,
-  .capitolo:focus-visible .nome {
-    font-style: oblique 6deg;
-  }
-
-  .stato {
-    margin-top: 64px;
+  .capitoli a:hover .nome {
+    color: var(--accento);
   }
 </style>
