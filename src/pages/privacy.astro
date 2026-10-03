@@ -4,6 +4,12 @@
 // che dice cose diverse per ciascuno dei tre motori di Minta invece di una
 // riga sola buona per tutto.
 //
+// La parte di Minta segue l'informativa approvata dal proprietario, versione
+// inglese: MintaApp/Documentation/INFORMATIVA-PRIVACY-BOZZA.md. Se cambia
+// quella, cambia questa (e i testi nell'app: foglio del consenso e
+// Impostazioni › Info › Privacy). Ogni motore e' un blocco .motore a se':
+// quello della chiave propria si toglie intero, senza toccare il resto.
+//
 // Le note interne, le verifiche e il ragionamento sul ruolo di titolare
 // restano in PRIVACY-BOZZA.md e non si pubblicano.
 //
@@ -13,12 +19,12 @@
 // Groq, rileggi questa pagina.
 import Base from '../layouts/Base.astro';
 
-const aggiornata = '9 August 2026';
+const aggiornata = '3 October 2026';
 ---
 
 <Base
   titolo="Privacy — TROVA.ME"
-  descrizione="What each TROVA.ME app does with your data, in plain terms. On your iPhone nothing leaves the phone; with Minta Cloud nothing is kept, by anyone."
+  descrizione="What each TROVA.ME app does with your data, in plain terms. Minta keeps your recordings on your iPhone and sends them out only after you say yes."
 >
   <div class="contenitore">
     <h1>Privacy</h1>
@@ -46,63 +52,84 @@ const aggiornata = '9 August 2026';
     <h2>Minta</h2>
     <p>
       Minta records audio, transcribes it, and rewrites the transcript. <strong
-        >You choose where that work happens, and the choice decides where your words go.</strong
-      >
+        >Your recordings, transcriptions and summaries stay on your iPhone. They leave it only
+        if you choose an external engine, and only after you say yes.</strong
+      > No ads, no analytics, no tracking.
+    </p>
+    <p>
+      On your iPhone they stay until you delete them, and they can end up in your device
+      backups if you have those switched on. Keys and your Minta Cloud sign-in are kept in the
+      iPhone’s encrypted keychain: if you reinstall the app from scratch, they are deleted.
+    </p>
+    <p>
+      Before the first send to each engine, Minta tells you what is sent and to whom, and asks
+      for your permission. The same summary is in Settings › Info › Privacy.
     </p>
 
+    {/* Un motore, un blocco: ognuno si toglie intero senza toccare gli altri. */}
     <div class="motore">
       <h3>On your iPhone</h3>
       <p>
         Transcription uses Apple’s on-device speech recognition and summaries use Apple’s
-        on-device models. Your audio and your text never leave the phone. This has been
-        checked the plain way: in airplane mode, with this engine selected, recording,
-        transcription and summarising all still work.
+        on-device models. Nothing leaves the phone. If on-device recognition isn’t available
+        for a recording, Minta asks you, every time, before using Apple’s servers.
       </p>
     </div>
 
     <div class="motore">
       <h3>With your own API key</h3>
       <p>
-        Your transcript is sent directly from your iPhone to the AI provider you chose —
-        OpenAI, Anthropic or Google — under your own account and their terms. TROVA.ME is not
-        part of that exchange and never sees your key, which is stored in the iPhone’s
-        keychain.
+        The text goes straight from your iPhone to the provider you chose — OpenAI, Anthropic
+        or Google — under your own account and its terms. Minta sees neither the text nor the
+        key. With a free Gemini key, Google may use the text to improve its models.
       </p>
     </div>
 
     <div class="motore">
       <h3>Minta Cloud</h3>
       <p>
-        Audio and transcripts are sent to <code>api.trova.me</code>, which forwards them to
-        Groq, the provider that performs the transcription and the summarisation. The
-        TROVA.ME server stores neither your audio nor your text: it processes the request,
-        returns the result, and keeps only a ledger entry recording that credit was spent.
+        The transcription text (for summaries) or a compressed copy of the audio (for
+        transcriptions) goes to Minta’s server in Frankfurt, which passes it to Groq for
+        processing. <strong>The server stores neither your audio nor your text</strong>: it
+        keeps the result in memory only, for at most 15 minutes, so it can be recovered if iOS
+        interrupts the app, and then deletes it.
       </p>
       <p>
-        Groq acts as a processor on TROVA.ME’s instructions, under Groq’s Data Processing
-        Addendum, and <strong>Zero Data Retention is switched on for this account: Groq keeps
-        nothing</strong> — not the audio, not the transcript, not the summary, not even the
-        short-lived logs it would otherwise keep to troubleshoot its own platform. Groq
-        operates in the United States, and the transfer is covered by the EU Standard
-        Contractual Clauses included in that addendum.
+        Groq works on Minta’s behalf and keeps nothing: Zero Data Retention is switched on for
+        this account. Groq operates in the United States, under the EU Standard Contractual
+        Clauses.
       </p>
       <p>
-        So, end to end: your words are processed and then they are gone. Nobody in this chain
-        keeps them. The only thing that survives a Minta Cloud request is the line in the
-        ledger saying that some credit was spent.
-      </p>
-      <p>
-        To use Minta Cloud you sign in with Apple. TROVA.ME receives the identifier Apple
-        issues for you — not your name, not your email — and uses it for one purpose only:
-        keeping track of your credit balance. That identifier and your balance are kept for
-        as long as you have credit. Purchases are handled by Apple; TROVA.ME never sees your
-        payment details.
+        You sign in with Apple. Minta gets no name and no email, only a code Apple creates for
+        you, which the server uses for your credit: balance, free trial, charges and
+        purchases. Apple handles payments; Minta never sees your payment details.
       </p>
     </div>
 
     <p>
-      Your recordings, transcripts and summaries are stored on your iPhone. Deleting a
-      session deletes them.
+      <strong>Deleting your Minta Cloud account</strong> (Settings › Minta Cloud account). Minta
+      revokes its access with Apple and deletes your data, which also disappears from backups
+      within 24 hours. Any remaining credit is lost. Only two things stay: accounting records,
+      made anonymous, for 10 years because tax law requires it, with Apple’s transaction code
+      so a refund can still be handled; and a one-way code of your Apple identifier, used only
+      to avoid giving a second free trial to someone who signs up again.
+    </p>
+    <p>
+      <strong>Technical logs.</strong> The app and the server log only technical data, such as
+      durations, lengths and error codes — never text, audio, names or emails. The server keeps
+      them for 30 days.
+    </p>
+    <p>
+      <strong>iPhone permissions.</strong> The microphone to record, speech recognition to
+      transcribe, and notifications for recording alerts.
+    </p>
+    <p>
+      <strong>Your rights.</strong> You can ask to see, correct or delete your data, or object
+      to its use, by writing to <a href="mailto:dan@trova.me">dan@trova.me</a>. You can also
+      contact your data protection authority — in Italy, the Garante privacy (<a
+        href="https://www.garanteprivacy.it">garanteprivacy.it</a
+      >). Minta processes your data to give you the service you ask for, and keeps accounting
+      records because the law requires it.
     </p>
 
     <h2>Pronto</h2>
@@ -169,9 +196,9 @@ const aggiornata = '9 August 2026';
     margin-bottom: 0;
   }
 
-  code {
-    font-variation-settings: var(--parlato);
-    font-size: 0.92em;
+  /* Il testo che segue un riquadro non gli si incolla sotto. */
+  .motore + p {
+    margin-top: 28px;
   }
 
   .stato {

@@ -43,6 +43,9 @@ test('il sito compilato contiene le pagine attese', () => {
     // visitatore vede la pagina di errore di GitHub e non sa dov'e' finito.
     '404.html',
     'app/minta/index.html',
+    // L'app apre questa pagina da Impostazioni › Info › Support
+    // (AppLinks.support): se sparisce, il pulsante dell'app porta alla 404.
+    'app/minta/support/index.html',
     'app/pronto/index.html',
     'app/claudepal/index.html',
     // La pagina che Apple pretende per pubblicare un'app: se sparisce, sparisce
