@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import Firma from '../../components/Firma.astro';
 import SegnapostoSchermata from '../../components/SegnapostoSchermata.astro';
+import { path } from '../../lib/paths';
 
 // I tre motori fra cui si sceglie, nell'ordine in cui li si incontra: prima
 // quello che non costa nulla, poi la chiave che si ha gia', infine il credito.
@@ -77,6 +78,11 @@ const stato = 'In testing — not on the App Store yet.';
     </section>
 
     <SegnapostoSchermata app="Minta" />
+
+    {/* L'app apre la stessa pagina da Impostazioni › Info › Support. */}
+    <p class="aiuto">
+      Using Minta and need a hand? <a href={path('app/minta/support/')}>Minta support</a>
+    </p>
   </div>
 </Base>
 
@@ -104,6 +110,11 @@ const stato = 'In testing — not on the App Store yet.';
 
   .motore p {
     margin: 0;
+    color: var(--tenue);
+  }
+
+  .aiuto {
+    margin: 40px 0 0;
     color: var(--tenue);
   }
 
