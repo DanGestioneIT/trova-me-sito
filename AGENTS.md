@@ -26,11 +26,6 @@ si scrive il codice qui**.
   eccezione, decisa il 9 agosto 2026: l'indirizzo `dan@trova.me` nella pagina `privacy/`,
   perche' un titolare del trattamento senza un recapito e' un documento incompleto. Non
   e' un permesso ad aggiungerne altrove.
-  **Estensione proposta il 3 ottobre 2026, da confermare dal proprietario:** lo stesso
-  indirizzo, e solo quello, nella pagina `app/minta/support/`, perche' l'app la apre come
-  pagina di supporto e Apple pretende che l'indirizzo di supporto porti a un recapito. Con
-  il merge della pull request che la introduce diventa una decisione; se il proprietario
-  dice di no, si toglie l'indirizzo e questa riga.
   Se serviranno, saranno decisioni prese apposta, non conseguenze di un lavoro.
 - **Niente dipendenze nuove senza che siano scritte nel contratto.** Il sito deve
   restare leggibile fra un anno.

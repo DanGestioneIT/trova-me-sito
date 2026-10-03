@@ -8,42 +8,27 @@
 // 3 ottobre 2026 — non da come l'app "dovrebbe" funzionare. Se l'app cambia
 // (lingue, percorsi nelle Impostazioni, regole del credito), si rilegge qui.
 //
-// L'indirizzo dan@trova.me qui estende l'eccezione decisa per privacy/
-// (AGENTS.md): Apple pretende che l'indirizzo di supporto porti a un recapito.
+// Niente indirizzo email in questa pagina: deciso dal proprietario il 3 ottobre
+// 2026 (l'eccezione di AGENTS.md vale solo per privacy/). Chi deve scrivere viene
+// mandato al recapito che l'app mostra in Impostazioni › Info › Privacy.
+// Prima della revisione Apple serve un modo di contatto qui: da decidere.
 import Base from '../../../layouts/Base.astro';
 import { path } from '../../../lib/paths';
-
-const indirizzo = 'dan@trova.me';
-const scrivimi = `mailto:${indirizzo}?subject=Minta%20support`;
 ---
 
 <Base
   titolo="Minta support | TROVA.ME"
-  descrizione="Help with Minta: how to reach me, what to include, and short answers about recordings, your Minta Cloud account and credit, languages and refunds."
+  descrizione="Help with Minta: short answers about recordings, your Minta Cloud account and credit, languages and refunds."
 >
   <div class="contenitore">
     <div class="testata">
       <p class="etichetta">Minta</p>
       <h1>Support</h1>
       <p class="apertura">
-        Something not working, or a question about Minta? Write to me. I make Minta myself, and
-        I read every message.
+        Short answers to the questions people ask most about Minta.
       </p>
     </div>
 
-    <div class="contatto">
-      <a class="indirizzo" href={scrivimi}>{indirizzo}</a>
-      <p>It helps if you include:</p>
-      <ul>
-        <li>your iPhone model and iOS version;</li>
-        <li>the Minta version, shown in Settings › Info › Version;</li>
-        <li>what happened, and what you expected instead.</li>
-      </ul>
-      <p class="avviso">
-        <strong>Never send recordings or transcripts.</strong> A description of the problem is
-        enough, and your words stay on your iPhone.
-      </p>
-    </div>
 
     <section class="sezione">
       <h2>Common questions</h2>
@@ -86,8 +71,8 @@ const scrivimi = `mailto:${indirizzo}?subject=Minta%20support`;
               Once Apple has charged you, Minta adds the credit automatically, without charging
               you again. Usually it’s enough to close and reopen Minta. If it says “Sign in
               again to receive your credit”, sign in with Apple and the credit arrives on its
-              own. If it still hasn’t arrived after that, write to me with the date of the
-              purchase.
+              own. If it still hasn’t arrived after that, get in touch using the contact shown
+              in Minta, in Settings › Info › Privacy, and include the date of the purchase.
             </p>
           </div>
         </details>
@@ -103,7 +88,8 @@ const scrivimi = `mailto:${indirizzo}?subject=Minta%20support`;
               If iOS interrupts Minta or the connection drops, reopen Minta once you’re online:
               it asks for the same result again, without charging you twice. The server holds
               the result in memory for up to 15 minutes for exactly this, then deletes it. If
-              Minta tells you a result was lost and you were charged for it, write to me.
+              Minta tells you a result was lost and you were charged for it, get in touch using
+              the contact shown in Minta, in Settings › Info › Privacy.
             </p>
           </div>
         </details>
@@ -154,45 +140,6 @@ const scrivimi = `mailto:${indirizzo}?subject=Minta%20support`;
     margin-bottom: 12px;
   }
 
-  /* Il recapito e' la cosa per cui si arriva qui: sta in una scheda, sopra
-     le domande, e non in fondo alla pagina. */
-  .contatto {
-    max-width: 640px;
-    margin-top: 28px;
-    padding: 20px;
-    border: 1px solid var(--bordo);
-    border-radius: 14px;
-    background: var(--superficie);
-  }
-
-  .indirizzo {
-    display: inline-block;
-    margin-bottom: 14px;
-    font-size: clamp(1.25rem, 3.4vw, 1.5rem);
-    font-weight: 650;
-    letter-spacing: -0.01em;
-    overflow-wrap: anywhere;
-  }
-
-  .contatto p {
-    margin: 0 0 6px;
-  }
-
-  .contatto ul {
-    margin: 0 0 14px;
-    padding-left: 1.2em;
-    color: var(--tenue);
-  }
-
-  .contatto li + li {
-    margin-top: 2px;
-  }
-
-  .contatto .avviso {
-    margin: 0;
-    padding-top: 14px;
-    border-top: 1px solid var(--bordo);
-  }
 
   /* Domande richiuse: da telefono si vede subito l'elenco, e si apre solo
      quella che serve. <details> e' HTML puro, nessun JavaScript. */
@@ -252,10 +199,6 @@ const scrivimi = `mailto:${indirizzo}?subject=Minta%20support`;
   @media (min-width: 48rem) {
     .testata {
       padding-top: 72px;
-    }
-
-    .contatto {
-      padding: 24px 28px;
     }
   }
 </style>
