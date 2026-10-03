@@ -333,7 +333,9 @@ test('la pagina iniziale non promette quello che le app non danno ancora', () =>
 const FRASI_MINTA = [
   'In testing — not on the App Store yet.',
   "It stays in the iPhone's keychain. I never see it.",
-  'it keeps neither your audio nor your text',
+  // Riscritta il 3 ottobre 2026 con decisione dichiarata del proprietario: il server ora
+  // tiene il risultato in memoria fino a 15 minuti (recupero delle richieste interrotte).
+  'without storing anything: the result waits in memory for at most 15 minutes',
   'Minta Cloud transcribes up to an hour per file.',
 ];
 
