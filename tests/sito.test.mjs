@@ -43,6 +43,9 @@ test('il sito compilato contiene le pagine attese', () => {
     // visitatore vede la pagina di errore di GitHub e non sa dov'e' finito.
     '404.html',
     'app/minta/index.html',
+    // L'app apre questa pagina da Impostazioni › Info › Support
+    // (AppLinks.support): se sparisce, il pulsante dell'app porta alla 404.
+    'app/minta/support/index.html',
     'app/pronto/index.html',
     'app/claudepal/index.html',
     // La pagina che Apple pretende per pubblicare un'app: se sparisce, sparisce
@@ -330,7 +333,9 @@ test('la pagina iniziale non promette quello che le app non danno ancora', () =>
 const FRASI_MINTA = [
   'In testing — not on the App Store yet.',
   "It stays in the iPhone's keychain. I never see it.",
-  'it keeps neither your audio nor your text',
+  // Riscritta il 3 ottobre 2026 con decisione dichiarata del proprietario: il server ora
+  // tiene il risultato in memoria fino a 15 minuti (recupero delle richieste interrotte).
+  'without storing anything: the result waits in memory for at most 15 minutes',
   'Minta Cloud transcribes up to an hour per file.',
 ];
 
