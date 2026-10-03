@@ -1,0 +1,204 @@
+---
+// Pagina di supporto di Minta. L'app la apre da Impostazioni › Info › Support
+// (AppLinks.support nel progetto MintaApp): l'indirizzo app/minta/support/ non
+// si cambia senza cambiare anche l'app.
+//
+// Ogni risposta viene dal codice dell'app o dall'informativa approvata
+// (MintaApp/Documentation/INFORMATIVA-PRIVACY-BOZZA.md), verificati il
+// 3 ottobre 2026 — non da come l'app "dovrebbe" funzionare. Se l'app cambia
+// (lingue, percorsi nelle Impostazioni, regole del credito), si rilegge qui.
+//
+// Niente indirizzo email in questa pagina: deciso dal proprietario il 3 ottobre
+// 2026 (l'eccezione di AGENTS.md vale solo per privacy/). Chi deve scrivere viene
+// mandato al recapito che l'app mostra in Impostazioni › Info › Privacy.
+// Prima della revisione Apple serve un modo di contatto qui: da decidere.
+import Base from '../../../layouts/Base.astro';
+import { path } from '../../../lib/paths';
+---
+
+<Base
+  titolo="Minta support | TROVA.ME"
+  descrizione="Help with Minta: short answers about recordings, your Minta Cloud account and credit, languages and refunds."
+>
+  <div class="contenitore">
+    <div class="testata">
+      <p class="etichetta">Minta</p>
+      <h1>Support</h1>
+      <p class="apertura">
+        Short answers to the questions people ask most about Minta.
+      </p>
+    </div>
+
+
+    <section class="sezione">
+      <h2>Common questions</h2>
+      <div class="domande">
+        <details class="domanda">
+          <summary><h3>Where are my recordings kept?</h3></summary>
+          <div class="risposta">
+            <p>
+              Only on your iPhone. Recordings, transcriptions and summaries stay there until
+              you delete them, and they can be included in your iPhone backups if you have
+              those switched on. Minta keeps no copy on a server, so I can’t bring back a
+              recording you deleted. The details are on the <a href={path('privacy/')}
+                >privacy page</a
+              >.
+            </p>
+          </div>
+        </details>
+
+        <details class="domanda">
+          <summary><h3>How do I delete my Minta Cloud account? What happens to my credit?</h3></summary>
+          <div class="risposta">
+            <p>
+              In Minta, go to Settings › Minta Cloud account › Delete account, and confirm with
+              Apple. Your account and its data on Minta’s server are deleted; your recordings
+              stay on your iPhone.
+            </p>
+            <p>
+              Any credit you have left is lost and can’t be recovered, and so are any free
+              summaries left from the trial: a new account doesn’t get a new free trial. If you
+              only want to stop using Minta Cloud, choose Sign out instead — it keeps your
+              account and credit for when you sign in again.
+            </p>
+          </div>
+        </details>
+
+        <details class="domanda">
+          <summary><h3>I paid, but the credit isn’t there.</h3></summary>
+          <div class="risposta">
+            <p>
+              Once Apple has charged you, Minta adds the credit automatically, without charging
+              you again. Usually it’s enough to close and reopen Minta. If it says “Sign in
+              again to receive your credit”, sign in with Apple and the credit arrives on its
+              own. If it still hasn’t arrived after that, get in touch using the contact shown
+              in Minta, in Settings › Info › Privacy, and include the date of the purchase.
+            </p>
+          </div>
+        </details>
+
+        <details class="domanda">
+          <summary><h3>What does “Processing on the server…” mean?</h3></summary>
+          <div class="risposta">
+            <p>
+              Your audio or text has reached Minta Cloud and the server is working on it, so it
+              can no longer be stopped: it is already being paid for.
+            </p>
+            <p>
+              If iOS interrupts Minta or the connection drops, reopen Minta once you’re online:
+              it asks for the same result again, without charging you twice. The server holds
+              the result in memory for up to 15 minutes for exactly this, then deletes it. If
+              Minta tells you a result was lost and you were charged for it, get in touch using
+              the contact shown in Minta, in Settings › Info › Privacy.
+            </p>
+          </div>
+        </details>
+
+        <details class="domanda">
+          <summary><h3>Which languages can Minta transcribe? Does it happen on my iPhone?</h3></summary>
+          <div class="risposta">
+            <p>
+              Sixteen languages: Arabic, Chinese, Dutch, English (US and UK), French, German,
+              Hindi, Italian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, Swedish
+              and Turkish. Choose yours in Settings › Transcription.
+            </p>
+            <p>
+              Transcription happens on your iPhone, with Apple’s speech recognition. If that
+              isn’t available for a recording — it depends on the language and on the iPhone —
+              Minta asks you, every time, before sending the audio to Apple’s servers. If you
+              say no, nothing is sent.
+            </p>
+            <p>
+              With Minta Cloud, after your first credit purchase, you can also choose Minta
+              Cloud Whisper: transcription on the server, paid from your credit, and useful in
+              noisy rooms or with quiet voices.
+            </p>
+          </div>
+        </details>
+
+        <details class="domanda">
+          <summary><h3>How do I get a refund?</h3></summary>
+          <div class="risposta">
+            <p>
+              Purchases go through Apple, and so do refunds: ask at <a
+                href="https://reportaproblem.apple.com">reportaproblem.apple.com</a
+              >, signed in with your Apple Account. I can’t issue refunds myself.
+            </p>
+          </div>
+        </details>
+      </div>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .testata {
+    padding: 48px 0 0;
+  }
+
+  .testata h1 {
+    margin-bottom: 12px;
+  }
+
+
+  /* Domande richiuse: da telefono si vede subito l'elenco, e si apre solo
+     quella che serve. <details> e' HTML puro, nessun JavaScript. */
+  .domande {
+    max-width: var(--lettura);
+    margin-top: 4px;
+    border-top: 1px solid var(--bordo);
+  }
+
+  .domanda {
+    border-bottom: 1px solid var(--bordo);
+  }
+
+  .domanda summary {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 0;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .domanda summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .domanda summary::after {
+    content: '+';
+    flex: none;
+    font-size: 1.25rem;
+    line-height: 1;
+    color: var(--accento);
+  }
+
+  .domanda[open] summary::after {
+    content: '−';
+  }
+
+  .domanda h3 {
+    margin: 0;
+  }
+
+  .risposta {
+    padding-bottom: 20px;
+  }
+
+  .risposta p {
+    margin: 0 0 10px;
+    color: var(--tenue);
+  }
+
+  .risposta p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (min-width: 48rem) {
+    .testata {
+      padding-top: 72px;
+    }
+  }
+</style>
