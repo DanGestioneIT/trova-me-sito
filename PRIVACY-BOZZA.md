@@ -70,7 +70,7 @@ server — logs requests at its own level; TROVA.ME neither receives nor stores 
 > - **consenso prima del primo invio a ogni motore esterno** (`DataSharingConsent.swift`);
 > - **server Apple per il riconoscimento vocale solo dopo aver chiesto, ogni volta**
 >   (`RecognitionPrivacyGate.swift`);
-> - **cancellazione dell'account dall'app** (Impostazioni › Minta Cloud account): accesso
+> - **cancellazione dell'account dall'app** (Impostazioni › Minta Cloud): accesso
 >   revocato presso Apple, dati cancellati, spariti anche dai backup del database entro 24 ore,
 >   credito residuo perso;
 > - restano solo i **dati contabili resi anonimi per 10 anni**, con il codice Apple della
@@ -139,7 +139,7 @@ You sign in with Apple. Minta gets no name and no email, only a code Apple creat
 which the server uses for your credit: balance, free trial, charges and purchases. Apple
 handles payments; Minta never sees your payment details.
 
-**Deleting your Minta Cloud account** (Settings › Minta Cloud account). Minta revokes its
+**Deleting your Minta Cloud account** (Settings › Minta Cloud). Minta revokes its
 access with Apple and deletes your data, which also disappears from backups within 24 hours.
 Any remaining credit is lost. Only two things stay: accounting records, made anonymous, for 10
 years because tax law requires it, with Apple's transaction code so a refund can still be
