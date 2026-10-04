@@ -199,3 +199,12 @@ None of these apps are directed at children.
 If any of this changes, this page changes with it, and the date below changes too.
 
 *Last updated: 3 October 2026*
+
+## 4 ottobre 2026 — Minta Cloud: un solo paragrafo per Groq e Anthropic
+
+Scelta del proprietario: il riquadro "Minta Cloud" della pagina `privacy/` copre in un solo
+paragrafo entrambi i fornitori (Groq per Standard e Whisper, Anthropic per la Massima qualità,
+arrivata con il Lotto 6b dell'app). Whisper si usa solo su richiesta dell'utente (Lotto 6c).
+Fatti: Groq con Zero Data Retention attivo (verificato dal proprietario il 3 ottobre); Anthropic
+non addestra sui dati delle API e li cancella entro 30 giorni (condizioni commerciali, verificate
+il 3 ottobre). Da controllare: che il DPA di Anthropic includa le Clausole Contrattuali Standard.
