@@ -19,7 +19,7 @@
 // Groq, rileggi questa pagina.
 import Base from '../layouts/Base.astro';
 
-const aggiornata = '3 October 2026';
+const aggiornata = '4 October 2026';
 ---
 
 <Base
@@ -88,16 +88,18 @@ const aggiornata = '3 October 2026';
     <div class="motore">
       <h3>Minta Cloud</h3>
       <p>
-        The transcription text (for summaries) or a compressed copy of the audio (for
-        transcriptions) goes to Minta’s server in Frankfurt, which passes it to Groq for
-        processing. <strong>The server stores neither your audio nor your text</strong>: it
-        keeps the result in memory only, for at most 15 minutes, so it can be recovered if iOS
-        interrupts the app, and then deletes it.
+        The transcription text (for summaries) or a compressed copy of the audio (only if you
+        choose to transcribe with Whisper) goes to Minta’s server in Frankfurt, which passes it
+        to the AI provider doing the work: <strong>Groq</strong> for Standard summaries and for
+        Whisper, <strong>Anthropic</strong> for Highest quality. <strong>Minta’s server stores
+        neither your audio nor your text</strong>: it keeps the result in memory only, for at
+        most 15 minutes, so it can be recovered if iOS interrupts the app, and then deletes it.
       </p>
       <p>
-        Groq works on Minta’s behalf and keeps nothing: Zero Data Retention is switched on for
-        this account. Groq operates in the United States, under the EU Standard Contractual
-        Clauses.
+        Both providers work on Minta’s behalf, in the United States, under the EU Standard
+        Contractual Clauses, and don’t use your data to train their models. Groq keeps nothing
+        (Zero Data Retention is switched on for this account); Anthropic deletes everything
+        within 30 days.
       </p>
       <p>
         You sign in with Apple. Minta gets no name and no email, only a code Apple creates for
