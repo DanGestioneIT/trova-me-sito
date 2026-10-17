@@ -19,7 +19,7 @@
 // Groq, rileggi questa pagina.
 import Base from '../layouts/Base.astro';
 
-const aggiornata = '4 October 2026';
+const aggiornata = '17 October 2026';
 ---
 
 <Base
@@ -53,7 +53,8 @@ const aggiornata = '4 October 2026';
     <p>
       Minta records audio, transcribes it, and rewrites the transcript. <strong
         >Your recordings, transcriptions and write-ups stay on your iPhone. They leave it only
-        if you choose an external engine, and only after you say yes.</strong
+        if you choose an external engine or Apple Private Cloud Compute, and only after you say
+        yes.</strong
       > No ads, no analytics, no tracking.
     </p>
     <p>
@@ -70,9 +71,21 @@ const aggiornata = '4 October 2026';
     <div class="motore">
       <h3>On your iPhone</h3>
       <p>
-        Transcription uses Apple’s on-device speech recognition and write-ups use Apple’s
-        on-device models. Nothing leaves the phone. If on-device recognition isn’t available
-        for a recording, Minta asks you, every time, before using Apple’s servers.
+        When the work is done on the phone, transcription uses Apple’s on-device speech
+        recognition and write-ups use Apple’s on-device models. Nothing leaves the phone. If
+        on-device recognition isn’t available for a recording, Minta asks you, every time,
+        before using Apple’s servers.
+      </p>
+    </div>
+
+    <div class="motore">
+      <h3>Apple Intelligence (Private Cloud Compute)</h3>
+      <p>
+        When you are online, the on-device engine can send the transcription text to Apple’s
+        Private Cloud Compute servers, which write the write-up with Apple’s model. It does so
+        only after you say yes; if you say no, or offline, the write-up stays on the phone.
+        Apple uses the text only to answer the request, doesn’t keep it, nobody at Apple can
+        see it, and independent experts can verify this.
       </p>
     </div>
 

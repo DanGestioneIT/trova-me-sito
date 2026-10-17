@@ -205,3 +205,16 @@ arrivata con il Lotto 6b dell'app). Whisper si usa solo su richiesta dell'utente
 Fatti: Groq con Zero Data Retention attivo (verificato dal proprietario il 3 ottobre); Anthropic
 non addestra sui dati delle API e li cancella entro 30 giorni (condizioni commerciali, verificate
 il 3 ottobre). Da controllare: che il DPA di Anthropic includa le Clausole Contrattuali Standard.
+
+## 17 ottobre 2026 — Minta: Apple Private Cloud Compute (Lotto 24 dell'app)
+
+Decisione del proprietario: con la rete, su iOS 27, il motore sul telefono manda il testo della
+trascrizione a Private Cloud Compute di Apple per il riassunto generico e i formati leggeri, solo
+dopo un sì dell'utente; senza rete, o dopo un no, tutto resta sul telefono. Destinatario nuovo:
+nella pagina `privacy/` un blocco `.motore` a sé, «Apple Intelligence (Private Cloud Compute)»,
+che si toglie intero; ritoccate la frase in grassetto dell'inizio e il blocco «On your iPhone»
+(«When the work is done on the phone»). Le garanzie (usato solo per la richiesta, non
+conservato, non accessibile ad Apple, verificabile da esperti indipendenti) sono quelle che
+Apple dichiara per Private Cloud Compute. Nella scheda di Minta la riga «On your iPhone» non dice
+più «Nothing leaves your phone». Data in fondo alla pagina: 17 October 2026. Fonte:
+`MintaApp/Documentation/INFORMATIVA-PRIVACY-BOZZA.md`.
