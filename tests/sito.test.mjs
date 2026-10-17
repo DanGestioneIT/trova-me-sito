@@ -337,7 +337,8 @@ const FRASI_MINTA = [
   // Riscritta il 3 ottobre 2026 con decisione dichiarata del proprietario: il server ora
   // tiene il risultato in memoria fino a 15 minuti (recupero delle richieste interrotte).
   'without storing anything: the result waits in memory for at most 15 minutes',
-  'Minta Cloud transcribes up to an hour per file.',
+  // Riscritta il 17 ottobre 2026: dal Lotto 15 (deciso dal proprietario) Whisper accetta fino a 2 ore.
+  'Minta Cloud transcribes up to two hours per file.',
 ];
 
 function paginaMinta() {
