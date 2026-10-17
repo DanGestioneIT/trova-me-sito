@@ -4,19 +4,16 @@ import Firma from '../../components/Firma.astro';
 import SegnapostoSchermata from '../../components/SegnapostoSchermata.astro';
 import { path } from '../../lib/paths';
 
-// I tre motori fra cui si sceglie, nell'ordine in cui li si incontra: prima
-// quello che non costa nulla, poi la chiave che si ha gia', infine il credito.
-// Il testo e' stato approvato da una persona: qui non si riscrive.
+// I motori fra cui si sceglie, nell'ordine in cui li si incontra: prima quello
+// che non costa nulla, poi il credito. Il testo e' stato approvato da una
+// persona: qui non si riscrive. (La riga «With your own key» e' stata tolta il
+// 17 ottobre 2026, decisione del proprietario: l'app non usa piu' le chiavi
+// personali.)
 const motori = [
   {
     titolo: 'On your iPhone',
     testo:
       'Transcription and summaries run on the device. Nothing leaves your phone, and it costs nothing.',
-  },
-  {
-    titolo: 'With your own key',
-    testo:
-      "Already paying for OpenAI, Claude or Gemini? Minta uses your key. It stays in the iPhone's keychain. I never see it.",
   },
   {
     titolo: 'Minta Cloud',
@@ -32,7 +29,7 @@ const stato = 'In testing — not on the App Store yet.';
 
 <Base
   titolo="Minta — speak, and get back something you can send | TROVA.ME"
-  descrizione="Minta records what you say and rewrites it into meeting notes, a lecture summary or a client follow-up — on your iPhone, with your own key, or in the cloud."
+  descrizione="Minta records what you say and rewrites it into meeting notes, a lecture summary or a client follow-up — on your iPhone or in the cloud."
 >
   <div class="contenitore">
     <div class="testata">

@@ -321,10 +321,12 @@ test('la pagina iniziale non promette quello che le app non danno ancora', () =>
 
 // --- scheda di Minta --------------------------------------------------------
 // La pagina si legge e si giudica a occhio: qui non si verifica come e'
-// scritta. Queste quattro frasi sono pero' le sole che, riscritte, non
-// diventerebbero brutte ma false — lo stato reale dell'app, dove finisce la
-// chiave di chi ne ha una, cosa il server non conserva, e il limite vero della
-// trascrizione. Sono promesse fatte a chi legge, e vanno protette una per una.
+// scritta. Queste frasi sono pero' le sole che, riscritte, non diventerebbero
+// brutte ma false — lo stato reale dell'app, cosa il server non conserva, e il
+// limite vero della trascrizione. Sono promesse fatte a chi legge, e vanno
+// protette una per una. (La frase sulla chiave personale nel portachiavi e'
+// uscita il 17 ottobre 2026 con decisione dichiarata del proprietario: l'app non
+// usa piu' le chiavi personali, e al suo posto si controlla che non torni.)
 //
 // Il confronto si fa sul testo senza tag e con le entita' decodificate
 // (testoSemplice): il compilatore rende l'apostrofo come &#39;, quindi una
@@ -332,7 +334,6 @@ test('la pagina iniziale non promette quello che le app non danno ancora', () =>
 
 const FRASI_MINTA = [
   'In testing — not on the App Store yet.',
-  "It stays in the iPhone's keychain. I never see it.",
   // Riscritta il 3 ottobre 2026 con decisione dichiarata del proprietario: il server ora
   // tiene il risultato in memoria fino a 15 minuti (recupero delle richieste interrotte).
   'without storing anything: the result waits in memory for at most 15 minutes',
@@ -353,3 +354,18 @@ for (const frase of FRASI_MINTA) {
     );
   });
 }
+
+// Le chiavi personali (OpenAI, Claude, Gemini) sono uscite dall'app il 17 ottobre
+// 2026: ne' la scheda di Minta ne' l'informativa possono ancora offrirle.
+test('Minta non offre piu\' la chiave personale', () => {
+  const minta = testoSemplice(paginaMinta());
+  const privacy = pagine.find((p) => p.nome === 'privacy/index.html');
+  assert.ok(privacy, 'Manca dist/privacy/index.html');
+  const sezioneMinta = testoSemplice(privacy.html).split('Minta records audio')[1]?.split('Pronto')[0] ?? '';
+  assert.ok(sezioneMinta.length > 0, 'privacy/index.html: la sezione di Minta non si trova');
+  for (const [nome, testo] of [['app/minta', minta], ['privacy (Minta)', sezioneMinta]]) {
+    for (const parola of ['own key', 'own API key', 'OpenAI', 'Gemini']) {
+      assert.ok(!testo.includes(parola), `${nome}: compare ancora "${parola}"`);
+    }
+  }
+});
