@@ -379,6 +379,8 @@ test('Minta dice di Apple Private Cloud Compute e non promette piu\' che non esc
   assert.ok(privacy, 'Manca dist/privacy/index.html');
   const sezioneMinta = testoSemplice(privacy.html).split('Minta records audio')[1]?.split('Pronto')[0] ?? '';
   assert.ok(sezioneMinta.includes('Apple Intelligence (Private Cloud Compute)'), 'privacy: manca il blocco di Private Cloud Compute');
-  assert.ok(sezioneMinta.includes('only after you say yes'), 'privacy: manca il permesso');
+  // Dal 18 ottobre 2026 (versione breve) il permesso si dice «with your yes»: la verita' protetta
+  // e' la stessa, il testo passa da Private Cloud Compute solo dopo un si'.
+  assert.ok(sezioneMinta.includes('Online and with your yes'), 'privacy: manca il permesso');
   assert.ok(!testoSemplice(paginaMinta()).includes('Nothing leaves your phone'), 'app/minta: promette ancora che non esce niente');
 });
