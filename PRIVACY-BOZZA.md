@@ -218,3 +218,18 @@ conservato, non accessibile ad Apple, verificabile da esperti indipendenti) sono
 Apple dichiara per Private Cloud Compute. Nella scheda di Minta la riga «On your iPhone» non dice
 più «Nothing leaves your phone». Data in fondo alla pagina: 17 October 2026. Fonte:
 `MintaApp/Documentation/INFORMATIVA-PRIVACY-BOZZA.md`.
+
+## 18 ottobre 2026 — Minta: la versione breve (Lotto 26 dell'app)
+
+Decisione del proprietario: approvata la proposta `PRIVACY-BREVE-PROPOSTA-2026-10-18.md` dell'app,
+compresi Anthropic «cancella entro 30 giorni» e l'«interesse legittimo» per il codice anti-abuso
+della prova. La sezione di Minta della pagina `privacy/` e' la versione inglese della sua parte 2:
+«On your iPhone» con tre punti (voci, Spotlight, Esporta), «When data leaves» con un blocco
+`.motore` per ciascuno (telefono, Private Cloud Compute, Minta Cloud, iCloud), «What Minta's server
+keeps» come elenco (la tabella della bozza non sta a schermo stretto), e un paragrafo nuovo «Why we
+process it». Stessi fatti di prima; in piu' i permessi dicono anche le attivita' in tempo reale
+(c'erano nella bozza, mancavano qui); tolto il dettaglio «se reinstalli l'app da zero, l'accesso
+viene cancellato». «Groq keeps nothing» resta vero finche' lo Zero Data Retention e' acceso. Titolare
+e contatto restano in cima alla pagina, minori e modifiche in fondo, per tutte e tre le app. Un
+test riscritto sulla stessa verita': il permesso per Private Cloud Compute ora si dice «with your
+yes».
