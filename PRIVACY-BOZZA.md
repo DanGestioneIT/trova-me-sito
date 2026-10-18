@@ -101,8 +101,9 @@ server — logs requests at its own level; TROVA.ME neither receives nor stores 
 >   nell'informativa dell'app, e se «accounting records, made anonymous… with Apple's
 >   transaction code» regge — il codice di transazione Apple, presso Apple, si ricollega a una
 >   persona.
-> - Ogni motore è un blocco `.motore` a sé. Quello «With your own API key» si toglie intero,
->   se un giorno la chiave propria sparisce dall'app.
+> - Ogni motore è un blocco `.motore` a sé. Quello «With your own API key» è stato tolto intero
+>   il 17 ottobre 2026 (Lotto 18 dell'app, decisione del proprietario: niente più chiavi
+>   personali in Minta), insieme a «Keys» nella frase sul portachiavi.
 >
 > ⚠️ **Resta la verità più fragile del documento**: lo Zero Data Retention di Groq vive in un
 > interruttore della console Groq, che nessun test vede. Quando tocchi le impostazioni di Groq,
@@ -113,8 +114,8 @@ transcriptions and summaries stay on your iPhone. They leave it only if you choo
 engine, and only after you say yes.** No ads, no analytics, no tracking.
 
 On your iPhone they stay until you delete them, and they can end up in your device backups if
-you have those switched on. Keys and your Minta Cloud sign-in are kept in the iPhone's
-encrypted keychain: if you reinstall the app from scratch, they are deleted.
+you have those switched on. Your Minta Cloud sign-in is kept in the iPhone's encrypted
+keychain: if you reinstall the app from scratch, it is deleted.
 
 Before the first send to each engine, Minta tells you what is sent and to whom, and asks for
 your permission. The same summary is in Settings › Info › Privacy.
@@ -122,10 +123,6 @@ your permission. The same summary is in Settings › Info › Privacy.
 **On your iPhone.** Transcription uses Apple's on-device speech recognition and summaries use
 Apple's on-device models. Nothing leaves the phone. If on-device recognition isn't available
 for a recording, Minta asks you, every time, before using Apple's servers.
-
-**With your own API key.** The text goes straight from your iPhone to the provider you chose —
-OpenAI, Anthropic or Google — under your own account and its terms. Minta sees neither the
-text nor the key. With a free Gemini key, Google may use the text to improve its models.
 
 **Minta Cloud.** The transcription text (for summaries) or a compressed copy of the audio (for
 transcriptions) goes to Minta's server in Frankfurt, which passes it to Groq for processing.
@@ -208,3 +205,31 @@ arrivata con il Lotto 6b dell'app). Whisper si usa solo su richiesta dell'utente
 Fatti: Groq con Zero Data Retention attivo (verificato dal proprietario il 3 ottobre); Anthropic
 non addestra sui dati delle API e li cancella entro 30 giorni (condizioni commerciali, verificate
 il 3 ottobre). Da controllare: che il DPA di Anthropic includa le Clausole Contrattuali Standard.
+
+## 17 ottobre 2026 — Minta: Apple Private Cloud Compute (Lotto 24 dell'app)
+
+Decisione del proprietario: con la rete, su iOS 27, il motore sul telefono manda il testo della
+trascrizione a Private Cloud Compute di Apple per il riassunto generico e i formati leggeri, solo
+dopo un sì dell'utente; senza rete, o dopo un no, tutto resta sul telefono. Destinatario nuovo:
+nella pagina `privacy/` un blocco `.motore` a sé, «Apple Intelligence (Private Cloud Compute)»,
+che si toglie intero; ritoccate la frase in grassetto dell'inizio e il blocco «On your iPhone»
+(«When the work is done on the phone»). Le garanzie (usato solo per la richiesta, non
+conservato, non accessibile ad Apple, verificabile da esperti indipendenti) sono quelle che
+Apple dichiara per Private Cloud Compute. Nella scheda di Minta la riga «On your iPhone» non dice
+più «Nothing leaves your phone». Data in fondo alla pagina: 17 October 2026. Fonte:
+`MintaApp/Documentation/INFORMATIVA-PRIVACY-BOZZA.md`.
+
+## 18 ottobre 2026 — Minta: la versione breve (Lotto 26 dell'app)
+
+Decisione del proprietario: approvata la proposta `PRIVACY-BREVE-PROPOSTA-2026-10-18.md` dell'app,
+compresi Anthropic «cancella entro 30 giorni» e l'«interesse legittimo» per il codice anti-abuso
+della prova. La sezione di Minta della pagina `privacy/` e' la versione inglese della sua parte 2:
+«On your iPhone» con tre punti (voci, Spotlight, Esporta), «When data leaves» con un blocco
+`.motore` per ciascuno (telefono, Private Cloud Compute, Minta Cloud, iCloud), «What Minta's server
+keeps» come elenco (la tabella della bozza non sta a schermo stretto), e un paragrafo nuovo «Why we
+process it». Stessi fatti di prima; in piu' i permessi dicono anche le attivita' in tempo reale
+(c'erano nella bozza, mancavano qui); tolto il dettaglio «se reinstalli l'app da zero, l'accesso
+viene cancellato». «Groq keeps nothing» resta vero finche' lo Zero Data Retention e' acceso. Titolare
+e contatto restano in cima alla pagina, minori e modifiche in fondo, per tutte e tre le app. Un
+test riscritto sulla stessa verita': il permesso per Private Cloud Compute ora si dice «with your
+yes».
