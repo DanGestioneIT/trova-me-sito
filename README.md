@@ -6,7 +6,7 @@ Vetrina delle app iOS pubblicate sotto il marchio TROVA.ME: **Minta**, **Pronto*
 **Il sito e' in inglese** (serve ad Apple); **la documentazione interna e' in italiano**.
 Il perche' sta in `BRIEF.md`, sezione "La lingua".
 
-Pubblicato su GitHub Pages: https://dangestioneit.github.io/trova-me-sito/
+Pubblicato su https://trova.me/ (GitHub Pages con dominio proprio, dal 19 ottobre 2026).
 Il dominio `trova.me` verra' agganciato piu' avanti, con un lavoro dedicato.
 
 ## Documenti
@@ -41,7 +41,7 @@ Le due fasi sono spiegate in `Guide_e_esempi/LE-DUE-FASI.md` del repository del 
 
 ```bash
 npm install    # la prima volta
-npm run dev    # anteprima locale su http://localhost:4321/trova-me-sito/
+npm run dev    # anteprima locale su http://localhost:4321/
 npm test       # compila il sito e verifica i vincoli del brief
 npm run build  # compila in dist/
 ```
