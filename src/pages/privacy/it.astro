@@ -1,0 +1,228 @@
+---
+// La versione italiana dell'informativa (decisione del proprietario del 19
+// ottobre 2026: il titolare del trattamento e' in Italia). E' l'unica pagina del
+// sito in italiano, e lo dichiara con `lingua="it"` a Base.
+//
+// Dice le stesse cose di privacy.astro, la versione inglese, che resta quella
+// a cui puntano l'app e App Store Connect: se ne cambi una, cambia anche
+// l'altra. La parte di Minta e' il testo italiano di
+// MintaApp/Documentation/INFORMATIVA-PRIVACY-BOZZA.md; il resto (il sito,
+// Pronto, ClaudePal, minori, modifiche) e' la traduzione della pagina inglese.
+// Ogni motore e' un blocco .motore a se': si toglie intero, senza toccare il
+// resto. Lo stile e' in src/styles/informativa.css, comune alle due pagine.
+//
+// ATTENZIONE a «Groq non conserva niente»: vale quanto detto in privacy.astro
+// (Zero Data Retention acceso nella console di Groq).
+import Base from '../../layouts/Base.astro';
+import { path } from '../../lib/paths';
+import '../../styles/informativa.css';
+
+const aggiornata = '19 ottobre 2026';
+---
+
+<Base
+  lingua="it"
+  titolo="Privacy — TROVA.ME"
+  descrizione="Cosa fa con i tuoi dati ogni app di TROVA.ME, in parole semplici. Minta tiene le registrazioni sul tuo iPhone e le manda fuori solo dopo il tuo sì."
+>
+  <div class="contenitore informativa">
+    <nav class="lingue" aria-label="Lingua">
+      <a href={path('privacy/')} lang="en" hreflang="en">English</a>
+      <span aria-hidden="true">·</span>
+      <span aria-current="page">Italiano</span>
+    </nav>
+
+    <h1>Privacy</h1>
+
+    <p class="apertura">
+      TROVA.ME è una persona che fa tre app per iPhone. Questa pagina dice cosa fa ogni app con
+      i tuoi dati, in parole semplici. È corta perché le app raccolgono pochissimo.
+    </p>
+
+    <p>
+      Il titolare del trattamento è <strong>Daniele Riccarand</strong>, come persona fisica, a
+      Milano. Per qualunque cosa di questa pagina, scrivi a <a href="mailto:dan@trova.me"
+        >dan@trova.me</a
+      >.
+    </p>
+
+    <h2>Questo sito</h2>
+    <p>
+      Questo sito non ha statistiche, cookie, tracciamento né moduli di contatto. Niente di quello
+      che fai qui viene registrato. È un insieme di pagine statiche servite da GitHub Pages, che —
+      come ogni server web — registra le richieste per conto suo; TROVA.ME non riceve né conserva
+      quei registri.
+    </p>
+
+    <h2>Minta</h2>
+    <p>
+      Minta registra l’audio, lo trascrive e rielabora la trascrizione. <strong>In breve: Minta
+      non conserva niente delle tue registrazioni.</strong> Restano sul tuo iPhone (e nel tuo
+      iCloud, se accendi la sincronizzazione). Escono solo per un lavoro che chiedi, dopo il tuo
+      sì, e Minta Cloud fa solo da passaggio. Niente pubblicità, statistiche o tracciamento.
+    </p>
+
+    <h3>Sul tuo iPhone</h3>
+    <p>
+      Registrazioni, trascrizioni, elaborazioni, note e glossario restano sul telefono finché non
+      li elimini, e possono finire nei backup del dispositivo. L’accesso a Minta Cloud sta nel
+      portachiavi cifrato di iOS. Restano sul telefono anche:
+    </p>
+    <ul>
+      <li>
+        <strong>il riconoscimento di chi parla</strong> (spento finché non lo accendi): distingue
+        le voci (A, B, C…) con un modello sul telefono; nessuna impronta vocale, nessun
+        riconoscimento delle persone. I nomi delle voci li scrivi tu e restano con la
+        registrazione;
+      </li>
+      <li>
+        <strong>Spotlight</strong>: nome, data e prima frase dell’elaborazione entrano nella
+        ricerca dell’iPhone (si spegne nelle Impostazioni);
+      </li>
+      <li>
+        <strong>Esporta</strong>: il file .minta (audio, testi e luogo) o la copia dell’audio va
+        solo dove lo mandi tu.
+      </li>
+    </ul>
+
+    <h3>Quando i dati escono</h3>
+    <p>
+      Solo per un lavoro che chiedi tu, o che parte da solo se accendi l’«Esecuzione automatica».
+      La prima volta per ogni motore Minta dice cosa parte e a chi, e chiede il permesso. Con il
+      testo partono le istruzioni del formato, i termini del glossario e le voci (lettere o nomi).
+    </p>
+
+    {/* Un motore, un blocco: ognuno si toglie intero senza toccare gli altri. */}
+    <div class="motore">
+      <h4>Sul telefono</h4>
+      <p>
+        Il motore on-device senza rete, e Apple Speech: non esce niente. Se il riconoscimento
+        vocale sul telefono non c’è, Minta chiede ogni volta prima di usare i server Apple.
+      </p>
+    </div>
+
+    <div class="motore">
+      <h4>Apple Intelligence (Private Cloud Compute)</h4>
+      <p>
+        Con la rete e il tuo sì, il testo va ai server Private Cloud Compute di Apple, che scrivono
+        l’elaborazione. Apple lo usa solo per rispondere, non lo conserva, nessuno in Apple può
+        vederlo, ed esperti indipendenti possono verificarlo.
+      </p>
+    </div>
+
+    <div class="motore">
+      <h4>Minta Cloud</h4>
+      <p>
+        Il testo (o, per Whisper, una copia compressa dell’audio) va al server di Minta a
+        Francoforte, che lo passa a chi fa il lavoro: <strong>Groq</strong> per Standard e
+        Whisper, <strong>Anthropic</strong> per la Massima qualità. Lavorano per conto di Minta,
+        negli Stati Uniti, con le Clausole Contrattuali Standard dell’UE, e non usano i dati per
+        addestrare i modelli: Groq non conserva niente, Anthropic cancella tutto entro 30 giorni.
+      </p>
+    </div>
+
+    <div class="motore">
+      <h4>Sincronizzazione iCloud</h4>
+      <p>
+        Spenta finché non la accendi. Le registrazioni vanno nel <strong>tuo</strong> iCloud,
+        presso Apple, non al server di Minta. I testi sono cifrati end-to-end; l’audio Apple lo
+        conserva come gli altri tuoi dati iCloud. Spegnendola non si cancella niente: quello che è
+        in iCloud lo elimini dalle impostazioni iCloud.
+      </p>
+    </div>
+
+    <h3>Account Minta Cloud</h3>
+    <p>
+      Si entra con Accedi con Apple: Minta riceve solo un codice creato da Apple, non nome né
+      email. I pagamenti li gestisce Apple: Minta non vede i tuoi dati di pagamento.
+    </p>
+
+    <h3>Cosa tiene il server di Minta, e per quanto</h3>
+    <dl class="conservazione">
+      <div>
+        <dt>Audio e testi</dt>
+        <dd>
+          Mai salvati. Il risultato resta in memoria al massimo 15 minuti, per recuperare una
+          richiesta interrotta da iOS.
+        </dd>
+      </div>
+      <div>
+        <dt>Credito, prova gratuita, addebiti e acquisti, legati al codice di Accedi con Apple</dt>
+        <dd>Finché hai l’account; dai backup spariscono entro 24 ore dall’eliminazione.</dd>
+      </div>
+      <div>
+        <dt>
+          Un codice di supporto casuale, che vedi in Impostazioni › Minta Cloud: se lo metti in un
+          messaggio al supporto, serve solo a trovare il tuo account
+        </dt>
+        <dd>Finché hai l’account; dai backup sparisce entro 24 ore dall’eliminazione.</dd>
+      </div>
+      <div>
+        <dt>Registri tecnici (durate, lunghezze, codici di errore; mai testi, audio, nomi o email)</dt>
+        <dd>30 giorni.</dd>
+      </div>
+      <div>
+        <dt>
+          Dopo l’eliminazione dell’account: dati contabili staccati da te, con il codice Apple
+          della transazione per i rimborsi
+        </dt>
+        <dd>10 anni (obbligo fiscale).</dd>
+      </div>
+      <div>
+        <dt>Dopo l’eliminazione dell’account: un codice non reversibile del tuo identificativo Apple</dt>
+        <dd>Solo per non dare una seconda prova gratuita.</dd>
+      </div>
+    </dl>
+
+    <p>
+      <strong>Perché li trattiamo.</strong> Per darti il servizio che chiedi (contratto); i dati
+      contabili per obbligo di legge; il codice anti-abuso della prova per il nostro interesse
+      legittimo a evitare abusi.
+    </p>
+    <p>
+      <strong>Permessi dell’iPhone.</strong> Microfono per registrare, riconoscimento vocale per
+      trascrivere, notifiche per gli avvisi, attività in tempo reale per mostrare sulla schermata
+      di blocco la registrazione in corso o in lavorazione, con il suo nome (resta sul telefono).
+    </p>
+    <p>
+      <strong>I tuoi diritti.</strong> Puoi chiedere di vedere, correggere o cancellare i tuoi
+      dati, o opporti al loro uso, scrivendo a <a href="mailto:dan@trova.me">dan@trova.me</a>;
+      l’account lo elimini tu dall’app (Impostazioni › Minta Cloud; il credito residuo va perso).
+      Puoi anche rivolgerti al Garante privacy (<a href="https://www.garanteprivacy.it"
+        >garanteprivacy.it</a
+      >).
+    </p>
+
+    <h2>Pronto</h2>
+    <p>
+      La tua lista vive sul tuo iPhone. <strong>Pronto non ha account e non ha server.</strong>
+    </p>
+    <p>
+      Per capire cosa detti, Pronto manda quello che hai detto — insieme ai compiti già nella tua
+      lista, così «sposta il dentista a giovedì» ha qualcosa a cui riferirsi — al fornitore di AI
+      che hai scelto. Lo scambio avviene direttamente fra il tuo iPhone e il fornitore, con la tua
+      chiave, sul tuo account e alle sue condizioni. TROVA.ME non ne fa parte e non vede mai la
+      chiave, che sta nel portachiavi dell’iPhone. Se non configuri nessun fornitore, non parte
+      niente.
+    </p>
+
+    <h2>ClaudePal</h2>
+    <p>
+      ClaudePal è un esperimento e non è distribuita. Collega il tuo iPhone a una sessione di
+      Claude Code sul tuo Mac, attraverso la tua rete locale. A TROVA.ME non arriva niente. Quello
+      che Claude Code manda ad Anthropic lo regolano le condizioni di Anthropic e il tuo account.
+    </p>
+    <p>
+      La connessione non è cifrata ed è pensata solo per una rete di cui ti fidi. Lo dice
+      chiaramente anche la pagina di ClaudePal.
+    </p>
+
+    <h2>Minori</h2>
+    <p>Nessuna di queste app è pensata per i minori.</p>
+
+    <h2>Modifiche</h2>
+    <p>Se qualcosa di tutto questo cambia, cambia questa pagina, e con lei la data qui sotto.</p>
+
+    <p class="stato">Ultimo aggiornamento: {aggiornata}</p>
+  </div>
+</Base>

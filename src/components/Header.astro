@@ -1,6 +1,13 @@
 ---
 import { path } from '../lib/paths';
 
+interface Props {
+  /** Solo sulle pagine non inglesi: la testata resta in inglese e lo dichiara. */
+  lingua?: string;
+}
+
+const { lingua } = Astro.props;
+
 const voci = [
   { testo: 'Minta', href: path('app/minta/') },
   { testo: 'Pronto', href: path('app/pronto/') },
@@ -8,7 +15,7 @@ const voci = [
 ];
 ---
 
-<header>
+<header lang={lingua}>
   <div class="contenitore barra">
     <a class="marchio" href={path('')}>TROVA<span class="punto">.</span>ME</a>
     <nav aria-label="Main navigation">

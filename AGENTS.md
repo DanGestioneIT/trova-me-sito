@@ -15,8 +15,12 @@ si scrive il codice qui**.
     test, i messaggi di commit.
 
   La lingua del sito e' dichiarata **in un punto solo**, l'attributo `lang` in
-  `src/layouts/Base.astro`. Non aggiungerne altri e non introdurre localizzazione:
-  una eventuale versione italiana sara' un lavoro a se'.
+  `src/layouts/Base.astro`: una pagina che non e' in inglese lo dice passando `lingua`
+  a `Base`, e nient'altro. Unica eccezione all'inglese, decisa dal proprietario il
+  19 ottobre 2026: **la versione italiana dell'informativa**, `privacy/it/`, perche' il
+  titolare del trattamento e' in Italia. `privacy/` resta in inglese e al suo indirizzo
+  (ci puntano l'app e App Store Connect); le due pagine dicono le stesse cose e si
+  collegano a vicenda in cima. Non e' un permesso a tradurre altre pagine.
 - **Prima il telefono.** Ogni modifica si valuta a schermo stretto. Se serve ingrandire
   con le dita per leggere, e' sbagliata.
 - **Niente contenuti inventati.** Nessuno screenshot finto, nessuna data di uscita,
@@ -68,7 +72,7 @@ npm run check   # controllo dei tipi
 ```
 
 `npm test` non giudica l'estetica: verifica i vincoli che sbagliano in silenzio —
-lingua dichiarata (`lang="en"`), adattamento al telefono, titolo e descrizione presenti,
+lingua dichiarata (`lang="en"`, `lang="it"` per la sola `privacy/it/`), adattamento al telefono, titolo e descrizione presenti,
 collegamenti interni che portano da qualche parte, sitemap prodotta, e alcune frasi
 protette parola per parola. **Se aggiungi una pagina, aggiungila anche all'elenco delle
 pagine attese in `tests/sito.test.mjs`.**
