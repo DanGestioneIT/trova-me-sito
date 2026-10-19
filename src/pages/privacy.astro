@@ -12,6 +12,11 @@
 // resto. Titolare e contatto stanno in cima alla pagina, minori e modifiche in
 // fondo: valgono per tutte e tre le app.
 //
+// La versione italiana e' privacy/it.astro (decisione del proprietario del
+// 19 ottobre 2026: il titolare e' in Italia). Le due pagine dicono le stesse
+// cose: se ne cambi una, cambia anche l'altra. Questa resta all'indirizzo
+// privacy/ perche' l'app e App Store Connect puntano qui.
+//
 // Le note interne, le verifiche e il ragionamento sul ruolo di titolare
 // restano in PRIVACY-BOZZA.md e non si pubblicano.
 //
@@ -20,6 +25,8 @@
 // questo sito puo' accorgersi se viene spento. Se tocchi le impostazioni di
 // Groq, rileggi questa pagina.
 import Base from '../layouts/Base.astro';
+import { path } from '../lib/paths';
+import '../styles/informativa.css';
 
 const aggiornata = '19 October 2026';
 ---
@@ -28,7 +35,13 @@ const aggiornata = '19 October 2026';
   titolo="Privacy — TROVA.ME"
   descrizione="What each TROVA.ME app does with your data, in plain terms. Minta keeps your recordings on your iPhone and sends them out only after you say yes."
 >
-  <div class="contenitore">
+  <div class="contenitore informativa">
+    <nav class="lingue" aria-label="Language">
+      <span aria-current="page">English</span>
+      <span aria-hidden="true">·</span>
+      <a href={path('privacy/it/')} lang="it" hreflang="it">Italiano</a>
+    </nav>
+
     <h1>Privacy</h1>
 
     <p class="apertura">
@@ -61,9 +74,9 @@ const aggiornata = '19 October 2026';
 
     <h3>On your iPhone</h3>
     <p>
-      Recordings, transcriptions, write-ups and notes stay on the phone until you delete them,
-      and can end up in your device backups. Your Minta Cloud sign-in is in the iOS encrypted
-      keychain. These also stay on the phone:
+      Recordings, transcriptions, write-ups, notes and your glossary stay on the phone until you
+      delete them, and can end up in your device backups. Your Minta Cloud sign-in is in the iOS
+      encrypted keychain. These also stay on the phone:
     </p>
     <ul>
       <li>
@@ -180,7 +193,7 @@ const aggiornata = '19 October 2026';
     <p>
       <strong>iPhone permissions.</strong> Microphone to record, speech recognition to
       transcribe, notifications for alerts, Live Activities to show on the Lock Screen the
-      recording in progress or being worked on, with its name.
+      recording in progress or being worked on, with its name (it stays on the phone).
     </p>
     <p>
       <strong>Your rights.</strong> You can ask to see, correct or delete your data, or object
@@ -228,83 +241,3 @@ const aggiornata = '19 October 2026';
     <p class="stato">Last updated: {aggiornata}</p>
   </div>
 </Base>
-
-<style>
-  .contenitore {
-    padding-top: 56px;
-  }
-
-  h2 {
-    margin-top: 48px;
-  }
-
-  h3 {
-    margin-top: 32px;
-  }
-
-  ul {
-    max-width: 640px;
-    padding-left: 1.2em;
-  }
-
-  li {
-    margin-bottom: 8px;
-  }
-
-  .motore h4 {
-    margin: 0 0 8px;
-  }
-
-  /* La tabella della bozza, come elenco: a schermo stretto le colonne non ci stanno. */
-  .conservazione {
-    max-width: 640px;
-    margin: 12px 0 0;
-  }
-
-  .conservazione div {
-    padding: 12px 0;
-    border-top: 1px solid var(--bordo);
-  }
-
-  .conservazione div:last-child {
-    border-bottom: 1px solid var(--bordo);
-  }
-
-  .conservazione dt {
-    font-weight: 600;
-  }
-
-  .conservazione dd {
-    margin: 4px 0 0;
-  }
-
-  .conservazione + p {
-    margin-top: 28px;
-  }
-
-  .motore {
-    max-width: 640px;
-    margin-top: 12px;
-    padding: 20px;
-    border: 1px solid var(--bordo);
-    border-radius: 14px;
-    background: var(--superficie);
-  }
-
-  .motore p {
-    margin: 0 0 10px;
-  }
-
-  .motore p:last-child {
-    margin-bottom: 0;
-  }
-
-  /* Il testo che segue un riquadro non gli si incolla sotto. */
-  .motore + p {
-    margin-top: 28px;
-  }
-
-  .stato {
-    margin-top: 48px;
-  }
-</style>

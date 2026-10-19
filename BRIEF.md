@@ -93,6 +93,10 @@ Apple togliendomi leggibilità.
 La lingua è dichiarata in un punto solo (`src/layouts/Base.astro`), così una eventuale
 versione italiana non richiede di riaprire ogni pagina.
 
+> **Aggiornamento, 19 ottobre 2026.** L'informativa c'è anche in italiano, a `privacy/it/`:
+> il titolare del trattamento è in Italia. È l'unica pagina tradotta; `privacy/` resta in
+> inglese, ed è lì che puntano l'app e App Store Connect.
+
 ## Come verifico che sia venuto bene
 
 Apro il sito **dal telefono** e in dieci secondi devo capire cos'è TROVA.ME. Poi tocco

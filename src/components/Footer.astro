@@ -1,10 +1,17 @@
 ---
 import { path } from '../lib/paths';
 
+interface Props {
+  /** Solo sulle pagine non inglesi: il piede resta in inglese e lo dichiara. */
+  lingua?: string;
+}
+
+const { lingua } = Astro.props;
+
 const anno = 2026;
 ---
 
-<footer>
+<footer lang={lingua}>
   <p>
     iPhone apps by Daniele Riccarand. &copy; {anno} TROVA.ME Milano
     &middot; <a href={path('privacy/')}>Privacy</a>
