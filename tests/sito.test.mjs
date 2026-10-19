@@ -384,3 +384,18 @@ test('Minta dice di Apple Private Cloud Compute e non promette piu\' che non esc
   assert.ok(sezioneMinta.includes('Online and with your yes'), 'privacy: manca il permesso');
   assert.ok(!testoSemplice(paginaMinta()).includes('Nothing leaves your phone'), 'app/minta: promette ancora che non esce niente');
 });
+
+// Dal 19 ottobre 2026 (Lotto 33 dell'app) ogni account Minta Cloud ha un codice di supporto
+// casuale: l'informativa dice cos'e' e a cosa serve, la pagina di supporto chiede di metterlo
+// nel messaggio. Se uno dei due sparisce, chi scrive non sa che c'e' o non sa perche'.
+test('Minta: il codice di supporto nell\'informativa e nel contatto del supporto', () => {
+  const privacy = pagine.find((p) => p.nome === 'privacy/index.html');
+  assert.ok(privacy, 'Manca dist/privacy/index.html');
+  const sezioneMinta = testoSemplice(privacy.html).split('Minta records audio')[1]?.split('Pronto')[0] ?? '';
+  assert.ok(sezioneMinta.includes('A random support code'), 'privacy: manca il codice di supporto');
+  assert.ok(sezioneMinta.includes('it is used only to find your account'), 'privacy: manca a cosa serve il codice di supporto');
+  const supporto = pagine.find((p) => p.nome === 'app/minta/support/index.html');
+  assert.ok(supporto, 'Manca dist/app/minta/support/index.html');
+  const contatto = testoSemplice(supporto.html).split('Contact')[1] ?? '';
+  assert.ok(contatto.includes('include the support code from Settings › Minta Cloud'), 'supporto: il contatto non chiede il codice di supporto');
+});
