@@ -13,7 +13,7 @@ import { fileURLToPath } from 'node:url';
 
 const RADICE = fileURLToPath(new URL('..', import.meta.url));
 const DIST = join(RADICE, 'dist');
-const BASE = '/trova-me-sito';
+const BASE = '';
 
 function elencaHtml(cartella) {
   const trovati = [];
