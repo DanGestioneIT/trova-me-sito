@@ -12,7 +12,7 @@
 
 @font-face {
   font-family: 'Recursive';
-  src: url('/trova-me-sito/fonts/recursive.woff2') format('woff2-variations');
+  src: url('/fonts/recursive.woff2') format('woff2-variations');
   font-weight: 300 1000;
   font-style: oblique 0deg 15deg;
   font-display: swap;
