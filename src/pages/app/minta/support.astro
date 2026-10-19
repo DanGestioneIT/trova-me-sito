@@ -11,6 +11,9 @@
 // Contatto: dan@trova.me, lo stesso della pagina privacy/. Deciso dal proprietario
 // il 19 ottobre 2026 (prima, dal 3 ottobre, qui non c'era nessun indirizzo):
 // Apple chiede un modo di contatto nella pagina di supporto (regola 1.5).
+// Dal 19 ottobre 2026 (Lotto 33 dell'app) il contatto chiede anche il codice di
+// supporto (MNT-XXXX-XXXX, in Impostazioni › Minta Cloud): serve solo a trovare
+// l'account nel server, non e' una credenziale.
 import Base from '../../../layouts/Base.astro';
 import { path } from '../../../lib/paths';
 ---
@@ -135,7 +138,8 @@ import { path } from '../../../lib/paths';
       <h2>Contact</h2>
       <p class="contatto">
         Write to <a href="mailto:dan@trova.me">dan@trova.me</a>. I make Minta and I read every
-        message myself. If it’s about a purchase, include its date.
+        message myself. If you use Minta Cloud, include the support code from Settings › Minta
+        Cloud: it lets me find your account. If it’s about a purchase, include its date.
       </p>
     </section>
   </div>
