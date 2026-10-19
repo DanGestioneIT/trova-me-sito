@@ -24,8 +24,9 @@ si scrive il codice qui**.
   "in arrivo"; ClaudePal e' un esperimento dichiarato e va presentata come tale.
 - **Niente moduli di contatto, niente raccolta di email, niente tracciamento.** Unica
   eccezione, decisa il 9 agosto 2026: l'indirizzo `dan@trova.me` nella pagina `privacy/`,
-  perche' un titolare del trattamento senza un recapito e' un documento incompleto. Non
-  e' un permesso ad aggiungerne altrove.
+  perche' un titolare del trattamento senza un recapito e' un documento incompleto; dal
+  19 ottobre 2026 anche in `app/minta/support/`, perche' Apple chiede un contatto nella
+  pagina di supporto (regola 1.5). Non e' un permesso ad aggiungerne altrove.
   Se serviranno, saranno decisioni prese apposta, non conseguenze di un lavoro.
 - **Niente dipendenze nuove senza che siano scritte nel contratto.** Il sito deve
   restare leggibile fra un anno.
