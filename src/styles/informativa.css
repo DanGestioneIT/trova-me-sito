@@ -1,0 +1,96 @@
+/*
+ * Lo stile dell'informativa, comune alle due versioni: privacy/ (inglese) e
+ * privacy/it/ (italiano). Tutto sta sotto .informativa, il contenitore delle due
+ * pagine, cosi' non tocca il resto del sito.
+ */
+.contenitore.informativa {
+  padding-top: 56px;
+}
+
+.informativa h2 {
+  margin-top: 48px;
+}
+
+.informativa h3 {
+  margin-top: 32px;
+}
+
+.informativa ul {
+  max-width: 640px;
+  padding-left: 1.2em;
+}
+
+.informativa li {
+  margin-bottom: 8px;
+}
+
+.informativa .motore h4 {
+  margin: 0 0 8px;
+}
+
+/* La tabella della bozza, come elenco: a schermo stretto le colonne non ci stanno. */
+.informativa .conservazione {
+  max-width: 640px;
+  margin: 12px 0 0;
+}
+
+.informativa .conservazione div {
+  padding: 12px 0;
+  border-top: 1px solid var(--bordo);
+}
+
+.informativa .conservazione div:last-child {
+  border-bottom: 1px solid var(--bordo);
+}
+
+.informativa .conservazione dt {
+  font-weight: 600;
+}
+
+.informativa .conservazione dd {
+  margin: 4px 0 0;
+}
+
+.informativa .conservazione + p {
+  margin-top: 28px;
+}
+
+.informativa .motore {
+  max-width: 640px;
+  margin-top: 12px;
+  padding: 20px;
+  border: 1px solid var(--bordo);
+  border-radius: 14px;
+  background: var(--superficie);
+}
+
+.informativa .motore p {
+  margin: 0 0 10px;
+}
+
+.informativa .motore p:last-child {
+  margin-bottom: 0;
+}
+
+/* Il testo che segue un riquadro non gli si incolla sotto. */
+.informativa .motore + p {
+  margin-top: 28px;
+}
+
+.informativa .stato {
+  margin-top: 48px;
+}
+
+/* Il passaggio fra le due lingue, in cima: piccolo, sopra il titolo. */
+.informativa .lingue {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  font-size: 15px;
+  color: var(--tenue);
+}
+
+.informativa .lingue [aria-current='page'] {
+  color: var(--testo);
+  font-weight: 600;
+}

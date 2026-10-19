@@ -12,9 +12,17 @@ interface Props {
    * un vicolo cieco. Le pagine vere non la impostano.
    */
   nonIndicizzare?: boolean;
+  /**
+   * La lingua della pagina. Il sito e' in inglese; l'unica eccezione e' la
+   * versione italiana dell'informativa (`privacy/it/`), decisa dal proprietario
+   * il 19 ottobre 2026. Testata e piede restano in inglese anche li', e lo
+   * dichiarano, cosi' i lettori di schermo li pronunciano giusti.
+   */
+  lingua?: 'en' | 'it';
 }
 
-const { titolo, descrizione, nonIndicizzare = false } = Astro.props;
+const { titolo, descrizione, nonIndicizzare = false, lingua = 'en' } = Astro.props;
+const linguaCornice = lingua === 'en' ? undefined : 'en';
 
 // L'indirizzo canonico dice ai motori di ricerca qual e' la versione ufficiale
 // di questa pagina. Si ricava da `site` + `base` in astro.config.mjs.
@@ -22,7 +30,7 @@ const canonico = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lingua}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -41,10 +49,10 @@ const canonico = new URL(Astro.url.pathname, Astro.site);
     <meta name="generator" content={Astro.generator} />
   </head>
   <body>
-    <Header />
+    <Header lingua={linguaCornice} />
     <main>
       <slot />
     </main>
-    <Footer />
+    <Footer lingua={linguaCornice} />
   </body>
 </html>

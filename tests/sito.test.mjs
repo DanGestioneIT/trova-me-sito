@@ -51,6 +51,9 @@ test('il sito compilato contiene le pagine attese', () => {
     // La pagina che Apple pretende per pubblicare un'app: se sparisce, sparisce
     // anche l'indirizzo che sara' dichiarato su App Store Connect.
     'privacy/index.html',
+    // La versione italiana dell'informativa (decisione del proprietario del 19
+    // ottobre 2026: il titolare e' in Italia).
+    'privacy/it/index.html',
   ];
   const presenti = pagine.map((p) => p.nome);
   for (const attesa of attese) {
@@ -60,14 +63,27 @@ test('il sito compilato contiene le pagine attese', () => {
 
 // Il sito e' in inglese: serve ad Apple, che esamina le app leggendo in inglese.
 // I documenti interni restano in italiano — vedi BRIEF.md, sezione "La lingua".
-test('ogni pagina e dichiarata in inglese', () => {
+// Unica eccezione, decisa il 19 ottobre 2026: la versione italiana dell'informativa.
+const LINGUE_DIVERSE = { 'privacy/it/index.html': 'it' };
+
+test('ogni pagina dichiara la propria lingua', () => {
   for (const { nome, html } of pagine) {
-    assert.match(
-      html,
-      /<html[^>]*\slang="en"/,
-      `${nome}: manca lang="en" — senza, i lettori di schermo pronunciano il testo con la fonetica sbagliata`,
+    const attesa = LINGUE_DIVERSE[nome] ?? 'en';
+    const dichiarata = (html.match(/<html[^>]*\slang="([^"]*)"/) ?? [])[1];
+    assert.equal(
+      dichiarata,
+      attesa,
+      `${nome}: dichiara lang="${dichiarata}" invece di lang="${attesa}" — i lettori di schermo pronuncerebbero il testo con la fonetica sbagliata`,
     );
   }
+});
+
+// Sulla pagina italiana testata e piede restano in inglese: devono dirlo.
+test('nella pagina italiana testata e piede si dichiarano in inglese', () => {
+  const italiana = pagine.find((p) => p.nome === 'privacy/it/index.html');
+  assert.ok(italiana, 'Manca dist/privacy/it/index.html');
+  assert.match(italiana.html, /<header[^>]*\slang="en"/, 'privacy/it: la testata non dichiara lang="en"');
+  assert.match(italiana.html, /<footer[^>]*\slang="en"/, 'privacy/it: il piede non dichiara lang="en"');
 });
 
 test('ogni pagina si adatta allo schermo del telefono', () => {
@@ -398,4 +414,54 @@ test('Minta: il codice di supporto nell\'informativa e nel contatto del supporto
   assert.ok(supporto, 'Manca dist/app/minta/support/index.html');
   const contatto = testoSemplice(supporto.html).split('Contact')[1] ?? '';
   assert.ok(contatto.includes('include the support code from Settings › Minta Cloud'), 'supporto: il contatto non chiede il codice di supporto');
+});
+
+// --- informativa in due lingue ------------------------------------------------
+// Dal 19 ottobre 2026 l'informativa c'e' anche in italiano (privacy/it/). L'inglese
+// resta a privacy/, dove puntano l'app e App Store Connect. Chi arriva su una delle
+// due deve trovare l'altra in cima, e le due devono dire le stesse cose di Minta:
+// qui si controllano le frasi che gli altri test proteggono nella versione inglese.
+
+function paginaPrivacy(nome) {
+  const trovata = pagine.find((p) => p.nome === nome);
+  assert.ok(trovata, `Manca dist/${nome}`);
+  return trovata.html;
+}
+
+test('le due versioni dell\'informativa si collegano a vicenda', () => {
+  const inglese = paginaPrivacy('privacy/index.html');
+  const italiana = paginaPrivacy('privacy/it/index.html');
+  assert.match(inglese, new RegExp(`<a[^>]*href="${BASE}/privacy/it/"[^>]*>Italiano</a>`), 'privacy: manca il collegamento «Italiano»');
+  assert.match(italiana, new RegExp(`<a[^>]*href="${BASE}/privacy/"[^>]*>English</a>`), 'privacy/it: manca il collegamento «English»');
+});
+
+test('la versione italiana dice di Minta le stesse cose protette in inglese', () => {
+  const testo = testoSemplice(paginaPrivacy('privacy/it/index.html'));
+  const sezioneMinta = testo.split('Minta registra l’audio')[1]?.split('Pronto')[0] ?? '';
+  assert.ok(sezioneMinta.length > 0, 'privacy/it: la sezione di Minta non si trova');
+  for (const frase of [
+    'Apple Intelligence (Private Cloud Compute)',
+    'Con la rete e il tuo sì',
+    'Un codice di supporto casuale',
+    'serve solo a trovare il tuo account',
+    'Il risultato resta in memoria al massimo 15 minuti',
+  ]) {
+    assert.ok(sezioneMinta.includes(frase), `privacy/it: manca «${frase}»`);
+  }
+  for (const parola of ['tua chiave', 'OpenAI', 'Gemini']) {
+    assert.ok(!sezioneMinta.includes(parola), `privacy/it (Minta): compare ancora «${parola}»`);
+  }
+});
+
+// L'attivita' in tempo reale (il riquadro sulla schermata di blocco) mostra il nome della
+// registrazione: tutte e due le versioni dicono che resta sul telefono (19 ottobre 2026).
+test('l\'informativa dice che l\'attivita\' in tempo reale resta sul telefono', () => {
+  assert.ok(
+    testoSemplice(paginaPrivacy('privacy/index.html')).includes('with its name (it stays on the phone)'),
+    'privacy: la Live Activity non dice che resta sul telefono',
+  );
+  assert.ok(
+    testoSemplice(paginaPrivacy('privacy/it/index.html')).includes('con il suo nome (resta sul telefono)'),
+    'privacy/it: l\'attivita\' in tempo reale non dice che resta sul telefono',
+  );
 });

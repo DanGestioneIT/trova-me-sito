@@ -233,3 +233,26 @@ viene cancellato». «Groq keeps nothing» resta vero finche' lo Zero Data Reten
 e contatto restano in cima alla pagina, minori e modifiche in fondo, per tutte e tre le app. Un
 test riscritto sulla stessa verita': il permesso per Private Cloud Compute ora si dice «with your
 yes».
+
+## 19 ottobre 2026 — La versione italiana, e due frasi in piu' (Lotto 34 dell'app)
+
+Decisione del proprietario: l'informativa c'e' anche in italiano, a `privacy/it/`
+(`src/pages/privacy/it.astro`), perche' il titolare e' in Italia. La parte di Minta e' il testo
+italiano di `MintaApp/Documentation/INFORMATIVA-PRIVACY-BOZZA.md`; il sito, Pronto, ClaudePal,
+minori e modifiche sono tradotti dalla pagina inglese. `privacy/` resta in inglese, allo stesso
+indirizzo. In cima a ciascuna, il passaggio all'altra («English · Italiano»). Lo stile delle due
+pagine sta in `src/styles/informativa.css`.
+
+Confrontata la pagina inglese con la bozza: dicono le stesse cose. Differenze solo di forma: la
+pagina ha in piu' l'apertura su TROVA.ME, il sito, Pronto e ClaudePal; dice «acting as an
+individual»; minori e modifiche valgono per le tre app e la data sta in fondo («the date below»,
+la bozza dice «at the top»); i ⚠️ della bozza sono note interne e non si pubblicano.
+
+Due frasi in piu', in tutte e due le lingue e nella bozza:
+- **«Sul tuo iPhone»** dice anche il glossario: sta solo sul telefono (UserDefaults, mai in
+  iCloud), e parte solo con il testo, come gia' detto in «Quando i dati escono»;
+- **Permessi:** l'attivita' in tempo reale (il riquadro sulla schermata di blocco) «resta sul
+  telefono». Verificato sul codice dell'app: Minta la aggiorna da se', senza notifiche push
+  (`pushType: nil`). Nota: iOS puo' mostrarla anche sull'Apple Watch o sul Mac collegati
+  dell'utente; non passa da Minta ne' da altri.
+

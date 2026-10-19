@@ -3,7 +3,8 @@
 Vetrina delle app iOS pubblicate sotto il marchio TROVA.ME: **Minta**, **Pronto** e
 **ClaudePal**. Sito statico, pensato prima di tutto per il telefono.
 
-**Il sito e' in inglese** (serve ad Apple); **la documentazione interna e' in italiano**.
+**Il sito e' in inglese** (serve ad Apple), tranne la versione italiana dell'informativa
+(`privacy/it/`, dal 19 ottobre 2026); **la documentazione interna e' in italiano**.
 Il perche' sta in `BRIEF.md`, sezione "La lingua".
 
 Pubblicato su https://trova.me/ (GitHub Pages con dominio proprio, dal 19 ottobre 2026).
