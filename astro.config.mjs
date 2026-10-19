@@ -3,12 +3,13 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 // `site` + `base` compongono l'indirizzo pubblico del sito.
-// Oggi il sito vive sull'indirizzo standard di GitHub Pages.
-// Quando il dominio trova.me verra' agganciato, si cambiano queste due righe
-// (site: 'https://trova.me', base: '/') e nient'altro nel progetto.
+// Dal 19 ottobre 2026 il sito vive su trova.me (GitHub Pages con dominio proprio);
+// il vecchio indirizzo dangestioneit.github.io/trova-me-sito/ rimanda qui da solo.
+// Se l'indirizzo cambia ancora: queste due righe, l'url del font in
+// src/styles/global.css, public/robots.txt e BASE in tests/sito.test.mjs.
 export default defineConfig({
-  site: 'https://dangestioneit.github.io',
-  base: '/trova-me-sito',
+  site: 'https://trova.me',
+  base: '/',
   trailingSlash: 'always',
   integrations: [sitemap()],
 });
