@@ -8,10 +8,9 @@
 // 3 ottobre 2026 — non da come l'app "dovrebbe" funzionare. Se l'app cambia
 // (lingue, percorsi nelle Impostazioni, regole del credito), si rilegge qui.
 //
-// Niente indirizzo email in questa pagina: deciso dal proprietario il 3 ottobre
-// 2026 (l'eccezione di AGENTS.md vale solo per privacy/). Chi deve scrivere viene
-// mandato al recapito che l'app mostra in Impostazioni › Info › Privacy.
-// Prima della revisione Apple serve un modo di contatto qui: da decidere.
+// Contatto: dan@trova.me, lo stesso della pagina privacy/. Deciso dal proprietario
+// il 19 ottobre 2026 (prima, dal 3 ottobre, qui non c'era nessun indirizzo):
+// Apple chiede un modo di contatto nella pagina di supporto (regola 1.5).
 import Base from '../../../layouts/Base.astro';
 import { path } from '../../../lib/paths';
 ---
@@ -25,7 +24,8 @@ import { path } from '../../../lib/paths';
       <p class="etichetta">Minta</p>
       <h1>Support</h1>
       <p class="apertura">
-        Short answers to the questions people ask most about Minta.
+        Short answers to the questions people ask most about Minta. If yours isn’t here,
+        write to <a href="mailto:dan@trova.me">dan@trova.me</a>.
       </p>
     </div>
 
@@ -71,8 +71,9 @@ import { path } from '../../../lib/paths';
               Once Apple has charged you, Minta adds the credit automatically, without charging
               you again. Usually it’s enough to close and reopen Minta. If it says “Sign in
               again to receive your credit”, sign in with Apple and the credit arrives on its
-              own. If it still hasn’t arrived after that, get in touch using the contact shown
-              in Minta, in Settings › Info › Privacy, and include the date of the purchase.
+              own. If it still hasn’t arrived after that, write to <a href="mailto:dan@trova.me"
+                >dan@trova.me</a
+              > with the date of the purchase.
             </p>
           </div>
         </details>
@@ -88,8 +89,9 @@ import { path } from '../../../lib/paths';
               If iOS interrupts Minta or the connection drops, reopen Minta once you’re online:
               it asks for the same result again, without charging you twice. The server holds
               the result in memory for up to 15 minutes for exactly this, then deletes it. If
-              Minta tells you a result was lost and you were charged for it, get in touch using
-              the contact shown in Minta, in Settings › Info › Privacy.
+              Minta tells you a result was lost and you were charged for it, write to <a
+                href="mailto:dan@trova.me">dan@trova.me</a
+              >.
             </p>
           </div>
         </details>
@@ -127,6 +129,14 @@ import { path } from '../../../lib/paths';
           </div>
         </details>
       </div>
+    </section>
+
+    <section class="sezione">
+      <h2>Contact</h2>
+      <p class="contatto">
+        Write to <a href="mailto:dan@trova.me">dan@trova.me</a>. I make Minta and I read every
+        message myself. If it’s about a purchase, include its date.
+      </p>
     </section>
   </div>
 </Base>
@@ -194,6 +204,11 @@ import { path } from '../../../lib/paths';
 
   .risposta p:last-child {
     margin-bottom: 0;
+  }
+
+  .contatto {
+    max-width: var(--lettura);
+    margin: 0;
   }
 
   @media (min-width: 48rem) {
