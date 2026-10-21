@@ -465,3 +465,28 @@ test('l\'informativa dice che l\'attivita\' in tempo reale resta sul telefono', 
     'privacy/it: l\'attivita\' in tempo reale non dice che resta sul telefono',
   );
 });
+
+// Dal 21 ottobre 2026 (Lotto 37 dell'app) Minta Cloud e' un livello solo: Anthropic scrive le
+// elaborazioni, Groq trascrive con Whisper e fa solo da riserva. I livelli Standard e Massima
+// qualita' non esistono piu': se tornano nell'informativa, l'informativa descrive un'app che non c'e'.
+test('Minta Cloud e\' un livello solo, in tutte e due le versioni dell\'informativa', () => {
+  const inglese = testoSemplice(paginaPrivacy('privacy/index.html'));
+  const italiana = testoSemplice(paginaPrivacy('privacy/it/index.html'));
+  assert.ok(inglese.includes('Anthropic (Claude) writes the write-ups'), 'privacy: manca chi scrive le elaborazioni');
+  assert.ok(inglese.includes('a backup write-up when Anthropic is unavailable (never with your own formats)'), 'privacy: manca la riserva di Groq');
+  assert.ok(italiana.includes('Anthropic (Claude) scrive le elaborazioni'), 'privacy/it: manca chi scrive le elaborazioni');
+  assert.ok(italiana.includes('quando Anthropic non risponde (mai con i tuoi formati)'), 'privacy/it: manca la riserva di Groq');
+  // Il grassetto seguito da «(Claude)» a capo nel sorgente perde lo spazio nell'HTML: si
+  // controlla l'HTML vero, perche' testoSemplice rimette uno spazio al posto dei tag.
+  for (const nome of ['privacy/index.html', 'privacy/it/index.html']) {
+    assert.ok(paginaPrivacy(nome).includes('<strong>Anthropic</strong> (Claude)'), `${nome}: «Anthropic (Claude)» senza spazio`);
+  }
+  for (const [nome, testo, parole] of [
+    ['privacy', inglese, ['for Standard', 'Highest quality', 'Qwen']],
+    ['privacy/it', italiana, ['per Standard', 'Massima qualità', 'Qwen']],
+  ]) {
+    for (const parola of parole) {
+      assert.ok(!testo.includes(parola), `${nome}: compare ancora «${parola}»`);
+    }
+  }
+});
