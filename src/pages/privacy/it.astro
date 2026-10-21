@@ -17,7 +17,7 @@ import Base from '../../layouts/Base.astro';
 import { path } from '../../lib/paths';
 import '../../styles/informativa.css';
 
-const aggiornata = '19 ottobre 2026';
+const aggiornata = '21 ottobre 2026';
 ---
 
 <Base
@@ -114,8 +114,10 @@ const aggiornata = '19 ottobre 2026';
       <h4>Minta Cloud</h4>
       <p>
         Il testo (o, per Whisper, una copia compressa dell’audio) va al server di Minta a
-        Francoforte, che lo passa a chi fa il lavoro: <strong>Groq</strong> per Standard e
-        Whisper, <strong>Anthropic</strong> per la Massima qualità. Lavorano per conto di Minta,
+        Francoforte, che lo passa a chi fa il lavoro: <strong>Anthropic</strong> (Claude) scrive
+        le elaborazioni; <strong>Groq</strong> trascrive con Whisper e, di rado, scrive
+        un’elaborazione di riserva quando Anthropic non risponde (mai con i tuoi formati).
+        Lavorano per conto di Minta,
         negli Stati Uniti, con le Clausole Contrattuali Standard dell’UE, e non usano i dati per
         addestrare i modelli: Groq non conserva niente, Anthropic cancella tutto entro 30 giorni.
       </p>
