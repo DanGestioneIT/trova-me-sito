@@ -465,3 +465,22 @@ test('l\'informativa dice che l\'attivita\' in tempo reale resta sul telefono', 
     'privacy/it: l\'attivita\' in tempo reale non dice che resta sul telefono',
   );
 });
+
+// Regola del proprietario (Lotto 42, 21 ottobre 2026): il suo nome compare solo dove la
+// legge lo chiede, cioe' come titolare del trattamento nelle due versioni dell'informativa
+// (GDPR, art. 13). Altrove, piede compreso, niente nome.
+const PAGINE_COL_TITOLARE = ['privacy/index.html', 'privacy/it/index.html'];
+
+test('il nome del proprietario compare solo come titolare nell\'informativa', () => {
+  for (const { nome, html } of pagine) {
+    const piede = (html.match(/<footer[\s\S]*?<\/footer>/) ?? [''])[0];
+    assert.doesNotMatch(piede, /Riccarand|Daniele/i, `${nome}: il piede contiene il nome del proprietario`);
+    if (PAGINE_COL_TITOLARE.includes(nome)) {
+      assert.match(html, /<strong>Daniele Riccarand<\/strong>/, `${nome}: manca il titolare del trattamento`);
+      const volte = html.match(/Riccarand/gi)?.length ?? 0;
+      assert.equal(volte, 1, `${nome}: il nome compare ${volte} volte, deve restare solo come titolare`);
+    } else {
+      assert.doesNotMatch(html, /Riccarand|Daniele/i, `${nome}: contiene il nome del proprietario`);
+    }
+  }
+});
