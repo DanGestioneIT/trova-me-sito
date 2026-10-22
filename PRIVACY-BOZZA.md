@@ -256,3 +256,14 @@ Due frasi in piu', in tutte e due le lingue e nella bozza:
   (`pushType: nil`). Nota: iOS puo' mostrarla anche sull'Apple Watch o sul Mac collegati
   dell'utente; non passa da Minta ne' da altri.
 
+## 21 ottobre 2026 — Minta Cloud, un livello solo (Lotto 37 dell'app)
+
+Decisione del proprietario: l'app toglie il livello Standard (Qwen su Groq). Minta Cloud e' un
+livello solo: **Anthropic** (Claude) scrive ogni elaborazione; **Groq** trascrive con Whisper e,
+di rado, scrive un'elaborazione di riserva quando Anthropic non risponde, mai con i formati
+dell'utente. Nelle due pagine cambia solo la frase sui fornitori del blocco «Minta Cloud»; il
+resto del paragrafo (Stati Uniti, Clausole Contrattuali Standard, niente addestramento, «Groq
+keeps nothing», Anthropic cancella entro 30 giorni) resta com'era. Nessun destinatario nuovo.
+Data in fondo alle pagine: 21 October / 21 ottobre 2026. Fonte:
+`MintaApp/Documentation/INFORMATIVA-PRIVACY-BOZZA.md`.
+
