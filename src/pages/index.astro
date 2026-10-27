@@ -6,24 +6,25 @@ import { path } from '../lib/paths';
 const app = [
   {
     nome: 'Minta',
-    riga: 'Speak, and get back a finished piece of writing.',
+    riga: 'Record a meeting or a lecture, and get back text ready to use.',
     href: path('app/minta/'),
     stato: 'In testing',
   },
   {
     nome: 'Pronto',
-    riga: 'Say what you have to do, and it suggests where to start.',
+    riga: 'Say what you have to do, and the list puts itself in order.',
     href: path('app/pronto/'),
     stato: 'In testing',
   },
-  {
-    nome: 'ClaudePal',
-    riga: 'An experiment: your phone as a voice remote for Claude Code on your Mac.',
-    href: path('app/claudepal/'),
-    stato: 'Experiment',
-  },
 ];
 
+// Due app dal 27 ottobre 2026: la terza app, l'esperimento con
+// Claude Code, e' uscita dal sito (decisione del
+// proprietario). La riga di Pronto non dice piu' «suggests where to start», che si
+// poteva leggere come il primo passo che la specifica di Pronto esclude: Pronto
+// ordina la lista, la spinta e' solo un incoraggiamento (BRIEF.md, correzione del
+// 9 agosto).
+//
 // Lo stato reale, detto in fondo alla pagina e non solo dentro le schede: chi
 // arriva da un link deve poterlo scoprire senza entrare da nessuna parte.
 // Il testo e' letterale, e un test fallisce se cambia.
@@ -32,7 +33,7 @@ const stato = 'None of these are on the App Store yet.';
 
 <Base
   titolo="TROVA.ME — iPhone apps you use by talking, not typing"
-  descrizione="I make three iPhone apps you use by talking, not typing. Speak, and something useful happens — none of them are on the App Store yet."
+  descrizione="I make two iPhone apps you use by talking, not typing. Speak, and something useful happens — neither is on the App Store yet."
 >
   <div class="contenitore">
     <div class="apertura-pagina">
@@ -40,7 +41,7 @@ const stato = 'None of these are on the App Store yet.';
       <div class="vetrina">
         <Firma
           detto="so the thing is i need to write that up and also call the accountant"
-          ottenuto="A finished text. A list in order. A Claude Code session within reach."
+          ottenuto="A finished text. A list in order."
         />
       </div>
     </div>
@@ -142,7 +143,7 @@ const stato = 'None of these are on the App Store yet.';
     }
 
     .griglia {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 20px;
     }
   }
