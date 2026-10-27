@@ -7,7 +7,10 @@
 // a cui puntano l'app e App Store Connect: se ne cambi una, cambia anche
 // l'altra. La parte di Minta e' il testo italiano di
 // MintaApp/Documentation/INFORMATIVA-PRIVACY-BOZZA.md; il resto (il sito,
-// Pronto, ClaudePal, minori, modifiche) e' la traduzione della pagina inglese.
+// Pronto, minori, modifiche) e' la traduzione della pagina inglese.
+// 27 ottobre 2026: allineata alla bozza come la pagina inglese (Lotti 39, 42, 53,
+// 69 e 75 dell'app); tolto il paragrafo della terza app (l'esperimento con
+// Claude Code), uscita dal sito.
 // Ogni motore e' un blocco .motore a se': si toglie intero, senza toccare il
 // resto. Lo stile e' in src/styles/informativa.css, comune alle due pagine.
 //
@@ -17,13 +20,13 @@ import Base from '../../layouts/Base.astro';
 import { path } from '../../lib/paths';
 import '../../styles/informativa.css';
 
-const aggiornata = '21 ottobre 2026';
+const aggiornata = '27 ottobre 2026';
 ---
 
 <Base
   lingua="it"
   titolo="Privacy — TROVA.ME"
-  descrizione="Cosa fa con i tuoi dati ogni app di TROVA.ME, in parole semplici. Minta tiene le registrazioni sul tuo iPhone e le manda fuori solo dopo il tuo sì."
+  descrizione="Cosa fa con i tuoi dati ogni app di TROVA.ME, in parole semplici. Minta tiene le registrazioni sul tuo iPhone: escono solo per un lavoro che chiedi tu."
 >
   <div class="contenitore informativa">
     <nav class="lingue" aria-label="Lingua">
@@ -35,7 +38,7 @@ const aggiornata = '21 ottobre 2026';
     <h1>Privacy</h1>
 
     <p class="apertura">
-      TROVA.ME è una persona che fa tre app per iPhone. Questa pagina dice cosa fa ogni app con
+      TROVA.ME è una persona che fa due app per iPhone. Questa pagina dice cosa fa ogni app con
       i tuoi dati, in parole semplici. È corta perché le app raccolgono pochissimo.
     </p>
 
@@ -58,8 +61,8 @@ const aggiornata = '21 ottobre 2026';
     <p>
       Minta registra l’audio, lo trascrive e rielabora la trascrizione. <strong>In breve: Minta
       non conserva niente delle tue registrazioni.</strong> Restano sul tuo iPhone (e nel tuo
-      iCloud, se accendi la sincronizzazione). Escono solo per un lavoro che chiedi, dopo il tuo
-      sì, e Minta Cloud fa solo da passaggio. Niente pubblicità, statistiche o tracciamento.
+      iCloud, se accendi la sincronizzazione). Escono solo per un lavoro che chiedi (verso Minta
+      Cloud dopo il tuo sì), e Minta Cloud fa solo da passaggio. Niente pubblicità, statistiche o tracciamento.
     </p>
 
     <h3>Sul tuo iPhone</h3>
@@ -87,26 +90,29 @@ const aggiornata = '21 ottobre 2026';
 
     <h3>Quando i dati escono</h3>
     <p>
-      Solo per un lavoro che chiedi tu, o che parte da solo se accendi l’«Esecuzione automatica».
-      La prima volta per ogni motore Minta dice cosa parte e a chi, e chiede il permesso. Con il
-      testo partono le istruzioni del formato, i termini del glossario e le voci (lettere o nomi).
+      Solo per un lavoro che chiedi tu: niente parte senza un tuo tocco. La prima volta per Minta
+      Cloud, Minta dice cosa parte e a chi, e chiede il permesso. Con il testo partono le
+      istruzioni del formato, i termini del glossario e le voci (lettere o nomi); per
+      l’avanzamento di una serie, al posto delle trascrizioni partono le elaborazioni delle
+      registrazioni scelte, con titolo e data.
     </p>
 
     {/* Un motore, un blocco: ognuno si toglie intero senza toccare gli altri. */}
     <div class="motore">
       <h4>Sul telefono</h4>
       <p>
-        Il motore on-device senza rete, e Apple Speech: non esce niente. Se il riconoscimento
-        vocale sul telefono non c’è, Minta chiede ogni volta prima di usare i server Apple.
+        La trascrizione, e il motore on-device senza rete: non esce niente. I modelli delle lingue
+        li scarica l’iPhone da Apple, senza dati tuoi.
       </p>
     </div>
 
     <div class="motore">
       <h4>Apple Intelligence (Private Cloud Compute)</h4>
       <p>
-        Con la rete e il tuo sì, il testo va ai server Private Cloud Compute di Apple, che scrivono
-        l’elaborazione. Apple lo usa solo per rispondere, non lo conserva, nessuno in Apple può
-        vederlo, ed esperti indipendenti possono verificarlo.
+        Con la rete, il testo va ai server Private Cloud Compute di Apple, che scrivono
+        l’elaborazione: fa parte di Apple Intelligence. Apple lo usa solo per rispondere, non lo
+        conserva, nessuno in Apple può vederlo, ed esperti indipendenti possono verificarlo. Puoi
+        spegnerlo in Impostazioni › Info › Privacy.
       </p>
     </div>
 
@@ -136,7 +142,8 @@ const aggiornata = '21 ottobre 2026';
     <h3>Account Minta Cloud</h3>
     <p>
       Si entra con Accedi con Apple: Minta riceve solo un codice creato da Apple, non nome né
-      email. I pagamenti li gestisce Apple: Minta non vede i tuoi dati di pagamento.
+      email. I pagamenti li gestisce Apple: Minta non vede i tuoi dati di pagamento. Riceve solo il
+      paese del tuo App Store, da cui dipendono i crediti di un pacchetto, e non lo conserva.
     </p>
 
     <h3>Cosa tiene il server di Minta, e per quanto</h3>
@@ -208,19 +215,8 @@ const aggiornata = '21 ottobre 2026';
       niente.
     </p>
 
-    <h2>ClaudePal</h2>
-    <p>
-      ClaudePal è un esperimento e non è distribuita. Collega il tuo iPhone a una sessione di
-      Claude Code sul tuo Mac, attraverso la tua rete locale. A TROVA.ME non arriva niente. Quello
-      che Claude Code manda ad Anthropic lo regolano le condizioni di Anthropic e il tuo account.
-    </p>
-    <p>
-      La connessione non è cifrata ed è pensata solo per una rete di cui ti fidi. Lo dice
-      chiaramente anche la pagina di ClaudePal.
-    </p>
-
     <h2>Minori</h2>
-    <p>Nessuna di queste app è pensata per i minori.</p>
+    <p>Nessuna delle due app è pensata per i minori.</p>
 
     <h2>Modifiche</h2>
     <p>Se qualcosa di tutto questo cambia, cambia questa pagina, e con lei la data qui sotto.</p>

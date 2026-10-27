@@ -8,9 +8,9 @@ specificherà i lavori: dice **cosa deve ottenere il sito e cosa no**, non come 
 **TROVA.ME** è il nome sotto cui pubblico le mie app iOS. Il dominio `trova.me` è mio.
 Esiste già anche un backend a questo marchio (`API.TROVA.ME`), che alcune app usano.
 
-## Il filo che tiene insieme le tre app
+## Il filo che tiene insieme le app
 
-Non sono tre prodotti scollegati: **tolgono di mezzo la tastiera.** Si parla, e qualcosa
+Non sono prodotti scollegati: **tolgono di mezzo la tastiera.** Si parla, e qualcosa
 di utile succede. È questo che il sito deve far capire in dieci secondi, prima ancora
 che il visitatore legga le singole schede.
 
@@ -18,7 +18,6 @@ che il visitatore legga le singole schede.
 |---|---|---|
 | **Minta** | registra, trascrive, rielabora | detti, e ottieni un testo lavorato — con un prompt specializzato per ogni situazione |
 | **Pronto** | to-do list che capisce il parlato | detti un impegno in linguaggio naturale, l'AI lo interpreta, lo ordina per priorità e aggiunge una spinta breve |
-| **ClaudePal** | il telefono come telecomando | comandi una sessione di Claude Code sul Mac parlando dal telefono, e leggi la risposta lì |
 
 Pronto è pensata **per chi tende a procrastinare**: non è una lista in più, è una lista
 che si mette in ordine da sola. È il dettaglio che la distingue, e sul sito deve vedersi.
@@ -33,12 +32,13 @@ che si mette in ordine da sola. È il dettaglio che la distingue, e sul sito dev
 
 - **Minta** — implementata e funzionante, non ancora pubblicata sull'App Store.
 - **Pronto** — implementata e funzionante, non ancora pubblicata.
-- **ClaudePal** — esperimento dichiarato, non una release. Sul sito va presentata come
-  tale: raccontarla come un prodotto in arrivo sarebbe falso, e chi la provasse se ne
-  accorgerebbe subito.
-
-Nessuna delle tre ha un link allo Store. Le schede dicono **"in arrivo"**; i link si
+Nessuna delle due ha un link allo Store. Le schede dicono **"in arrivo"**; i link si
 aggiungeranno con un lavoro dedicato quando le app usciranno davvero.
+
+> **Aggiornamento, 27 ottobre 2026.** Il sito presenta due app, Minta e Pronto. La terza
+> (il telefono come telecomando per una sessione di Claude Code sul Mac, un esperimento) ne
+> è uscita per decisione del proprietario: niente pagina, niente voce nella testata, niente
+> paragrafo nell'informativa.
 
 ## Cosa deve fare il sito
 
@@ -100,5 +100,5 @@ versione italiana non richiede di riaprire ogni pagina.
 ## Come verifico che sia venuto bene
 
 Apro il sito **dal telefono** e in dieci secondi devo capire cos'è TROVA.ME. Poi tocco
-una delle tre app e capisco cosa fa e se posso averla adesso. Se devo ingrandire con
+una delle due app e capisco cosa fa e se posso averla adesso. Se devo ingrandire con
 le dita per leggere, non va bene.

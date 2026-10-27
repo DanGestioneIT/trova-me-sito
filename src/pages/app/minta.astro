@@ -4,26 +4,43 @@ import Firma from '../../components/Firma.astro';
 import SegnapostoSchermata from '../../components/SegnapostoSchermata.astro';
 import { path } from '../../lib/paths';
 
-// I motori fra cui si sceglie, nell'ordine in cui li si incontra: prima quello
-// che non costa nulla, poi il credito. Il testo e' stato approvato da una
-// persona: qui non si riscrive. (La riga «With your own key» e' stata tolta il
-// 17 ottobre 2026, decisione del proprietario: l'app non usa piu' le chiavi
-// personali.) «summaries» e' diventato «write-ups» il 17 ottobre 2026, decisione del
-// proprietario: Minta rielabora il testo, non lo riassume soltanto (Lotto 23 dell'app).
-// Il 17 ottobre 2026 (Lotto 24 dell'app, decisione del proprietario) il motore sul telefono
-// usa anche Apple Private Cloud Compute, con la rete e dopo un si': «Nothing leaves your
-// phone» non era piu' vero sempre, e' diventato la frase sotto. Da approvare.
+// Riscritta il 27 ottobre 2026 su quello che l'app fa oggi. Ogni frase viene da
+// tre fonti del progetto MintaApp, non da come l'app "dovrebbe" funzionare:
+// Minta/CHANGELOG.md (fino al Lotto 75), i testi dello Store approvati
+// (Documentation/APPSTORE-TESTI-DEFINITIVI-2026-10-25.md) e l'informativa
+// (Documentation/INFORMATIVA-PRIVACY-BOZZA.md). Se l'app cambia formati, limiti o
+// motori, si rilegge qui.
+//
+// I due motori, nell'ordine in cui li si incontra nel foglio «Elabora»: prima il
+// gratuito, poi il credito. Il gratuito: la trascrizione sul telefono (Lotto 75),
+// il riassunto generico e sei formati in piu' su Apple Private Cloud Compute con
+// iOS 27 (Lotti 36 e 69), fino a circa un'ora di parlato (10.000 parole, Lotto 54);
+// senza rete il telefono da solo scrive il riassunto, circa 40 minuti su iOS 27 e 20
+// su iOS 26 (Lotto 68: qui solo «shorter recordings»). Minta Cloud:
+// tutti i formati fino a 3 ore (Lotto 37), Whisper fino a 3 ore (Lotto 52).
 const motori = [
   {
-    titolo: 'On your iPhone',
+    titolo: 'Free, with Apple Intelligence',
     testo:
-      'Transcription and write-ups run on the device, and it costs nothing. Online, if you say yes, Apple’s Private Cloud Compute writes a few more formats and keeps nothing.',
+      'Transcription runs on your iPhone. Online with iOS 27, Apple Intelligence writes a general summary and six more formats on Apple’s Private Cloud Compute, which keeps nothing, for up to about an hour of speech. Offline, the phone writes the summary on its own, for shorter recordings.',
   },
   {
     titolo: 'Minta Cloud',
     testo:
-      "Top up a little credit and spend it as you go. The server transcribes and writes up without storing anything: the result waits in memory for at most 15 minutes, only so your iPhone can collect it. There's a free trial to start with.",
+      'Anthropic’s AI writes every format, for recordings up to 3 hours. For a noisy room, Whisper can transcribe on the server. Pay as you go, no subscription; new accounts get a free trial. The server transcribes and writes up without storing anything: the result waits in memory for at most 15 minutes, only so your iPhone can collect it.',
   },
+];
+
+// Le funzioni che contano, una riga ciascuna. Tutte nei testi dello Store, tranne
+// la lingua dell'elaborato (Lotto 66) e la nota «scritto dall'AI» (Lotto 59).
+const punti = [
+  'Record up to 3 hours, even with the screen locked. Start from the Action button, Control Center or Siri.',
+  'Knows who said what (iOS 27): name the voices, and the minutes use the names.',
+  'Tap a paragraph to hear that moment again.',
+  'Group recordings into a series — a project, a course, a client — and Minta tells you what was decided, what has changed and what is still open.',
+  'Get the write-up in a different language from the recording.',
+  'Export as PDF or Word. Sync with your own iCloud, with your texts encrypted.',
+  'Every write-up opens with a note that AI wrote it: check it before you use it.',
 ];
 
 // Lo stato reale dell'app, detto prima di qualunque descrizione: chi legge
@@ -33,16 +50,16 @@ const stato = 'In testing — not on the App Store yet.';
 
 <Base
   titolo="Minta — speak, and get back something you can send | TROVA.ME"
-  descrizione="Minta records what you say and rewrites it into meeting notes, a lecture summary or a client follow-up — on your iPhone or in the cloud."
+  descrizione="Minta records a meeting, a lecture or an idea, transcribes it on your iPhone, and turns it into minutes, study notes or a summary ready to send."
 >
   <div class="contenitore">
     <div class="testata">
       <h1>Speak. Get back something you can send.</h1>
       <p class="stato">{stato}</p>
       <p class="apertura">
-        Minta records what you say, writes it down, and then rewrites it into the thing you
-        actually needed: the notes from that meeting, the summary of that lecture, the
-        follow-up after that client call.
+        Record a meeting, a lecture, an interview or a quick idea. Minta transcribes it on your
+        iPhone and turns it into the text you actually needed: minutes with decisions and tasks,
+        notes for the exam, a summary to send to the client.
       </p>
       <div class="firma-scheda">
         <Firma
@@ -53,7 +70,10 @@ const stato = 'In testing — not on the App Store yet.';
     </div>
 
     <section class="sezione">
-      <h2>You choose where the work happens.</h2>
+      <h2>Free, or Minta Cloud. You choose each time.</h2>
+      <p class="premessa">
+        Your recordings stay on your iPhone. Nothing goes to Minta Cloud without your yes.
+      </p>
       <div class="motori">
         {motori.map((motore) => (
           <div class="motore">
@@ -65,17 +85,23 @@ const stato = 'In testing — not on the App Store yet.';
     </section>
 
     <section class="sezione">
-      <h2>Five ways to be rewritten.</h2>
+      <h2>A format for each kind of recording.</h2>
       <p>
-        A meeting becomes decisions, actions and next steps. A lecture becomes something you
-        can study from. A client call becomes what they asked for and what you promised. A
-        brainstorm keeps the ideas and drops the noise. Personal notes just get tidied. And
-        if none of those fit, two of the prompts are yours to write.
+        A meeting becomes minutes with decisions, tasks and owners, or a summary you read in a
+        minute. A lecture becomes study notes, formulas included.
       </p>
-      <p class="chiusura">
-        Record for as long as you need — hours, in the background, pausing whenever. Minta
-        Cloud transcribes up to two hours per file.
+      <p>
+        There are formats for client meetings, a lawyer or an accountant, job interviews, site
+        inspections, condominium meetings, interviews and podcasts, brainstorms, a journal, a
+        recipe. Minta suggests the one that fits, and two formats are yours to write.
       </p>
+    </section>
+
+    <section class="sezione">
+      <h2>Made for long, real recordings.</h2>
+      <ul class="punti">
+        {punti.map((punto) => <li>{punto}</li>)}
+      </ul>
     </section>
 
     <SegnapostoSchermata app="Minta" />
@@ -97,6 +123,10 @@ const stato = 'In testing — not on the App Store yet.';
     margin-top: 28px;
   }
 
+  .premessa {
+    margin-top: 0;
+  }
+
   /* Righe, non schede: la scheda resta solo alla trasformazione Said/Became,
      che e' l'unica cosa che merita di stare sollevata dalla pagina. */
   .motori {
@@ -111,6 +141,21 @@ const stato = 'In testing — not on the App Store yet.';
 
   .motore p {
     margin: 0;
+    color: var(--tenue);
+  }
+
+  /* Le stesse righe dei motori, piu' leggere: un fatto per riga, niente pallini. */
+  .punti {
+    max-width: var(--lettura);
+    margin: 4px 0 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--bordo);
+  }
+
+  .punti li {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--bordo);
     color: var(--tenue);
   }
 
