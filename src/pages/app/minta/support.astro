@@ -5,7 +5,8 @@
 //
 // Ogni risposta viene dal codice dell'app o dall'informativa approvata
 // (MintaApp/Documentation/INFORMATIVA-PRIVACY-BOZZA.md), verificati il
-// 3 ottobre 2026 — non da come l'app "dovrebbe" funzionare. Se l'app cambia
+// 3 ottobre 2026 e riletti il 27 ottobre 2026 sul CHANGELOG dell'app fino al
+// Lotto 75 — non da come l'app "dovrebbe" funzionare. Se l'app cambia
 // (lingue, percorsi nelle Impostazioni, regole del credito), si rilegge qui.
 //
 // Contatto: dan@trova.me, lo stesso della pagina privacy/. Deciso dal proprietario
@@ -14,6 +15,12 @@
 // Dal 19 ottobre 2026 (Lotto 33 dell'app) il contatto chiede anche il codice di
 // supporto (MNT-XXXX-XXXX, in Impostazioni › Minta Cloud): serve solo a trovare
 // l'account nel server, non e' una credenziale.
+//
+// 27 ottobre 2026: le registrazioni possono stare anche nel proprio iCloud
+// (Lotto 11a); la trascrizione e' solo sul telefono, con i motori nuovi di Apple,
+// e non va piu' ai server di Apple (Lotto 75): il modello di una lingua lo scarica
+// l'iPhone, la registrazione aspetta e si trascrive da sola quando arriva.
+// Whisper resta legato al primo acquisto (WhisperOffer, has_purchased).
 import Base from '../../../layouts/Base.astro';
 import { path } from '../../../lib/paths';
 ---
@@ -40,10 +47,10 @@ import { path } from '../../../lib/paths';
           <summary><h3>Where are my recordings kept?</h3></summary>
           <div class="risposta">
             <p>
-              Only on your iPhone. Recordings, transcriptions and write-ups stay there until
-              you delete them, and they can be included in your iPhone backups if you have
-              those switched on. Minta keeps no copy on a server, so I can’t bring back a
-              recording you deleted. The details are on the <a href={path('privacy/')}
+              On your iPhone, and in your own iCloud if you turn on sync in Minta. Recordings,
+              transcriptions and write-ups stay there until you delete them, and they can be
+              included in your iPhone backups. Minta keeps no copy on a server, so I can’t bring
+              back a recording you deleted. The details are on the <a href={path('privacy/')}
                 >privacy page</a
               >.
             </p>
@@ -108,15 +115,16 @@ import { path } from '../../../lib/paths';
               and Turkish. Choose yours in Settings › Transcription.
             </p>
             <p>
-              Transcription happens on your iPhone, with Apple’s speech recognition. If that
-              isn’t available for a recording — it depends on the language and on the iPhone —
-              Minta asks you, every time, before sending the audio to Apple’s servers. If you
-              say no, nothing is sent.
+              Yes: transcription happens only on your iPhone, with Apple’s speech recognition.
+              The first time you use a language, the iPhone downloads its model from Apple,
+              with none of your data. It can take a while: the recording waits, and Minta
+              transcribes it on its own as soon as the model arrives. If your iPhone can’t
+              transcribe a language at all, Minta tells you and offers Minta Cloud Whisper.
             </p>
             <p>
               With Minta Cloud, after your first credit purchase, you can also choose Minta
               Cloud Whisper: transcription on the server, paid from your credit, and useful in
-              noisy rooms or with quiet voices.
+              noisy rooms or with quiet voices. It takes recordings up to 3 hours.
             </p>
           </div>
         </details>

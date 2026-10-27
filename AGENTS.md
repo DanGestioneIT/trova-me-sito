@@ -25,7 +25,8 @@ si scrive il codice qui**.
   con le dita per leggere, e' sbagliata.
 - **Niente contenuti inventati.** Nessuno screenshot finto, nessuna data di uscita,
   nessun link allo Store finche' le app non ci sono davvero. Le schede dicono
-  "in arrivo"; ClaudePal e' un esperimento dichiarato e va presentata come tale.
+  "in arrivo". Le app sul sito sono due, Minta e Pronto: la terza, l'esperimento con Claude
+  Code, ne e' uscita il 27 ottobre 2026 (decisione del proprietario) e non si rimette senza una sua decisione.
 - **Niente moduli di contatto, niente raccolta di email, niente tracciamento.** Unica
   eccezione, decisa il 9 agosto 2026: l'indirizzo `dan@trova.me` nella pagina `privacy/`,
   perche' un titolare del trattamento senza un recapito e' un documento incompleto; dal
