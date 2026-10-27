@@ -47,7 +47,6 @@ test('il sito compilato contiene le pagine attese', () => {
     // (AppLinks.support): se sparisce, il pulsante dell'app porta alla 404.
     'app/minta/support/index.html',
     'app/pronto/index.html',
-    'app/claudepal/index.html',
     // La pagina che Apple pretende per pubblicare un'app: se sparisce, sparisce
     // anche l'indirizzo che sara' dichiarato su App Store Connect.
     'privacy/index.html',
@@ -209,7 +208,7 @@ test('la pagina di errore resta fuori dalla sitemap', () => {
 });
 
 // --- pagina iniziale --------------------------------------------------------
-// Il testo della pagina iniziale e' il messaggio che le tre schede erediteranno.
+// Il testo della pagina iniziale e' il messaggio che le schede erediteranno.
 // Questi controlli non giudicano come e' scritto — quello si legge — ma tengono
 // i tre vincoli che cederebbero in silenzio: lo stato reale delle app detto
 // fino in fondo, la lunghezza che la rende leggibile da telefono, e le promesse
@@ -330,7 +329,7 @@ test('la pagina iniziale non promette quello che le app non danno ancora', () =>
   for (const promessa of PROMESSE_VIETATE) {
     assert.ok(
       !html.includes(promessa),
-      `index.html: compare "${promessa}" — nessuna delle tre app e' pubblicata, e annunciarlo qui sarebbe falso`,
+      `index.html: compare "${promessa}" — nessuna delle app e' pubblicata, e annunciarlo qui sarebbe falso`,
     );
   }
 });
@@ -353,8 +352,11 @@ const FRASI_MINTA = [
   // Riscritta il 3 ottobre 2026 con decisione dichiarata del proprietario: il server ora
   // tiene il risultato in memoria fino a 15 minuti (recupero delle richieste interrotte).
   'without storing anything: the result waits in memory for at most 15 minutes',
-  // Riscritta il 17 ottobre 2026: dal Lotto 15 (deciso dal proprietario) Whisper accetta fino a 2 ore.
-  'Minta Cloud transcribes up to two hours per file.',
+  // Riscritta il 27 ottobre 2026: il limite e' 3 ore per la registrazione (Lotto 42), per
+  // le elaborazioni di Minta Cloud (Lotto 37) e per Whisper (Lotto 52). Prima diceva
+  // «Minta Cloud transcribes up to two hours per file», non piu' vero dal 24 ottobre.
+  'Record up to 3 hours, even with the screen locked.',
+  'for recordings up to 3 hours',
 ];
 
 function paginaMinta() {
@@ -388,16 +390,16 @@ test('Minta non offre piu\' la chiave personale', () => {
 });
 
 // Dal 17 ottobre 2026 (Lotto 24 dell'app, decisione del proprietario) il motore sul telefono,
-// con la rete e dopo un si', manda il testo a Private Cloud Compute di Apple: l'informativa lo
-// deve dire nel suo blocco, e la scheda non puo' piu' promettere che non esce niente.
+// con la rete, manda il testo a Private Cloud Compute di Apple: l'informativa lo deve dire nel
+// suo blocco, e la scheda non puo' piu' promettere che non esce niente.
 test('Minta dice di Apple Private Cloud Compute e non promette piu\' che non esce niente', () => {
   const privacy = pagine.find((p) => p.nome === 'privacy/index.html');
   assert.ok(privacy, 'Manca dist/privacy/index.html');
   const sezioneMinta = testoSemplice(privacy.html).split('Minta records audio')[1]?.split('Pronto')[0] ?? '';
   assert.ok(sezioneMinta.includes('Apple Intelligence (Private Cloud Compute)'), 'privacy: manca il blocco di Private Cloud Compute');
-  // Dal 18 ottobre 2026 (versione breve) il permesso si dice «with your yes»: la verita' protetta
-  // e' la stessa, il testo passa da Private Cloud Compute solo dopo un si'.
-  assert.ok(sezioneMinta.includes('Online and with your yes'), 'privacy: manca il permesso');
+  // Dal 26 ottobre 2026 (Lotto 69, decisione del proprietario) Minta non chiede piu' prima di
+  // usare Private Cloud Compute: la verita' da proteggere diventa che si puo' spegnere, e dove.
+  assert.ok(sezioneMinta.includes('You can turn it off in Settings › Info › Privacy'), 'privacy: manca come spegnere Private Cloud Compute');
   assert.ok(!testoSemplice(paginaMinta()).includes('Nothing leaves your phone'), 'app/minta: promette ancora che non esce niente');
 });
 
@@ -441,7 +443,7 @@ test('la versione italiana dice di Minta le stesse cose protette in inglese', ()
   assert.ok(sezioneMinta.length > 0, 'privacy/it: la sezione di Minta non si trova');
   for (const frase of [
     'Apple Intelligence (Private Cloud Compute)',
-    'Con la rete e il tuo sì',
+    'Puoi spegnerlo in Impostazioni › Info › Privacy',
     'Un codice di supporto casuale',
     'serve solo a trovare il tuo account',
     'Il risultato resta in memoria al massimo 15 minuti',
@@ -507,5 +509,40 @@ test('il nome del proprietario compare solo come titolare nell\'informativa', ()
     } else {
       assert.doesNotMatch(html, /Riccarand|Daniele/i, `${nome}: contiene il nome del proprietario`);
     }
+  }
+});
+
+// Dal 27 ottobre 2026 (Lotto 75 dell'app) la trascrizione si fa solo sul telefono: i server di
+// Apple per la trascrizione non esistono piu', e l'iPhone scarica da Apple i modelli delle lingue
+// senza dati dell'utente. Se torna la vecchia frase, il sito descrive un destinatario che non c'e'.
+test('Minta trascrive solo sul telefono, in informativa e supporto', () => {
+  const inglese = testoSemplice(paginaPrivacy('privacy/index.html'));
+  const italiana = testoSemplice(paginaPrivacy('privacy/it/index.html'));
+  assert.ok(inglese.includes('The iPhone downloads the language models from Apple, with none of your data.'), 'privacy: manca il download dei modelli delle lingue');
+  assert.ok(italiana.includes('I modelli delle lingue li scarica l’iPhone da Apple, senza dati tuoi.'), 'privacy/it: manca il download dei modelli delle lingue');
+  assert.ok(!inglese.includes('before using Apple’s servers'), 'privacy: parla ancora dei server di Apple per la trascrizione');
+  assert.ok(!italiana.includes('prima di usare i server Apple'), 'privacy/it: parla ancora dei server di Apple per la trascrizione');
+  const supporto = pagine.find((p) => p.nome === 'app/minta/support/index.html');
+  assert.ok(supporto, 'Manca dist/app/minta/support/index.html');
+  assert.ok(!testoSemplice(supporto.html).includes('Apple’s servers'), 'supporto: parla ancora dei server di Apple per la trascrizione');
+});
+
+// Dal 27 ottobre 2026 (decisione del proprietario) il sito presenta due app, Minta e Pronto:
+// la terza (l'esperimento con Claude Code) non ha piu' una pagina, ne' una voce nella testata,
+// ne' un paragrafo nell'informativa. Si controlla in positivo: le app sono queste due e basta.
+test('il sito presenta due app, Minta e Pronto', () => {
+  const cartelle = readdirSync(join(DIST, 'app'), { withFileTypes: true })
+    .filter((voce) => voce.isDirectory())
+    .map((voce) => voce.name)
+    .sort();
+  assert.deepEqual(cartelle, ['minta', 'pronto'], `dist/app contiene ${cartelle.join(', ')}`);
+  const testata = (paginaIniziale().match(/<header[\s\S]*?<\/header>/) ?? [''])[0];
+  const voci = [...testata.matchAll(/<nav[\s\S]*?<\/nav>/g)]
+    .flatMap((nav) => [...nav[0].matchAll(/<a\b[^>]*>([\s\S]*?)<\/a>/g)].map((m) => testoSemplice(m[1])));
+  assert.deepEqual(voci, ['Minta', 'Pronto'], `la testata elenca: ${voci.join(', ')}`);
+  for (const nome of ['privacy/index.html', 'privacy/it/index.html']) {
+    const titoli = [...paginaPrivacy(nome).matchAll(/<h2[^>]*>([\s\S]*?)<\/h2>/g)].map((m) => testoSemplice(m[1]));
+    assert.equal(titoli.length, 5, `${nome}: sezioni ${titoli.join(', ')}`);
+    assert.ok(titoli.includes('Minta') && titoli.includes('Pronto'), `${nome}: sezioni ${titoli.join(', ')}`);
   }
 });

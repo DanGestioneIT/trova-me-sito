@@ -1,8 +1,8 @@
 ---
 // La pagina che Apple pretende per pubblicare un'app. Il testo viene dai
-// documenti veri dei tre progetti, non da un modello generico: e' per questo
-// che dice cose diverse per ciascuno dei tre motori di Minta invece di una
-// riga sola buona per tutto.
+// documenti veri dei due progetti, non da un modello generico: e' per questo
+// che dice cose diverse per ciascuno dei motori di Minta invece di una riga
+// sola buona per tutto.
 //
 // La parte di Minta segue l'informativa approvata dal proprietario, versione
 // inglese: MintaApp/Documentation/INFORMATIVA-PRIVACY-BOZZA.md (dal 18 ottobre
@@ -10,7 +10,12 @@
 // (e i testi nell'app: foglio del consenso e Impostazioni › Info › Privacy).
 // Ogni motore e' un blocco .motore a se': si toglie intero, senza toccare il
 // resto. Titolare e contatto stanno in cima alla pagina, minori e modifiche in
-// fondo: valgono per tutte e tre le app.
+// fondo: valgono per tutte e due le app.
+//
+// 27 ottobre 2026: allineata alla bozza dopo i Lotti 39, 42, 53, 69 e 75 dell'app
+// (avanzamento delle serie, niente parte senza un tocco, paese dell'App Store,
+// Private Cloud Compute senza domanda, trascrizione solo sul telefono). La terza
+// app, l'esperimento con Claude Code, e' uscita dal sito, e con lei il suo paragrafo.
 //
 // La versione italiana e' privacy/it.astro (decisione del proprietario del
 // 19 ottobre 2026: il titolare e' in Italia). Le due pagine dicono le stesse
@@ -28,12 +33,12 @@ import Base from '../layouts/Base.astro';
 import { path } from '../lib/paths';
 import '../styles/informativa.css';
 
-const aggiornata = '21 October 2026';
+const aggiornata = '27 October 2026';
 ---
 
 <Base
   titolo="Privacy — TROVA.ME"
-  descrizione="What each TROVA.ME app does with your data, in plain terms. Minta keeps your recordings on your iPhone and sends them out only after you say yes."
+  descrizione="What each TROVA.ME app does with your data, in plain terms. Minta keeps your recordings on your iPhone; they leave only for a job you ask for."
 >
   <div class="contenitore informativa">
     <nav class="lingue" aria-label="Language">
@@ -45,7 +50,7 @@ const aggiornata = '21 October 2026';
     <h1>Privacy</h1>
 
     <p class="apertura">
-      TROVA.ME is one person making three iPhone apps. This page says what each app does with
+      TROVA.ME is one person making two iPhone apps. This page says what each app does with
       your data, in plain terms. It is short because the apps collect very little.
     </p>
 
@@ -68,8 +73,8 @@ const aggiornata = '21 October 2026';
     <p>
       Minta records audio, transcribes it, and rewrites the transcript. <strong>In short:
       Minta keeps nothing of your recordings.</strong> They stay on your iPhone (and in your
-      iCloud, if you turn on sync). They leave only for a job you ask for, after your yes, and
-      Minta Cloud is only a passage. No ads, analytics or tracking.
+      iCloud, if you turn on sync). They leave only for a job you ask for (to Minta Cloud after
+      your yes), and Minta Cloud is only a passage. No ads, analytics or tracking.
     </p>
 
     <h3>On your iPhone</h3>
@@ -96,27 +101,29 @@ const aggiornata = '21 October 2026';
 
     <h3>When data leaves</h3>
     <p>
-      Only for a job you ask for, or one that starts by itself if you turn on “Automatic run”.
-      The first time for each engine Minta says what is sent and to whom, and asks your
-      permission. The format’s instructions, your glossary terms and the voices (letters or
-      names) go with the text.
+      Only for a job you ask for: nothing starts without your tap. The first time for Minta
+      Cloud, Minta says what is sent and to whom, and asks your permission. The format’s
+      instructions, your glossary terms and the voices (letters or names) go with the text; for
+      the progress of a series, the write-ups of the recordings you pick go instead of the
+      transcriptions, with their title and date.
     </p>
 
     {/* Un motore, un blocco: ognuno si toglie intero senza toccare gli altri. */}
     <div class="motore">
       <h4>On the phone</h4>
       <p>
-        The on-device engine offline, and Apple Speech: nothing leaves. If speech recognition on
-        the phone isn’t available, Minta asks you every time before using Apple’s servers.
+        The transcription, and the on-device engine offline: nothing leaves. The iPhone downloads
+        the language models from Apple, with none of your data.
       </p>
     </div>
 
     <div class="motore">
       <h4>Apple Intelligence (Private Cloud Compute)</h4>
       <p>
-        Online and with your yes, the text goes to Apple’s Private Cloud Compute servers, which
-        write the write-up. Apple uses it only to answer, doesn’t keep it, nobody at Apple can
-        see it, and independent experts can verify this.
+        Online, the text goes to Apple’s Private Cloud Compute servers, which write the write-up:
+        it is part of Apple Intelligence. Apple uses it only to answer, doesn’t keep it, nobody at
+        Apple can see it, and independent experts can verify this. You can turn it off in
+        Settings › Info › Privacy.
       </p>
     </div>
 
@@ -146,7 +153,8 @@ const aggiornata = '21 October 2026';
     <h3>Minta Cloud account</h3>
     <p>
       You sign in with Sign in with Apple: Minta gets only a code Apple creates, no name and no
-      email. Apple handles payments: Minta never sees your payment details.
+      email. Apple handles payments: Minta never sees your payment details. It gets only your App
+      Store country, which sets a pack’s credits, and doesn’t keep it.
     </p>
 
     <h3>What Minta’s server keeps, and for how long</h3>
@@ -219,20 +227,8 @@ const aggiornata = '21 October 2026';
       never configure a provider, nothing is sent anywhere.
     </p>
 
-    <h2>ClaudePal</h2>
-    <p>
-      ClaudePal is an experiment and is not distributed. It connects your iPhone to a Claude
-      Code session running on your own Mac, over your own local network. Nothing is sent to
-      TROVA.ME. What Claude Code itself sends to Anthropic is governed by Anthropic’s terms
-      and by your own account.
-    </p>
-    <p>
-      The connection is not encrypted and is intended for a trusted network only. This is
-      stated plainly on the ClaudePal page as well.
-    </p>
-
     <h2>Children</h2>
-    <p>None of these apps are directed at children.</p>
+    <p>Neither app is meant for children.</p>
 
     <h2>Changes</h2>
     <p>

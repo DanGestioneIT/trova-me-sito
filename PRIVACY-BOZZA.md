@@ -11,7 +11,8 @@
 > quando ti convince diventa una pagina in dieci minuti.
 >
 > Tutto quello che c'è scritto viene dai tuoi documenti di progetto — `BACKEND-INTEGRATION-HANDOFF.md`
-> e `BACKEND-TRANSCRIBE-HANDOFF.md` di Minta, `PRONTO_SPEC.md`, il README di ClaudePal.
+> e `BACKEND-TRANSCRIBE-HANDOFF.md` di Minta, `PRONTO_SPEC.md`, il README della terza app (l'esperimento con Claude Code, uscito
+> dal sito il 27 ottobre 2026).
 > **Le tre affermazioni da verificare tu**, perché se sono sbagliate il danno è serio, sono
 > segnate con ⚠️.
 >
@@ -40,7 +41,7 @@
 
 ## Privacy
 
-TROVA.ME is one person making three iPhone apps. This page says what each app does with
+TROVA.ME is one person making two iPhone apps. This page says what each app does with
 your data, in plain terms. It is short because the apps collect very little.
 
 The data controller is **Daniele Riccarand**, acting as an individual. For anything
@@ -177,19 +178,9 @@ configure a provider, nothing is sent anywhere.
 > frase che qualcuno va a verificare. Se preferisci toglierlo del tutto, si può: è una tua
 > decisione, e va presa sapendo questo.
 
-### ClaudePal
-
-ClaudePal is an experiment and is not distributed. It connects your iPhone to a Claude Code
-session running on your own Mac, over your own local network. Nothing is sent to TROVA.ME.
-What Claude Code itself sends to Anthropic is governed by Anthropic's terms and by your own
-account.
-
-The connection is not encrypted and is intended for a trusted network only. This is stated
-plainly on the ClaudePal page as well.
-
 ### Children
 
-None of these apps are directed at children.
+Neither app is meant for children.
 
 ### Changes
 
@@ -238,13 +229,13 @@ yes».
 
 Decisione del proprietario: l'informativa c'e' anche in italiano, a `privacy/it/`
 (`src/pages/privacy/it.astro`), perche' il titolare e' in Italia. La parte di Minta e' il testo
-italiano di `MintaApp/Documentation/INFORMATIVA-PRIVACY-BOZZA.md`; il sito, Pronto, ClaudePal,
-minori e modifiche sono tradotti dalla pagina inglese. `privacy/` resta in inglese, allo stesso
+italiano di `MintaApp/Documentation/INFORMATIVA-PRIVACY-BOZZA.md`; il sito, Pronto, la terza app
+(allora c'era), minori e modifiche sono tradotti dalla pagina inglese. `privacy/` resta in inglese, allo stesso
 indirizzo. In cima a ciascuna, il passaggio all'altra («English · Italiano»). Lo stile delle due
 pagine sta in `src/styles/informativa.css`.
 
 Confrontata la pagina inglese con la bozza: dicono le stesse cose. Differenze solo di forma: la
-pagina ha in piu' l'apertura su TROVA.ME, il sito, Pronto e ClaudePal; dice «acting as an
+pagina ha in piu' l'apertura su TROVA.ME, il sito, Pronto e la terza app; dice «acting as an
 individual»; minori e modifiche valgono per le tre app e la data sta in fondo («the date below»,
 la bozza dice «at the top»); i ⚠️ della bozza sono note interne e non si pubblicano.
 
@@ -266,4 +257,35 @@ resto del paragrafo (Stati Uniti, Clausole Contrattuali Standard, niente addestr
 keeps nothing», Anthropic cancella entro 30 giorni) resta com'era. Nessun destinatario nuovo.
 Data in fondo alle pagine: 21 October / 21 ottobre 2026. Fonte:
 `MintaApp/Documentation/INFORMATIVA-PRIVACY-BOZZA.md`.
+
+## 27 ottobre 2026 — Allineamento ai Lotti 39-75 dell'app, e due app invece di tre
+
+Le due pagine (`privacy/` e `privacy/it/`) confrontate frase per frase con
+`MintaApp/Documentation/INFORMATIVA-PRIVACY-BOZZA.md` di oggi, e corrette dove la bozza era
+andata avanti:
+- **«In short» / «In breve»:** il sì riguarda Minta Cloud («to Minta Cloud after your yes»), non
+  ogni uscita (Lotto 69).
+- **«When data leaves» / «Quando i dati escono»:** «nothing starts without your tap» al posto
+  dell'esecuzione automatica (Lotto 42); il permesso si chiede la prima volta per Minta Cloud,
+  non per ogni motore (Lotto 69); mezza frase sull'avanzamento delle serie, che manda le
+  elaborazioni con titolo e data (Lotto 39).
+- **«On the phone» / «Sul telefono»:** la trascrizione si fa solo sul telefono; tolta la frase
+  sui server di Apple «chiesti ogni volta»; l'iPhone scarica da Apple i modelli delle lingue,
+  senza dati dell'utente (Lotto 75, che toglie anche il paragrafo del Lotto 72 mai pubblicato).
+- **Apple Intelligence (Private Cloud Compute):** niente piu' «with your yes»; «fa parte di Apple
+  Intelligence» e «si spegne in Impostazioni › Info › Privacy» (Lotto 69).
+- **«Minta Cloud account» / «Account Minta Cloud»:** il paese dell'App Store, che decide i crediti
+  di un pacchetto e non si conserva (Lotto 53).
+- Date: 27 October / 27 ottobre 2026. Meta description: non promette piu' che tutto esce «solo
+  dopo il tuo sì» (Private Cloud Compute non lo chiede piu').
+
+Decisione del proprietario: la terza app (l'esperimento con Claude Code) esce dal sito. Tolto
+il suo paragrafo dalle due pagine; «three iPhone apps» diventa «two»; minori: «Neither app is
+meant for children» / «Nessuna delle due app è pensata per i minori».
+
+Restano differenze solo di forma, come il 19 ottobre: apertura su TROVA.ME, il sito e Pronto;
+«acting as an individual»; data in fondo; i ⚠️ della bozza non si pubblicano. Un test riscritto
+sulla stessa verita': il blocco di Private Cloud Compute ora deve dire come si spegne (prima
+pretendeva «with your yes»). Uno nuovo: la trascrizione resta sul telefono, in informativa e
+supporto.
 
