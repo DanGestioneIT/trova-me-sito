@@ -20,7 +20,7 @@ import Base from '../../layouts/Base.astro';
 import { path } from '../../lib/paths';
 import '../../styles/informativa.css';
 
-const aggiornata = '30 ottobre 2026';
+const aggiornata = '2 novembre 2026';
 ---
 
 <Base
@@ -84,7 +84,7 @@ const aggiornata = '30 ottobre 2026';
       </li>
       <li>
         <strong>Esporta</strong>: il file .minta (audio, testi e luogo) o la copia dell’audio va
-        solo dove lo mandi tu.
+        solo dove lo mandi tu; l’audio dei podcast resta in Minta.
       </li>
     </ul>
 
@@ -133,12 +133,24 @@ const aggiornata = '30 ottobre 2026';
     </div>
 
     <div class="motore">
+      <h4>Podcast</h4>
+      <p>
+        Per un podcast che importi, il telefono chiede ad Apple i dati del programma e scarica feed,
+        trascrizione e audio dai server che ospitano il podcast: vedono l’indirizzo internet del
+        telefono, come con qualunque app di podcast. Per un episodio vecchio il titolo va anche alla
+        ricerca pubblica di Apple, e se incolli il link di una pagina web il telefono legge quella
+        pagina. Minta Cloud non c’entra.
+      </p>
+    </div>
+
+    <div class="motore">
       <h4>Sincronizzazione iCloud</h4>
       <p>
         Spenta finché non la accendi. Le registrazioni vanno nel <strong>tuo</strong> iCloud,
         presso Apple, non al server di Minta. I testi sono cifrati end-to-end; l’audio Apple lo
-        conserva come gli altri tuoi dati iCloud. Spegnendola non si cancella niente: quello che è
-        in iCloud lo elimini dalle impostazioni iCloud.
+        conserva come gli altri tuoi dati iCloud. L’audio dei podcast non va su iCloud: si riscarica
+        dal link. Spegnendola non si cancella niente: quello che è in iCloud lo elimini dalle
+        impostazioni iCloud.
       </p>
     </div>
 
