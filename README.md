@@ -17,7 +17,6 @@ Pubblicato su https://trova.me/ (GitHub Pages con dominio proprio, dal 19 ottobr
 |---|---|
 | `BRIEF.md` | cosa deve ottenere il sito, e cosa resta fuori |
 | `AGENTS.md` | le regole con cui si scrive il codice qui |
-| `PRIVACY-BOZZA.md` | note interne e verifiche dietro la pagina `privacy/` |
 
 ## Come si lavora: questo progetto e' in FASE 1
 

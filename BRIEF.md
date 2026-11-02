@@ -79,7 +79,7 @@ farli una volta sola quando le app sono ultimate.
 >   tracciamento: proprio per rispettarlo il file è servito dal dominio del sito e non da
 >   un servizio esterno.
 >
-> Le note e le verifiche dietro la pagina privacy stanno in `PRIVACY-BOZZA.md`.
+> Le note e le verifiche dietro la pagina privacy stanno nei documenti privati del proprietario, non qui.
 
 ## La lingua
 
