@@ -33,7 +33,7 @@ import Base from '../layouts/Base.astro';
 import { path } from '../lib/paths';
 import '../styles/informativa.css';
 
-const aggiornata = '30 October 2026';
+const aggiornata = '2 November 2026';
 ---
 
 <Base
@@ -95,7 +95,7 @@ const aggiornata = '30 October 2026';
       </li>
       <li>
         <strong>Export</strong>: the .minta file (audio, texts and place) or the audio copy goes
-        only where you send it.
+        only where you send it; a podcast’s audio stays in Minta.
       </li>
     </ul>
 
@@ -143,12 +143,24 @@ const aggiornata = '30 October 2026';
     </div>
 
     <div class="motore">
+      <h4>Podcasts</h4>
+      <p>
+        For a podcast you import, the phone asks Apple for the show’s details and downloads the
+        feed, transcript and audio from the servers that host the podcast: they see the phone’s
+        internet address, as with any podcast app. For an older episode its title also goes to
+        Apple’s public search, and if you paste a web page’s link the phone reads that page. Minta
+        Cloud has no part in it.
+      </p>
+    </div>
+
+    <div class="motore">
       <h4>iCloud sync</h4>
       <p>
         Off until you turn it on. Your recordings go to <strong>your own</strong> iCloud, at
         Apple, not to Minta’s server. The texts are end-to-end encrypted; Apple keeps the audio
-        like your other iCloud data. Turning it off deletes nothing: what is in iCloud you delete
-        from the iCloud settings.
+        like your other iCloud data. A podcast’s audio doesn’t go to iCloud: it downloads again from
+        its link. Turning it off deletes nothing: what is in iCloud you delete from the iCloud
+        settings.
       </p>
     </div>
 
