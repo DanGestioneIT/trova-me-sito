@@ -401,6 +401,10 @@ test('Minta dice di Apple Private Cloud Compute e non promette piu\' che non esc
   // usare Private Cloud Compute: la verita' da proteggere diventa che si puo' spegnere, e dove.
   assert.ok(sezioneMinta.includes('You can turn it off in Settings › Privacy'), 'privacy: manca come spegnere Private Cloud Compute');
   assert.ok(!testoSemplice(paginaMinta()).includes('Nothing leaves your phone'), 'app/minta: promette ancora che non esce niente');
+  // Dal 4 novembre 2026 (Lotto 95 dell'app, decisione del proprietario) Private Cloud Compute
+  // conferma la categoria proposta, anche per le elaborazioni di Minta Cloud: riceve l'inizio
+  // dell'elaborazione e il nome della sola categoria proposta. L'informativa lo deve dire.
+  assert.ok(sezioneMinta.includes('To propose the category of one of your recordings they receive the start of its write-up, from any engine, and the name of the proposed category'), 'privacy: manca cosa riceve Private Cloud Compute per la categoria');
 });
 
 // Dal 19 ottobre 2026 (Lotto 33 dell'app) ogni account Minta Cloud ha un codice di supporto
@@ -444,6 +448,7 @@ test('la versione italiana dice di Minta le stesse cose protette in inglese', ()
   for (const frase of [
     'Apple Intelligence (Private Cloud Compute)',
     'Puoi spegnerlo in Impostazioni › Privacy',
+    'Per proporre la categoria di una tua registrazione ricevono l’inizio dell’elaborazione, di qualunque motore, e il nome della categoria proposta',
     'Un codice di supporto casuale',
     'serve solo a trovare il tuo account',
     'Il risultato resta in memoria al massimo 15 minuti',
