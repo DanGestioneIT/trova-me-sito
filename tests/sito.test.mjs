@@ -401,10 +401,9 @@ test('Minta dice di Apple Private Cloud Compute e non promette piu\' che non esc
   // usare Private Cloud Compute: la verita' da proteggere diventa che si puo' spegnere, e dove.
   assert.ok(sezioneMinta.includes('You can turn it off in Settings › Privacy'), 'privacy: manca come spegnere Private Cloud Compute');
   assert.ok(!testoSemplice(paginaMinta()).includes('Nothing leaves your phone'), 'app/minta: promette ancora che non esce niente');
-  // Dal 4 novembre 2026 (Lotto 95 dell'app, decisione del proprietario) Private Cloud Compute
-  // conferma la categoria proposta, anche per le elaborazioni di Minta Cloud: riceve l'inizio
-  // dell'elaborazione e il nome della sola categoria proposta. L'informativa lo deve dire.
-  assert.ok(sezioneMinta.includes('To propose the category of one of your recordings they receive the start of its write-up, from any engine, and the name of the proposed category'), 'privacy: manca cosa riceve Private Cloud Compute per la categoria');
+  // Dal 6 novembre 2026 (revisione del proprietario) la frase della categoria proposta e' tolta;
+  // resta da proteggere la traduzione della trascrizione (Lotto 101 dell'app).
+  assert.ok(sezioneMinta.includes('If you ask to translate a transcription, they receive it to translate it; the translation stays on your iPhone'), 'privacy: manca la traduzione della trascrizione');
 });
 
 // Dal 19 ottobre 2026 (Lotto 33 dell'app) ogni account Minta Cloud ha un codice di supporto
@@ -448,7 +447,7 @@ test('la versione italiana dice di Minta le stesse cose protette in inglese', ()
   for (const frase of [
     'Apple Intelligence (Private Cloud Compute)',
     'Puoi spegnerlo in Impostazioni › Privacy',
-    'Per proporre la categoria di una tua registrazione ricevono l’inizio dell’elaborazione, di qualunque motore, e il nome della categoria proposta',
+    'Se chiedi di tradurre una trascrizione, la ricevono per tradurla; la traduzione resta sul tuo iPhone',
     'Un codice di supporto casuale',
     'serve solo a trovare il tuo account',
     'Il risultato resta in memoria al massimo 15 minuti',
@@ -480,9 +479,9 @@ test('Minta Cloud e\' un livello solo, in tutte e due le versioni dell\'informat
   const inglese = testoSemplice(paginaPrivacy('privacy/index.html'));
   const italiana = testoSemplice(paginaPrivacy('privacy/it/index.html'));
   assert.ok(inglese.includes('Anthropic (Claude) writes the write-ups'), 'privacy: manca chi scrive le elaborazioni');
-  assert.ok(inglese.includes('a backup write-up when Anthropic is unavailable (never with your own formats)'), 'privacy: manca la riserva di Groq');
+  assert.ok(inglese.includes('a backup write-up when Anthropic is unavailable'), 'privacy: manca la riserva di Groq');
   assert.ok(italiana.includes('Anthropic (Claude) scrive le elaborazioni'), 'privacy/it: manca chi scrive le elaborazioni');
-  assert.ok(italiana.includes('quando Anthropic non risponde (mai con i tuoi formati)'), 'privacy/it: manca la riserva di Groq');
+  assert.ok(italiana.includes('un’elaborazione di riserva quando Anthropic non risponde'), 'privacy/it: manca la riserva di Groq');
   // Il grassetto seguito da «(Claude)» a capo nel sorgente perde lo spazio nell'HTML: si
   // controlla l'HTML vero, perche' testoSemplice rimette uno spazio al posto dei tag.
   for (const nome of ['privacy/index.html', 'privacy/it/index.html']) {
@@ -535,6 +534,8 @@ test('Minta trascrive solo sul telefono, in informativa e supporto', () => {
 // Dal 27 ottobre 2026 (decisione del proprietario) il sito presenta due app, Minta e Pronto:
 // la terza (l'esperimento con Claude Code) non ha piu' una pagina, ne' una voce nella testata,
 // ne' un paragrafo nell'informativa. Si controlla in positivo: le app sono queste due e basta.
+// Dal 6 novembre 2026 (decisione del proprietario) l'informativa parla solo di Minta: Pronto
+// uscira' mesi dopo, e il suo paragrafo tornera' con l'app.
 test('il sito presenta due app, Minta e Pronto', () => {
   const cartelle = readdirSync(join(DIST, 'app'), { withFileTypes: true })
     .filter((voce) => voce.isDirectory())
@@ -547,7 +548,7 @@ test('il sito presenta due app, Minta e Pronto', () => {
   assert.deepEqual(voci, ['Minta', 'Pronto'], `la testata elenca: ${voci.join(', ')}`);
   for (const nome of ['privacy/index.html', 'privacy/it/index.html']) {
     const titoli = [...paginaPrivacy(nome).matchAll(/<h2[^>]*>([\s\S]*?)<\/h2>/g)].map((m) => testoSemplice(m[1]));
-    assert.equal(titoli.length, 5, `${nome}: sezioni ${titoli.join(', ')}`);
-    assert.ok(titoli.includes('Minta') && titoli.includes('Pronto'), `${nome}: sezioni ${titoli.join(', ')}`);
+    assert.equal(titoli.length, 4, `${nome}: sezioni ${titoli.join(', ')}`);
+    assert.ok(titoli.includes('Minta') && !titoli.includes('Pronto'), `${nome}: sezioni ${titoli.join(', ')}`);
   }
 });

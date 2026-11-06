@@ -33,7 +33,7 @@ import Base from '../layouts/Base.astro';
 import { path } from '../lib/paths';
 import '../styles/informativa.css';
 
-const aggiornata = '4 November 2026';
+const aggiornata = '6 November 2026';
 ---
 
 <Base
@@ -50,8 +50,8 @@ const aggiornata = '4 November 2026';
     <h1>Privacy</h1>
 
     <p class="apertura">
-      TROVA.ME is one person making two iPhone apps. This page says what each app does with
-      your data, in plain terms. It is short because the apps collect very little.
+      TROVA.ME makes iPhone apps. This page says what each app does with your data, in plain terms.
+      It is short because the apps collect very little.
     </p>
 
     <p>
@@ -63,15 +63,13 @@ const aggiornata = '4 November 2026';
 
     <h2>This website</h2>
     <p>
-      This site has no analytics, no cookies, no trackers and no contact form. Nothing you do
-      here is recorded. It is a set of static pages served by GitHub Pages which — like any
-      web server — logs requests at its own level; TROVA.ME neither receives nor stores those
-      logs.
+      This site has no analytics, no cookies, no trackers and no contact form. Nothing you do here
+      is recorded. TROVA.ME neither receives nor stores the logs of the service that hosts the site.
     </p>
 
     <h2>Minta</h2>
     <p>
-      Minta records audio, transcribes it, and rewrites the transcript. <strong>In short:
+      Minta records audio, transcribes it, and writes up the transcript. <strong>In short:
       Minta keeps nothing of your recordings.</strong> They stay on your iPhone (and in your
       iCloud, if you turn on sync). They leave only for a job you ask for (to Minta Cloud after
       your yes), and Minta Cloud is only a passage. No ads, analytics or tracking.
@@ -80,7 +78,7 @@ const aggiornata = '4 November 2026';
     <h3>On your iPhone</h3>
     <p>
       Recordings, transcriptions, write-ups, notes and your glossary stay on the phone until you
-      delete them, and can end up in your device backups. Your Minta Cloud sign-in is in the iOS
+      delete them, and can be part of your device backups. Your Minta Cloud sign-in is in the iOS
       encrypted keychain. These also stay on the phone:
     </p>
     <ul>
@@ -101,11 +99,9 @@ const aggiornata = '4 November 2026';
 
     <h3>When data leaves</h3>
     <p>
-      Only for a job you ask for: nothing starts without your tap. The first time for Minta
-      Cloud, Minta says what is sent and to whom, and asks your permission. The format’s
-      instructions, your glossary terms and the voices (letters or names) go with the text; for
-      the progress of a series, the write-ups of the recordings you pick go instead of the
-      transcriptions, with their title and date.
+      Only for a job you ask for: nothing leaves the phone without your tap. The first time for
+      Minta Cloud, Minta says what leaves and where it goes, and asks your permission. The format’s
+      instructions, your glossary terms and the voices’ names go with the text.
     </p>
 
     {/* Un motore, un blocco: ognuno si toglie intero senza toccare gli altri. */}
@@ -121,12 +117,11 @@ const aggiornata = '4 November 2026';
     <div class="motore">
       <h4>Apple Intelligence (Private Cloud Compute)</h4>
       <p>
-        Online, the text goes to Apple’s Private Cloud Compute servers, which write the write-up:
-        it is part of Apple Intelligence. To propose the category of one of your recordings they
-        receive the start of its write-up, from any engine, and the name of the proposed category.
-        Apple uses this data only to answer, doesn’t keep it, nobody at Apple can see it, and
-        independent experts can verify this. If you ask to translate a transcription, they receive it
-        to translate it; the translation stays on your iPhone. You can turn it off in Settings › Privacy.
+        When the phone is online, the text goes to Apple’s Private Cloud Compute servers, which
+        write the write-up: it is part of Apple Intelligence. Apple uses this data only to answer,
+        doesn’t keep it, nobody at Apple can see it, and independent experts can verify this. If you
+        ask to translate a transcription, they receive it to translate it; the translation stays on
+        your iPhone. You can turn it off in Settings › Privacy.
       </p>
     </div>
 
@@ -136,7 +131,7 @@ const aggiornata = '4 November 2026';
         The text (or, for Whisper, a compressed copy of the audio) goes to Minta’s server in
         Frankfurt, which passes it to the provider doing the work: <strong>Anthropic</strong> (Claude)
         writes the write-ups; <strong>Groq</strong> transcribes with Whisper and, rarely,
-        writes a backup write-up when Anthropic is unavailable (never with your own formats).
+        writes a backup write-up when Anthropic is unavailable.
         They work on Minta’s behalf, in the United States, under the EU Standard Contractual Clauses, and
         don’t use the data to train their models: Groq keeps nothing, Anthropic deletes
         everything within 30 days. To show how many credits a write-up would use, Minta sends its
@@ -151,8 +146,7 @@ const aggiornata = '4 November 2026';
         For a podcast you import, the phone asks Apple for the show’s details and downloads the
         feed, transcript and audio from the servers that host the podcast: they see the phone’s
         internet address, as with any podcast app. For an older episode its title also goes to
-        Apple’s public search, and if you paste a web page’s link the phone reads that page. Minta
-        Cloud has no part in it.
+        Apple’s public search, and if you paste a web page’s link the phone reads that page.
       </p>
     </div>
 
@@ -192,7 +186,7 @@ const aggiornata = '4 November 2026';
           A random support code, shown in Settings › Minta Cloud: if you include it when you
           write to support, it is used only to find your account
         </dt>
-        <dd>While you have the account; gone from backups within 24 hours of deleting it.</dd>
+        <dd>While you have the account; deleted from backups within 24 hours of deleting the account.</dd>
       </div>
       <div>
         <dt>Technical logs (durations, lengths, error codes, app version; never texts, audio, names or emails)</dt>
@@ -212,14 +206,6 @@ const aggiornata = '4 November 2026';
     </dl>
 
     <p>
-      <strong>Support.</strong> If you write to support (dan@trova.me), your email is read by an AI
-      tool (Anthropic’s Claude, used with training on data turned off) that prepares a draft reply. A
-      person reads, edits and sends the draft: no reply is sent automatically and the tool makes no
-      decision about your account. If you include your support code, the tool also reads your credit
-      balance and history; never the content of your recordings, which the server does not have.
-    </p>
-
-    <p>
       <strong>Why we process it.</strong> To give you the service you ask for (contract);
       accounting records because the law requires it; the trial’s anti-abuse code for our
       legitimate interest in preventing abuse.
@@ -231,28 +217,11 @@ const aggiornata = '4 November 2026';
     <p>
       <strong>Your rights.</strong> You can ask to see, correct or delete your data, or object
       to its use, by writing to <a href="mailto:dan@trova.me">dan@trova.me</a>; you delete your
-      account yourself in the app (Settings › Minta Cloud; any remaining credit is lost). You
-      can also contact your data protection authority (in Italy, the Garante privacy, <a
-        href="https://www.garanteprivacy.it">garanteprivacy.it</a
-      >).
-    </p>
-
-    <h2>Pronto</h2>
-    <p>
-      Your list lives on your iPhone. <strong>There is no Pronto account and no Pronto
-      server.</strong>
-    </p>
-    <p>
-      To understand what you dictate, Pronto sends what you said — together with the tasks
-      already on your list, so that “move the dentist to Thursday” has something to refer to
-      — to the AI provider you chose. That exchange happens directly between your iPhone and
-      the provider, with your own key, under your own account and their terms. TROVA.ME is
-      not part of it and never sees the key, which is stored in the iPhone’s keychain. If you
-      never configure a provider, nothing is sent anywhere.
+      account yourself in the app (Settings › Minta Cloud; any remaining credit is lost).
     </p>
 
     <h2>Children</h2>
-    <p>Neither app is meant for children.</p>
+    <p>Minta is not meant for children.</p>
 
     <h2>Changes</h2>
     <p>
