@@ -552,3 +552,20 @@ test('il sito presenta due app, Minta e Pronto', () => {
     assert.ok(titoli.includes('Minta') && !titoli.includes('Pronto'), `${nome}: sezioni ${titoli.join(', ')}`);
   }
 });
+
+// Audit dell'8 novembre 2026 (Lotti 118-120 dell'app, server 0.18.0): chi ospita il server, la categoria proposta da
+// Private Cloud Compute, la data del consenso tenuta dal server, il .minta senza luogo e l'autorita' di controllo
+// anche in inglese. Se uno di questi sparisce, l'informativa torna a tacere qualcosa che succede.
+test('l\'informativa dice quello che l\'audit dell\'8 novembre ha trovato', () => {
+  const inglese = testoSemplice(paginaPrivacy('privacy/index.html'));
+  const italiana = testoSemplice(paginaPrivacy('privacy/it/index.html'));
+  for (const [nome, testo] of [['privacy', inglese], ['privacy/it', italiana]]) {
+    assert.ok(testo.includes('Amazon Web Services'), `${nome}: manca chi ospita il server`);
+    assert.ok(testo.includes('garanteprivacy.it'), `${nome}: manca l'autorita' di controllo`);
+    assert.ok(!/luogo|place\)/.test(testo), `${nome}: il .minta non contiene piu' il luogo`);
+  }
+  assert.ok(inglese.includes('It also suggests a recording’s category'), 'privacy: manca la categoria su Private Cloud Compute');
+  assert.ok(italiana.includes('Propone anche la categoria'), 'privacy/it: manca la categoria su Private Cloud Compute');
+  assert.ok(inglese.includes('Date and time of your yes to Minta Cloud'), 'privacy: manca la data del consenso sul server');
+  assert.ok(italiana.includes('Data e ora del tuo sì a Minta Cloud'), 'privacy/it: manca la data del consenso sul server');
+});

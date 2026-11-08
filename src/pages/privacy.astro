@@ -33,7 +33,7 @@ import Base from '../layouts/Base.astro';
 import { path } from '../lib/paths';
 import '../styles/informativa.css';
 
-const aggiornata = '6 November 2026';
+const aggiornata = '8 November 2026';
 ---
 
 <Base
@@ -92,16 +92,18 @@ const aggiornata = '6 November 2026';
         the iPhone’s search (it can be turned off in Settings);
       </li>
       <li>
-        <strong>Export</strong>: the .minta file (audio, texts and place) or the audio copy goes
+        <strong>Export</strong>: the .minta file (audio and texts) or the audio copy goes
         only where you send it; a podcast’s audio stays in Minta.
       </li>
     </ul>
 
     <h3>When data leaves</h3>
     <p>
-      Only for a job you ask for: nothing leaves the phone without your tap. The first time for
-      Minta Cloud, Minta says what leaves and where it goes, and asks your permission. The format’s
-      instructions, your glossary terms and the voices’ names go with the text.
+      Only for a job you ask for, and nothing goes to Minta Cloud without your yes: the first time,
+      Minta says what leaves and where it goes, and asks your permission. The instructions of the
+      type of write-up, your glossary terms and the names you gave the voices go with the text; for
+      a series’ progress, the write-ups of its recordings with titles and dates. You withdraw your
+      permission in Settings › Privacy.
     </p>
 
     {/* Un motore, un blocco: ognuno si toglie intero senza toccare gli altri. */}
@@ -121,7 +123,8 @@ const aggiornata = '6 November 2026';
         write the write-up: it is part of Apple Intelligence. Apple uses this data only to answer,
         doesn’t keep it, nobody at Apple can see it, and independent experts can verify this. If you
         ask to translate a transcription, they receive it to translate it; the translation stays on
-        your iPhone. You can turn it off in Settings › Privacy.
+        your iPhone. It also suggests a recording’s category, from the start of the write-up. You can
+        turn it off in Settings › Privacy.
       </p>
     </div>
 
@@ -129,14 +132,14 @@ const aggiornata = '6 November 2026';
       <h4>Minta Cloud</h4>
       <p>
         The text (or, for Whisper, a compressed copy of the audio) goes to Minta’s server in
-        Frankfurt, which passes it to the provider doing the work: <strong>Anthropic</strong> (Claude)
+        Frankfurt, hosted by Amazon Web Services, which passes it to the provider doing the work: <strong>Anthropic</strong> (Claude)
         writes the write-ups; <strong>Groq</strong> transcribes with Whisper and, rarely,
         writes a backup write-up when Anthropic is unavailable.
         They work on Minta’s behalf, in the United States, under the EU Standard Contractual Clauses, and
         don’t use the data to train their models: Groq keeps nothing, Anthropic deletes
         everything within 30 days. To show how many credits a write-up would use, Minta sends its
         server only the transcription’s length (or the recording’s duration), its language and the
-        format you picked, never the text.
+        type you picked, never the text.
       </p>
     </div>
 
@@ -189,6 +192,14 @@ const aggiornata = '6 November 2026';
         <dd>While you have the account; deleted from backups within 24 hours of deleting the account.</dd>
       </div>
       <div>
+        <dt>Date and time of your yes to Minta Cloud (or of its withdrawal), with the version of the text you read</dt>
+        <dd>While you have the account; gone from backups within 24 hours of deleting it.</dd>
+      </div>
+      <div>
+        <dt>Apple’s code of a purchase refunded before Minta credited it, not linked to the account</dt>
+        <dd>1 year, so it isn’t credited.</dd>
+      </div>
+      <div>
         <dt>Technical logs (durations, lengths, error codes, app version; never texts, audio, names or emails)</dt>
         <dd>30 days.</dd>
       </div>
@@ -207,17 +218,22 @@ const aggiornata = '6 November 2026';
 
     <p>
       <strong>Why we process it.</strong> To give you the service you ask for (contract);
-      accounting records because the law requires it; the trial’s anti-abuse code for our
-      legitimate interest in preventing abuse.
+      accounting records and the date of your yes because the law requires it; the trial’s
+      anti-abuse code and the refunded purchases’ codes for our legitimate interest in preventing
+      abuse.
     </p>
     <p>
       <strong>iPhone permissions.</strong> Microphone to record, notifications for alerts, Live Activities to show on the Lock Screen the
       recording in progress or being worked on, with its name (it stays on the phone).
     </p>
     <p>
-      <strong>Your rights.</strong> You can ask to see, correct or delete your data, or object
-      to its use, by writing to <a href="mailto:dan@trova.me">dan@trova.me</a>; you delete your
-      account yourself in the app (Settings › Minta Cloud; any remaining credit is lost).
+      <strong>Your rights.</strong> You can ask to see, correct, delete or receive your data,
+      restrict or object to its use, by writing to <a href="mailto:dan@trova.me">dan@trova.me</a>;
+      you withdraw your yes to Minta Cloud whenever you like in Settings › Privacy; you delete your
+      account yourself in the app (Settings › Minta Cloud; any remaining credit is lost). You can also
+      complain to a data protection authority, such as Italy’s Garante (<a
+        href="https://www.garanteprivacy.it">garanteprivacy.it</a
+      >).
     </p>
 
     <h2>Children</h2>
