@@ -12,6 +12,8 @@
 // resto. Titolare e contatto stanno in cima alla pagina, minori e modifiche in
 // fondo: valgono per tutte e due le app.
 //
+// 17 novembre 2026: allineata alla bozza (glossario solo a Minta Cloud, stima dei crediti anche
+// per l'avanzamento, traduzioni con Private Cloud Compute, via la prova gratuita).
 // 27 ottobre 2026: allineata alla bozza dopo i Lotti 39, 42, 53, 69 e 75 dell'app
 // (avanzamento delle serie, niente parte senza un tocco, paese dell'App Store,
 // Private Cloud Compute senza domanda, trascrizione solo sul telefono). La terza
@@ -33,7 +35,7 @@ import Base from '../layouts/Base.astro';
 import { path } from '../lib/paths';
 import '../styles/informativa.css';
 
-const aggiornata = '8 November 2026';
+const aggiornata = '17 November 2026';
 ---
 
 <Base
@@ -101,7 +103,7 @@ const aggiornata = '8 November 2026';
     <p>
       Only for a job you ask for, and nothing goes to Minta Cloud without your yes: the first time,
       Minta says what leaves and where it goes, and asks your permission. The instructions of the
-      type of write-up, your glossary terms and the names you gave the voices go with the text; for
+      type of write-up, the names you gave the voices and, to Minta Cloud only, your glossary terms go with the text; for
       a series’ progress, the write-ups of its recordings with titles and dates. You withdraw your
       permission in Settings › Privacy.
     </p>
@@ -122,7 +124,7 @@ const aggiornata = '8 November 2026';
         When the phone is online, the text goes to Apple’s Private Cloud Compute servers, which
         write the write-up: it is part of Apple Intelligence. Apple uses this data only to answer,
         doesn’t keep it, nobody at Apple can see it, and independent experts can verify this. If you
-        ask to translate a transcription, they receive it to translate it; the translation stays on
+        ask to translate a transcription or a write-up, they receive it to translate it; the translation stays on
         your iPhone. It also suggests a recording’s category, from the start of the write-up. You can
         turn it off in Settings › Privacy.
       </p>
@@ -137,7 +139,7 @@ const aggiornata = '8 November 2026';
         writes a backup write-up when Anthropic is unavailable.
         They work on Minta’s behalf, in the United States, under the EU Standard Contractual Clauses, and
         don’t use the data to train their models: Groq keeps nothing, Anthropic deletes
-        everything within 30 days. To show how many credits a write-up would use, Minta sends its
+        everything within 30 days. To show how many credits a write-up or a series’ progress would use, Minta sends its
         server only the transcription’s length (or the recording’s duration), its language and the
         type you picked, never the text.
       </p>
@@ -181,7 +183,7 @@ const aggiornata = '8 November 2026';
         </dd>
       </div>
       <div>
-        <dt>Credit, free trial, charges and purchases, tied to your Sign in with Apple code</dt>
+        <dt>Credit, charges and purchases, tied to your Sign in with Apple code</dt>
         <dd>While you have the account; gone from backups within 24 hours of deleting it.</dd>
       </div>
       <div>
@@ -210,16 +212,12 @@ const aggiornata = '8 November 2026';
         </dt>
         <dd>10 years (tax obligations).</dd>
       </div>
-      <div>
-        <dt>After you delete the account: a one-way code of your Apple identifier</dt>
-        <dd>Only to avoid a second free trial.</dd>
-      </div>
     </dl>
 
     <p>
       <strong>Why we process it.</strong> To give you the service you ask for (contract);
-      accounting records and the date of your yes because the law requires it; the trial’s
-      anti-abuse code and the refunded purchases’ codes for our legitimate interest in preventing
+      accounting records and the date of your yes because the law requires it; the refunded
+      purchases’ codes for our legitimate interest in preventing
       abuse.
     </p>
     <p>

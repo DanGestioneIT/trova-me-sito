@@ -403,7 +403,7 @@ test('Minta dice di Apple Private Cloud Compute e non promette piu\' che non esc
   assert.ok(!testoSemplice(paginaMinta()).includes('Nothing leaves your phone'), 'app/minta: promette ancora che non esce niente');
   // Dal 6 novembre 2026 (revisione del proprietario) la frase della categoria proposta e' tolta;
   // resta da proteggere la traduzione della trascrizione (Lotto 101 dell'app).
-  assert.ok(sezioneMinta.includes('If you ask to translate a transcription, they receive it to translate it; the translation stays on your iPhone'), 'privacy: manca la traduzione della trascrizione');
+  assert.ok(sezioneMinta.includes('If you ask to translate a transcription or a write-up, they receive it to translate it; the translation stays on your iPhone'), 'privacy: manca la traduzione della trascrizione');
 });
 
 // Dal 19 ottobre 2026 (Lotto 33 dell'app) ogni account Minta Cloud ha un codice di supporto
@@ -447,7 +447,7 @@ test('la versione italiana dice di Minta le stesse cose protette in inglese', ()
   for (const frase of [
     'Apple Intelligence (Private Cloud Compute)',
     'Puoi spegnerlo in Impostazioni › Privacy',
-    'Se chiedi di tradurre una trascrizione, la ricevono per tradurla; la traduzione resta sul tuo iPhone',
+    'Se chiedi di tradurre una trascrizione o un’elaborazione, la ricevono per tradurla; la traduzione resta sul tuo iPhone',
     'Un codice di supporto casuale',
     'serve solo a trovare il tuo account',
     'Il risultato resta in memoria al massimo 15 minuti',
@@ -568,4 +568,16 @@ test('l\'informativa dice quello che l\'audit dell\'8 novembre ha trovato', () =
   assert.ok(italiana.includes('Propone anche la categoria'), 'privacy/it: manca la categoria su Private Cloud Compute');
   assert.ok(inglese.includes('Date and time of your yes to Minta Cloud'), 'privacy: manca la data del consenso sul server');
   assert.ok(italiana.includes('Data e ora del tuo sì a Minta Cloud'), 'privacy/it: manca la data del consenso sul server');
+});
+
+test('privacy: glossario solo a Minta Cloud, crediti dell\'avanzamento, niente prova gratuita (it + en)', () => {
+  const testo = (n) => testoSemplice(pagine.find((p) => p.nome === n).html);
+  const en = testo('privacy/index.html');
+  const it = testo('privacy/it/index.html');
+  assert.ok(en.includes('to Minta Cloud only, your glossary terms'), 'privacy: glossario solo a Minta Cloud');
+  assert.ok(it.includes('solo verso Minta Cloud'), 'privacy/it: glossario solo a Minta Cloud');
+  assert.ok(/series’ progress would use/.test(en), 'privacy: crediti dell\'avanzamento');
+  assert.ok(it.includes('o un Avanzamento'), 'privacy/it: crediti dell\'avanzamento');
+  assert.ok(!/free trial/i.test(en), 'privacy: la prova gratuita non c\'e\' piu\'');
+  assert.ok(!/prova gratuita/i.test(it), 'privacy/it: la prova gratuita non c\'e\' piu\'');
 });
