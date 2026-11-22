@@ -72,7 +72,7 @@ farli una volta sola quando le app sono ultimate.
 > consapevolmente, e sono le uniche:
 >
 > - **la privacy policy esiste** (`privacy/`), perché Apple la pretende per pubblicare
->   un'app. Contiene anche un recapito, `dan@trova.me`: un titolare del trattamento senza
+>   un'app. Contiene anche un recapito, `dan@trova.me` (dal 22 novembre 2026 `minta@trova.me`): un titolare del trattamento senza
 >   un modo per essere raggiunto è un documento incompleto. Non è un permesso ad
 >   aggiungere indirizzi altrove;
 > - **il sito ha un carattere ospitato** (`public/fonts/`). Non contraddice il divieto di

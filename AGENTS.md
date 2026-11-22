@@ -28,7 +28,8 @@ si scrive il codice qui**.
   "in arrivo". Le app sul sito sono due, Minta e Pronto: la terza, l'esperimento con Claude
   Code, ne e' uscita il 27 ottobre 2026 (decisione del proprietario) e non si rimette senza una sua decisione.
 - **Niente moduli di contatto, niente raccolta di email, niente tracciamento.** Unica
-  eccezione, decisa il 9 agosto 2026: l'indirizzo `dan@trova.me` nella pagina `privacy/`,
+  eccezione, decisa il 9 agosto 2026: l'indirizzo di contatto nella pagina `privacy/`
+  (`minta@trova.me` dal 22 novembre 2026, prima `dan@trova.me`),
   perche' un titolare del trattamento senza un recapito e' un documento incompleto; dal
   19 ottobre 2026 anche in `app/minta/support/`, perche' Apple chiede un contatto nella
   pagina di supporto (regola 1.5). Non e' un permesso ad aggiungerne altrove.
