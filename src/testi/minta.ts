@@ -1,6 +1,7 @@
 // I testi della pagina di Minta, in inglese e in italiano.
 //
-// Riscritti il 25 novembre 2026 (decisione del proprietario) partendo dalla descrizione
+// Riscritti il 25 novembre 2026 (decisione del proprietario; motto «Minta ascolta e scrive per te»
+// dello stesso giorno, al posto di «Tu parli, Minta scrive») partendo dalla descrizione
 // dello Store approvata e caricata il 17 novembre (MintaApp/Documentation/
 // APPSTORE-TESTI-DEFINITIVI-2026-10-25.md), con i fatti verificati sul codice dell'app:
 // otto tipi gratuiti su Private Cloud Compute (FormatAvailability.freeOnPrivateCloud), circa
@@ -52,7 +53,7 @@ const nomiSchermate = [
 // Le didascalie delle schermate dello Store (MintaApp/Minta/Tools/appstore-captions.json).
 const didascalie = {
   en: [
-    'You talk, Minta writes',
+    'Minta listens and writes for you',
     'Minutes with decisions and tasks',
     'Study notes, formulas included',
     'Who said what, by name',
@@ -61,7 +62,7 @@ const didascalie = {
     'Export to PDF or Word',
   ],
   it: [
-    'Tu parli, Minta scrive',
+    'Minta ascolta e scrive per te',
     'Verbali con decisioni e compiti',
     'Appunti di studio, formule comprese',
     'Chi ha detto cosa, con i nomi',
@@ -80,10 +81,10 @@ function schermate(lingua: Lingua): Schermata[] {
 
 export const testiMinta: Record<Lingua, TestiMinta> = {
   en: {
-    titolo: 'Minta — You talk. Minta writes. | TROVA.ME',
+    titolo: 'Minta — listens and writes for you | TROVA.ME',
     descrizione:
       'Minta records a meeting, a lecture or an idea, writes down everything that was said and turns it into the document you need. Free with Apple Intelligence.',
-    h1: 'You talk. Minta writes.',
+    h1: 'Minta listens and writes for you.',
     stato: 'In testing — not on the App Store yet.',
     apertura:
       'Every day you hear things that matter: a meeting, a lecture, an interview, an idea on the go. A few hours later, half of it is already gone.',
@@ -144,10 +145,10 @@ export const testiMinta: Record<Lingua, TestiMinta> = {
     aiutoLink: 'Minta support',
   },
   it: {
-    titolo: 'Minta — Tu parli, lei scrive. | TROVA.ME',
+    titolo: 'Minta — ascolta e scrive per te | TROVA.ME',
     descrizione:
       'Minta registra una riunione, una lezione o un’idea, scrive tutto quello che è stato detto e ne fa il documento che ti serve. Gratis con Apple Intelligence.',
-    h1: 'Minta: tu parli, lei scrive.',
+    h1: 'Minta ascolta e scrive per te.',
     stato: 'In prova — non ancora sull’App Store.',
     apertura:
       'Ogni giorno ascolti cose importanti: una riunione, una lezione, un’intervista, un’idea al volo. Qualche ora dopo, metà l’hai già dimenticata.',
