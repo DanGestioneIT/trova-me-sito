@@ -1,0 +1,60 @@
+---
+// La pagina di supporto di Minta, uguale nelle due lingue: cambiano solo i testi
+// (src/testi/supporto.ts). L'app la apre da Impostazioni › Info › Support (AppLinks.support):
+// l'indirizzo inglese app/minta/support/ non si cambia senza cambiare anche l'app.
+//
+// L'indirizzo email compare una volta sola, nel contatto in fondo (decisione del
+// proprietario del 25 novembre 2026). Apple chiede un contatto nella pagina di supporto
+// (regola 1.5); dal Lotto 33 dell'app il contatto chiede anche il codice di supporto.
+import Base from '../layouts/Base.astro';
+import { path } from '../lib/paths';
+import type { Lingua } from '../lib/lingue';
+import { testiSupporto } from '../testi/supporto';
+import '../styles/supporto.css';
+
+interface Props {
+  lingua: Lingua;
+}
+
+const { lingua } = Astro.props;
+const t = testiSupporto[lingua];
+const altra = lingua === 'en' ? 'app/minta/support/it/' : 'app/minta/support/';
+const privacy = lingua === 'en' ? 'privacy/' : 'privacy/it/';
+
+// Le risposte sono testo semplice; `{privacy}` diventa il collegamento all'informativa.
+function html(testo: string): string {
+  const sicuro = testo.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  return sicuro.replace('{privacy}', `<a href="${path(privacy)}">${t.privacyLink}</a>`);
+}
+---
+
+<Base titolo={t.titolo} descrizione={t.descrizione} lingua={lingua} altra={altra}>
+  <div class="contenitore supporto">
+    <div class="testata">
+      <p class="etichetta">Minta</p>
+      <h1>{t.h1}</h1>
+      <p class="apertura">{t.apertura}</p>
+    </div>
+
+    <section class="sezione">
+      <h2>{t.domandeTitolo}</h2>
+      <div class="domande">
+        {t.domande.map((voce) => (
+          <details class="domanda">
+            <summary><h3>{voce.domanda}</h3></summary>
+            <div class="risposta">
+              {voce.risposta.map((paragrafo) => <p set:html={html(paragrafo)} />)}
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <section class="sezione">
+      <h2>{t.contattoTitolo}</h2>
+      <p class="contatto">
+        {t.contattoPrima} <a href="mailto:minta@trova.me">minta@trova.me</a>. {t.contattoDopo}
+      </p>
+    </section>
+  </div>
+</Base>

@@ -7,26 +7,27 @@ si scrive il codice qui**.
 ## Vincoli che non si negoziano
 
 - **Due lingue, e non si mescolano.**
-  - **Inglese** tutto cio' che vede un visitatore: testi delle pagine, titoli, meta
-    description, testi alternativi delle immagini, etichette `aria-label`. Il sito
-    accompagna le app sull'App Store e chi le esamina legge in inglese.
+  - **Il sito per i visitatori e' in inglese e in italiano** (decisione del proprietario del
+    25 novembre 2026; prima solo l'informativa aveva l'italiano, dal 19 ottobre). L'inglese
+    resta agli indirizzi di sempre, perche' ci puntano l'app e App Store Connect; l'italiano
+    sta accanto con «it/» (`it/`, `app/minta/it/`, `app/minta/support/it/`, `privacy/it/`).
+    Ogni pagina offre la sua traduzione nella testata (`altra` di `Base`); testata e piede
+    parlano la lingua della pagina (`src/lib/lingue.ts`). Le due versioni dicono le stesse
+    cose: se ne cambi una, cambia anche l'altra.
   - **Italiano** tutto cio' che legge il proprietario: `BRIEF.md`, questo file, il
     README, i commenti nel codice, i nomi di file, variabili e componenti, i nomi dei
     test, i messaggi di commit.
 
-  La lingua del sito e' dichiarata **in un punto solo**, l'attributo `lang` in
-  `src/layouts/Base.astro`: una pagina che non e' in inglese lo dice passando `lingua`
-  a `Base`, e nient'altro. Unica eccezione all'inglese, decisa dal proprietario il
-  19 ottobre 2026: **la versione italiana dell'informativa**, `privacy/it/`, perche' il
-  titolare del trattamento e' in Italia. `privacy/` resta in inglese e al suo indirizzo
-  (ci puntano l'app e App Store Connect); le due pagine dicono le stesse cose e si
-  collegano a vicenda in cima. Non e' un permesso a tradurre altre pagine.
+  La lingua di una pagina si dichiara **in un punto solo**: `lingua` passato a `Base`, che
+  la mette nell'attributo `lang`.
 - **Prima il telefono.** Ogni modifica si valuta a schermo stretto. Se serve ingrandire
   con le dita per leggere, e' sbagliata.
 - **Niente contenuti inventati.** Nessuno screenshot finto, nessuna data di uscita,
   nessun link allo Store finche' le app non ci sono davvero. Le schede dicono
-  "in arrivo". Le app sul sito sono due, Minta e Pronto: la terza, l'esperimento con Claude
-  Code, ne e' uscita il 27 ottobre 2026 (decisione del proprietario) e non si rimette senza una sua decisione.
+  "in prova". Dal 25 novembre 2026 (decisione del proprietario) il sito presenta Minta;
+  Pronto resta solo come accenno nella pagina iniziale, un'altra app «in lavorazione»,
+  senza pagina sua. L'esperimento con Claude Code e' uscito il 27 ottobre 2026 e non si
+  rimette senza una sua decisione.
 - **Niente moduli di contatto, niente raccolta di email, niente tracciamento.** Unica
   eccezione, decisa il 9 agosto 2026: l'indirizzo di contatto nella pagina `privacy/`
   (`minta@trova.me` dal 22 novembre 2026, prima `dan@trova.me`),
@@ -55,9 +56,10 @@ si scrive il codice qui**.
   grezzo e il testo composto sono lo stesso carattere in due stati, ed e' l'unica idea
   visiva propria del sito. Le due variabili `--parlato` e `--composto` esistono per
   questo.
-- **Niente immagini finte.** Non esistono screenshot delle app e non si inventano: resta
-  il segnaposto dichiarato. Materia visiva astratta e tipografia grande sono ammesse,
-  qualunque cosa somigli a una schermata dell'app no.
+- **Solo immagini vere.** Dal 25 novembre 2026 la pagina di Minta usa le schermate dello
+  Store (in `public/immagini/minta/<lingua>/`, ridotte a 600px di larghezza in WebP dalle
+  originali in MintaApp/Documentation/appstore-schermate/): se si rifanno quelle, si
+  rifanno anche queste. Nessuna schermata inventata.
 - **Ogni collegamento interno passa da `path()`** (`src/lib/paths.ts`). Un `href` scritto
   a mano funziona in sviluppo e si rompe una volta pubblicato, perche' il sito vive in
   una sottocartella.
@@ -74,7 +76,7 @@ npm run check   # controllo dei tipi
 ```
 
 `npm test` non giudica l'estetica: verifica i vincoli che sbagliano in silenzio —
-lingua dichiarata (`lang="en"`, `lang="it"` per la sola `privacy/it/`), adattamento al telefono, titolo e descrizione presenti,
+lingua dichiarata (`lang="en"`, `lang="it"` per le pagine italiane), traduzione offerta nella testata, adattamento al telefono, titolo e descrizione presenti,
 collegamenti interni che portano da qualche parte, sitemap prodotta, e alcune frasi
 protette parola per parola. **Se aggiungi una pagina, aggiungila anche all'elenco delle
 pagine attese in `tests/sito.test.mjs`.**

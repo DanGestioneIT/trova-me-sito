@@ -81,16 +81,3 @@
   margin-top: 48px;
 }
 
-/* Il passaggio fra le due lingue, in cima: piccolo, sopra il titolo. */
-.informativa .lingue {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 20px;
-  font-size: 15px;
-  color: var(--tenue);
-}
-
-.informativa .lingue [aria-current='page'] {
-  color: var(--testo);
-  font-weight: 600;
-}

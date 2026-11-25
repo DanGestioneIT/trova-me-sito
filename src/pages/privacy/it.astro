@@ -20,7 +20,6 @@
 // ATTENZIONE a «Groq non conserva niente»: vale quanto detto in privacy.astro
 // (Zero Data Retention acceso nella console di Groq).
 import Base from '../../layouts/Base.astro';
-import { path } from '../../lib/paths';
 import '../../styles/informativa.css';
 
 const aggiornata = '22 novembre 2026';
@@ -30,13 +29,9 @@ const aggiornata = '22 novembre 2026';
   lingua="it"
   titolo="Privacy — TROVA.ME"
   descrizione="Cosa fa con i tuoi dati ogni app di TROVA.ME, in parole semplici. Minta tiene le registrazioni sul tuo iPhone: escono solo per un lavoro che chiedi tu."
+  altra="privacy/"
 >
   <div class="contenitore informativa">
-    <nav class="lingue" aria-label="Lingua">
-      <a href={path('privacy/')} lang="en" hreflang="en">English</a>
-      <span aria-hidden="true">·</span>
-      <span aria-current="page">Italiano</span>
-    </nav>
 
     <h1>Privacy</h1>
 

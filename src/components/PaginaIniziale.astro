@@ -1,0 +1,204 @@
+---
+// La pagina iniziale, uguale nelle due lingue.
+//
+// Dal 25 novembre 2026 (decisione del proprietario) la scheda e' una sola, Minta, con la
+// sua schermata dello Store; Pronto resta come accenno, un'altra app «in lavorazione»,
+// senza pagina sua. La riga di stato chiude la pagina: chi arriva da un link deve
+// scoprire lo stato reale senza entrare da nessuna parte. Un test la protegge.
+import Base from '../layouts/Base.astro';
+import Firma from './Firma.astro';
+import { path } from '../lib/paths';
+import type { Lingua } from '../lib/lingue';
+
+interface Props {
+  lingua: Lingua;
+}
+
+const { lingua } = Astro.props;
+
+const testi = {
+  en: {
+    titolo: 'TROVA.ME — iPhone apps you use by talking, not typing',
+    descrizione:
+      'iPhone apps you use by talking, not typing. Speak, and something useful happens — neither is on the App Store yet.',
+    h1: 'iPhone apps you use by talking, not typing.',
+    detto: 'so the thing is i need to write that up and also call the accountant',
+    ottenuto: 'A finished text. A list in order.',
+    pastiglia: 'In testing',
+    riga: 'Record a meeting, a lecture or an idea: Minta writes down every word and turns it into the document you need. Free with Apple Intelligence.',
+    vai: 'Read more →',
+    href: 'app/minta/',
+    alt: 'Minta recording on iPhone',
+    pronto: 'In the works: Pronto, another app built on voice and AI.',
+    stato: 'None of these are on the App Store yet.',
+  },
+  it: {
+    titolo: 'TROVA.ME — App per iPhone che si usano parlando, non scrivendo',
+    descrizione:
+      'App per iPhone che si usano parlando, non scrivendo. Parli, e succede qualcosa di utile — nessuna delle due è ancora sull’App Store.',
+    h1: 'App per iPhone che si usano parlando, non scrivendo.',
+    detto: 'allora devo scrivere quella cosa e poi chiamare il commercialista',
+    ottenuto: 'Un testo finito. Una lista in ordine.',
+    pastiglia: 'In prova',
+    riga: 'Registra una riunione, una lezione o un’idea: Minta scrive ogni parola e ne fa il documento che ti serve. Gratis con Apple Intelligence.',
+    vai: 'Scopri di più →',
+    href: 'app/minta/it/',
+    alt: 'Minta mentre registra, su iPhone',
+    pronto: 'In lavorazione: Pronto, un’altra app basata sulla voce e sull’AI.',
+    stato: 'Nessuna delle due è ancora sull’App Store.',
+  },
+}[lingua];
+
+const altra = lingua === 'en' ? 'it/' : '';
+---
+
+<Base titolo={testi.titolo} descrizione={testi.descrizione} lingua={lingua} altra={altra}>
+  <div class="contenitore">
+    <div class="apertura-pagina">
+      <h1>{testi.h1}</h1>
+      <div class="vetrina">
+        <Firma detto={testi.detto} ottenuto={testi.ottenuto} lingua={lingua} />
+      </div>
+    </div>
+
+    <a class="scheda" href={path(testi.href)}>
+      <span class="testo">
+        <span class="pastiglia">{testi.pastiglia}</span>
+        <span class="nome">Minta</span>
+        <span class="riga">{testi.riga}</span>
+        <span class="vai">{testi.vai}</span>
+      </span>
+      <img
+        src={path(`immagini/minta/${lingua}/00-recording.webp`)}
+        alt={testi.alt}
+        width="600"
+        height="1304"
+      />
+    </a>
+
+    <p class="pronto">{testi.pronto}</p>
+
+    <p class="stato">{testi.stato}</p>
+  </div>
+</Base>
+
+<style>
+  .apertura-pagina {
+    padding: 48px 0 8px;
+  }
+
+  .vetrina {
+    max-width: 640px;
+    margin-top: 32px;
+  }
+
+  h1 {
+    max-width: 16ch;
+    margin: 0;
+  }
+
+  .scheda {
+    display: grid;
+    grid-template-columns: 1fr 104px;
+    gap: 16px;
+    align-items: center;
+    margin-top: 48px;
+    padding: 20px;
+    border: 1px solid var(--bordo);
+    border-radius: 16px;
+    background: var(--sfondo);
+    color: inherit;
+    text-decoration: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+  }
+
+  .scheda:hover {
+    border-color: color-mix(in srgb, var(--accento) 45%, var(--bordo));
+    box-shadow: var(--ombra);
+    transform: translateY(-2px);
+  }
+
+  .testo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .scheda img {
+    width: 104px;
+    border-radius: 12px;
+  }
+
+  .pastiglia {
+    padding: 3px 9px;
+    border: 1px solid var(--bordo);
+    border-radius: 999px;
+    background: var(--superficie);
+    font-variation-settings: var(--parlato);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--tenue);
+  }
+
+  .nome {
+    margin-top: 16px;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .riga {
+    margin-top: 6px;
+    color: var(--tenue);
+  }
+
+  .vai {
+    margin-top: 20px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--accento);
+  }
+
+  .pronto {
+    margin: 24px 0 0;
+    color: var(--tenue);
+  }
+
+  .stato {
+    margin-top: 40px;
+  }
+
+  @media (min-width: 48rem) {
+    .apertura-pagina {
+      padding-top: 72px;
+    }
+
+    .scheda {
+      grid-template-columns: 1fr 180px;
+      gap: 40px;
+      padding: 28px 32px;
+    }
+
+    .scheda img {
+      width: 180px;
+    }
+  }
+
+  /* A schermo largo la colonna dichiarata va usata davvero: titolo a sinistra,
+     la trasformazione a destra, invece di mezza pagina vuota. */
+  @media (min-width: 64rem) {
+    .apertura-pagina {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 56px;
+      padding-top: 88px;
+    }
+
+    .vetrina {
+      margin-top: 0;
+    }
+  }
+</style>

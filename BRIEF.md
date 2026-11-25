@@ -40,6 +40,12 @@ aggiungeranno con un lavoro dedicato quando le app usciranno davvero.
 > è uscita per decisione del proprietario: niente pagina, niente voce nella testata, niente
 > paragrafo nell'informativa.
 
+> **Aggiornamento, 25 novembre 2026** (decisioni del proprietario):
+> il sito e' in **italiano e inglese**; la pagina di Minta e' riscritta dai testi
+> dello Store e mostra **le schermate dello Store**; **Pronto** resta solo come accenno («in
+> lavorazione»), senza pagina sua. Le voci «Immagini» e «una sola lingua» qui sotto sono
+> superate da queste decisioni.
+
 ## Cosa deve fare il sito
 
 Una vetrina breve e onesta: chi arriva capisce **cosa sono queste app, per chi sono,
