@@ -1,0 +1,136 @@
+---
+// La pagina di supporto di Minta in italiano (decisione del proprietario del 25 novembre
+// 2026). Dice le stesse cose di app/minta/support/, con i nomi delle voci come li mostra
+// l'app in italiano: se cambi una risposta, cambia anche l'altra.
+import Base from '../../../../layouts/Base.astro';
+import { path } from '../../../../lib/paths';
+import '../../../../styles/supporto.css';
+---
+
+<Base
+  lingua="it"
+  titolo="Supporto di Minta | TROVA.ME"
+  descrizione="Aiuto per Minta: risposte brevi su registrazioni, account e credito di Minta Cloud, lingue e rimborsi."
+  altra="app/minta/support/"
+>
+  <div class="contenitore supporto">
+    <div class="testata">
+      <p class="etichetta">Minta</p>
+      <h1>Supporto</h1>
+      <p class="apertura">
+        Risposte brevi alle domande più frequenti su Minta. Se la tua non c’è,
+        scrivi a <a href="mailto:minta@trova.me">minta@trova.me</a>.
+      </p>
+    </div>
+
+    <section class="sezione">
+      <h2>Domande frequenti</h2>
+      <div class="domande">
+        <details class="domanda">
+          <summary><h3>Dove sono le mie registrazioni?</h3></summary>
+          <div class="risposta">
+            <p>
+              Sul tuo iPhone, e nel tuo iCloud se accendi la sincronizzazione in Minta.
+              Registrazioni, trascrizioni ed elaborazioni restano lì finché non le elimini, e
+              possono finire nei backup dell’iPhone. Minta non ne tiene copia su un server, quindi
+              non posso recuperare una registrazione che hai eliminato. I dettagli sono
+              nell’<a href={path('privacy/it/')}>informativa sulla privacy</a>.
+            </p>
+          </div>
+        </details>
+
+        <details class="domanda">
+          <summary><h3>Come elimino l’account di Minta Cloud? Che fine fa il credito?</h3></summary>
+          <div class="risposta">
+            <p>
+              In Minta vai in Impostazioni › Minta Cloud › Elimina account, e conferma con Apple.
+              L’account e i suoi dati sul server di Minta vengono eliminati; le registrazioni
+              restano sul tuo iPhone.
+            </p>
+            <p>
+              Il credito che ti resta va perso e non si può recuperare. Se vuoi solo smettere di
+              usare Minta Cloud, scegli invece Esci: l’account e il credito restano per quando
+              accedi di nuovo.
+            </p>
+          </div>
+        </details>
+
+        <details class="domanda">
+          <summary><h3>Ho pagato, ma il credito non c’è.</h3></summary>
+          <div class="risposta">
+            <p>
+              Quando Apple ha addebitato il pagamento, Minta aggiunge il credito da sola, senza
+              addebitarti di nuovo. Di solito basta chiudere e riaprire Minta. Se dice «Accedi di
+              nuovo per ricevere il credito», accedi con Apple e il credito arriva da solo. Se
+              dopo non è ancora arrivato, scrivi a <a href="mailto:minta@trova.me"
+                >minta@trova.me</a
+              > con la data dell’acquisto.
+            </p>
+          </div>
+        </details>
+
+        <details class="domanda">
+          <summary><h3>Cosa vuol dire «Elaborazione in corso sul server…»?</h3></summary>
+          <div class="risposta">
+            <p>
+              L’audio o il testo è arrivato a Minta Cloud e il server ci sta lavorando, quindi
+              non si può più fermare: è già pagato.
+            </p>
+            <p>
+              Se iOS interrompe Minta o la connessione cade, riapri Minta quando sei online:
+              richiede lo stesso risultato, senza farti pagare due volte. Il server tiene il
+              risultato in memoria fino a 15 minuti proprio per questo, poi lo cancella. Se Minta
+              ti dice che un risultato è andato perso e ti è stato addebitato, scrivi a <a
+                href="mailto:minta@trova.me">minta@trova.me</a
+              >.
+            </p>
+          </div>
+        </details>
+
+        <details class="domanda">
+          <summary><h3>Quali lingue trascrive Minta? Succede sul mio iPhone?</h3></summary>
+          <div class="risposta">
+            <p>
+              Sedici lingue: arabo, cinese, coreano, francese, giapponese, hindi, inglese (USA e
+              Regno Unito), italiano, olandese, polacco, portoghese, russo, spagnolo, svedese,
+              tedesco e turco. Scegli la tua in Impostazioni › Trascrizione.
+            </p>
+            <p>
+              Sì: la trascrizione si fa solo sul tuo iPhone, con il riconoscimento vocale di
+              Apple. La prima volta che usi una lingua, l’iPhone la scarica da Apple, senza
+              nessun dato tuo. Può volerci un po’: la registrazione aspetta, e Minta la trascrive
+              da sola appena la lingua è pronta. Se il tuo iPhone non può trascrivere una lingua,
+              Minta te lo dice e ti propone Minta Cloud Whisper.
+            </p>
+            <p>
+              Con Minta Cloud, dopo il primo acquisto di credito, puoi scegliere anche Minta Cloud
+              Whisper: la trascrizione sul server, pagata col credito, utile nelle stanze rumorose
+              o con voci basse. Accetta registrazioni fino a 3 ore.
+            </p>
+          </div>
+        </details>
+
+        <details class="domanda">
+          <summary><h3>Come ottengo un rimborso?</h3></summary>
+          <div class="risposta">
+            <p>
+              Gli acquisti passano da Apple, e anche i rimborsi: chiedilo su <a
+                href="https://reportaproblem.apple.com">reportaproblem.apple.com</a
+              >, con il tuo Account Apple. Io non posso fare rimborsi.
+            </p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="sezione">
+      <h2>Contatto</h2>
+      <p class="contatto">
+        Scrivi a <a href="mailto:minta@trova.me">minta@trova.me</a>. Minta la faccio io e leggo
+        ogni messaggio personalmente. Se usi Minta Cloud, metti il codice di supporto che trovi in
+        Impostazioni › Minta Cloud: mi serve a trovare il tuo account. Se riguarda un acquisto,
+        metti la data.
+      </p>
+    </section>
+  </div>
+</Base>

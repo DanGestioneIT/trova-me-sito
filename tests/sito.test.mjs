@@ -46,7 +46,10 @@ test('il sito compilato contiene le pagine attese', () => {
     // L'app apre questa pagina da Impostazioni › Info › Support
     // (AppLinks.support): se sparisce, il pulsante dell'app porta alla 404.
     'app/minta/support/index.html',
-    'app/pronto/index.html',
+    // Le versioni italiane (decisione del proprietario del 25 novembre 2026).
+    'it/index.html',
+    'app/minta/it/index.html',
+    'app/minta/support/it/index.html',
     // La pagina che Apple pretende per pubblicare un'app: se sparisce, sparisce
     // anche l'indirizzo che sara' dichiarato su App Store Connect.
     'privacy/index.html',
@@ -60,10 +63,23 @@ test('il sito compilato contiene le pagine attese', () => {
   }
 });
 
-// Il sito e' in inglese: serve ad Apple, che esamina le app leggendo in inglese.
-// I documenti interni restano in italiano — vedi BRIEF.md, sezione "La lingua".
-// Unica eccezione, decisa il 19 ottobre 2026: la versione italiana dell'informativa.
-const LINGUE_DIVERSE = { 'privacy/it/index.html': 'it' };
+// Dal 25 novembre 2026 (decisione del proprietario) il sito e' in inglese e in italiano:
+// l'inglese agli indirizzi di sempre, l'italiano accanto con «it/». Prima solo l'informativa
+// aveva la versione italiana (19 ottobre 2026).
+const LINGUE_DIVERSE = {
+  'privacy/it/index.html': 'it',
+  'it/index.html': 'it',
+  'app/minta/it/index.html': 'it',
+  'app/minta/support/it/index.html': 'it',
+};
+
+// Ogni pagina e la sua traduzione: si offrono a vicenda nella testata.
+const COPPIE = [
+  ['index.html', 'it/index.html'],
+  ['app/minta/index.html', 'app/minta/it/index.html'],
+  ['app/minta/support/index.html', 'app/minta/support/it/index.html'],
+  ['privacy/index.html', 'privacy/it/index.html'],
+];
 
 test('ogni pagina dichiara la propria lingua', () => {
   for (const { nome, html } of pagine) {
@@ -77,12 +93,20 @@ test('ogni pagina dichiara la propria lingua', () => {
   }
 });
 
-// Sulla pagina italiana testata e piede restano in inglese: devono dirlo.
-test('nella pagina italiana testata e piede si dichiarano in inglese', () => {
-  const italiana = pagine.find((p) => p.nome === 'privacy/it/index.html');
-  assert.ok(italiana, 'Manca dist/privacy/it/index.html');
-  assert.match(italiana.html, /<header[^>]*\slang="en"/, 'privacy/it: la testata non dichiara lang="en"');
-  assert.match(italiana.html, /<footer[^>]*\slang="en"/, 'privacy/it: il piede non dichiara lang="en"');
+// Dal 25 novembre 2026 testata e piede parlano la lingua della pagina, e ogni pagina offre
+// la sua traduzione: chi arriva sulla lingua sbagliata deve trovare l'altra in cima.
+test('ogni pagina offre la sua traduzione nella testata', () => {
+  const indirizzo = (nome) => `${BASE}/${nome.replace(/index\.html$/, '')}`;
+  for (const [inglese, italiana] of COPPIE) {
+    const en = pagine.find((p) => p.nome === inglese);
+    const it = pagine.find((p) => p.nome === italiana);
+    assert.ok(en && it, `Manca ${inglese} o ${italiana}`);
+    const testataEn = (en.html.match(/<header[\s\S]*?<\/header>/) ?? [''])[0];
+    const testataIt = (it.html.match(/<header[\s\S]*?<\/header>/) ?? [''])[0];
+    assert.ok(testataEn.includes(`href="${indirizzo(italiana)}"`), `${inglese}: la testata non porta a ${italiana}`);
+    assert.ok(testataIt.includes(`href="${indirizzo(inglese)}"`), `${italiana}: la testata non porta a ${inglese}`);
+    assert.match(it.html, /<footer[\s\S]*App per iPhone\.[\s\S]*<\/footer>/, `${italiana}: il piede non e' in italiano`);
+  }
 });
 
 test('ogni pagina si adatta allo schermo del telefono', () => {
@@ -215,6 +239,7 @@ test('la pagina di errore resta fuori dalla sitemap', () => {
 // che il sito non puo' ancora fare.
 
 const RIGA_STATO = 'None of these are on the App Store yet.';
+const RIGA_STATO_IT = 'Nessuna delle due è ancora sull’App Store.';
 // Il limite protegge una cosa sola: che la pagina iniziale resti breve. Era 90
 // quando il contenuto era una lista di righe; con le schede sono comparse le
 // pastiglie di stato e i "Read more", che sono interfaccia e non discorso.
@@ -314,6 +339,15 @@ test('la pagina iniziale finisce dicendo che le app non sono ancora sullo Store'
     testo.endsWith(RIGA_STATO),
     `index.html: il contenuto deve finire con "${RIGA_STATO}" — chi legge fino in fondo deve trovarci lo stato reale, non una promessa. Finisce invece con: "${testo.slice(-90)}"`,
   );
+});
+
+test('la pagina iniziale italiana finisce con lo stesso stato', () => {
+  const italiana = pagine.find((p) => p.nome === 'it/index.html');
+  assert.ok(italiana, 'Manca dist/it/index.html');
+  const testo = testoSemplice(contenutoMain(italiana.html)).trim();
+  assert.ok(testo.endsWith(RIGA_STATO_IT), `it/index.html: finisce con "${testo.slice(-90)}"`);
+  const parole = contaParole(testo);
+  assert.ok(parole <= PAROLE_MASSIME, `it/index.html: ${parole} parole, il massimo e' ${PAROLE_MASSIME}`);
 });
 
 test('il testo della pagina iniziale resta corto quanto uno schermo di telefono', () => {
@@ -531,21 +565,23 @@ test('Minta trascrive solo sul telefono, in informativa e supporto', () => {
   assert.ok(!testoSemplice(supporto.html).includes('Apple’s servers'), 'supporto: parla ancora dei server di Apple per la trascrizione');
 });
 
-// Dal 27 ottobre 2026 (decisione del proprietario) il sito presenta due app, Minta e Pronto:
-// la terza (l'esperimento con Claude Code) non ha piu' una pagina, ne' una voce nella testata,
-// ne' un paragrafo nell'informativa. Si controlla in positivo: le app sono queste due e basta.
-// Dal 6 novembre 2026 (decisione del proprietario) l'informativa parla solo di Minta: Pronto
-// uscira' mesi dopo, e il suo paragrafo tornera' con l'app.
-test('il sito presenta due app, Minta e Pronto', () => {
+// Dal 25 novembre 2026 (decisione del proprietario) il sito presenta Minta; Pronto resta solo
+// come accenno nella pagina iniziale, un'altra app «in lavorazione», senza pagina e senza voce
+// nella testata. L'informativa parla solo di Minta dal 6 novembre 2026.
+test('il sito presenta Minta, e Pronto solo come accenno', () => {
   const cartelle = readdirSync(join(DIST, 'app'), { withFileTypes: true })
     .filter((voce) => voce.isDirectory())
     .map((voce) => voce.name)
     .sort();
-  assert.deepEqual(cartelle, ['minta', 'pronto'], `dist/app contiene ${cartelle.join(', ')}`);
-  const testata = (paginaIniziale().match(/<header[\s\S]*?<\/header>/) ?? [''])[0];
-  const voci = [...testata.matchAll(/<nav[\s\S]*?<\/nav>/g)]
-    .flatMap((nav) => [...nav[0].matchAll(/<a\b[^>]*>([\s\S]*?)<\/a>/g)].map((m) => testoSemplice(m[1])));
-  assert.deepEqual(voci, ['Minta', 'Pronto'], `la testata elenca: ${voci.join(', ')}`);
+  assert.deepEqual(cartelle, ['minta'], `dist/app contiene ${cartelle.join(', ')}`);
+  for (const nome of ['index.html', 'it/index.html']) {
+    const html = pagine.find((p) => p.nome === nome)?.html ?? '';
+    const testata = (html.match(/<header[\s\S]*?<\/header>/) ?? [''])[0];
+    const nav = (testata.match(/<nav[\s\S]*?<\/nav>/) ?? [''])[0];
+    const voci = [...nav.matchAll(/<a\b(?![^>]*class="lingua")[^>]*>([\s\S]*?)<\/a>/g)].map((m) => testoSemplice(m[1]));
+    assert.deepEqual(voci, ['Minta'], `${nome}: la testata elenca ${voci.join(', ')}`);
+    assert.ok(testoSemplice(contenutoMain(html)).includes('Pronto'), `${nome}: manca l'accenno a Pronto`);
+  }
   for (const nome of ['privacy/index.html', 'privacy/it/index.html']) {
     const titoli = [...paginaPrivacy(nome).matchAll(/<h2[^>]*>([\s\S]*?)<\/h2>/g)].map((m) => testoSemplice(m[1]));
     assert.equal(titoli.length, 4, `${nome}: sezioni ${titoli.join(', ')}`);

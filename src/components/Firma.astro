@@ -1,7 +1,7 @@
 ---
 // Quello che e' stato detto, e quello che ne e' uscito. E' l'unica illustrazione
-// possibile: di queste app non esiste uno screenshot, e inventarne uno sarebbe
-// una bugia — ma la trasformazione si mostra con il carattere, che qui cambia
+// possibile prima delle schermate dello Store (25 novembre 2026), e resta nella pagina
+// iniziale: la trasformazione si mostra con il carattere, che qui cambia
 // davvero stato (Recursive, asse MONO).
 //
 // La riga detta e' minuscola e senza punteggiatura perche' e' cosi' che appare
@@ -9,14 +9,16 @@
 interface Props {
   detto: string;
   ottenuto: string;
+  lingua?: 'en' | 'it';
 }
 
-const { detto, ottenuto } = Astro.props;
+const { detto, ottenuto, lingua = 'en' } = Astro.props;
+const etichette = lingua === 'it' ? { detto: 'Detto', ottenuto: 'Diventato' } : { detto: 'Said', ottenuto: 'Became' };
 ---
 
 <figure class="firma">
   <div class="riga">
-    <p class="etichetta">Said</p>
+    <p class="etichetta">{etichette.detto}</p>
     <p class="detto">“{detto}”</p>
   </div>
   <div class="freccia" aria-hidden="true">
@@ -25,7 +27,7 @@ const { detto, ottenuto } = Astro.props;
     </svg>
   </div>
   <div class="riga risultato">
-    <p class="etichetta">Became</p>
+    <p class="etichetta">{etichette.ottenuto}</p>
     <p class="ottenuto">{ottenuto}</p>
   </div>
 </figure>

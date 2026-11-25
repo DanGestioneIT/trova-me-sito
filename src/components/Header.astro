@@ -1,26 +1,37 @@
 ---
 import { path } from '../lib/paths';
+import { altraLingua, cornice, type Lingua } from '../lib/lingue';
 
 interface Props {
-  /** Solo sulle pagine non inglesi: la testata resta in inglese e lo dichiara. */
-  lingua?: string;
+  lingua: Lingua;
+  /** La stessa pagina nell'altra lingua: se c'e', la testata la offre. */
+  altra?: string;
 }
 
-const { lingua } = Astro.props;
+const { lingua, altra } = Astro.props;
+const parole = cornice[lingua];
+const altraParole = cornice[altraLingua(lingua)];
 
-const voci = [
-  { testo: 'Minta', href: path('app/minta/') },
-  { testo: 'Pronto', href: path('app/pronto/') },
-];
+// Una sola app nella testata dal 25 novembre 2026: Pronto e' «in lavorazione» e ha
+// solo un accenno nella pagina iniziale, senza pagina sua (decisione del proprietario).
+const voci = [{ testo: 'Minta', href: path(parole.pathMinta) }];
 ---
 
-<header lang={lingua}>
+<header>
   <div class="contenitore barra">
-    <a class="marchio" href={path('')}>TROVA<span class="punto">.</span>ME</a>
-    <nav aria-label="Main navigation">
+    <a class="marchio" href={path(parole.pathHome)}>TROVA<span class="punto">.</span>ME</a>
+    <nav aria-label={parole.navigazione}>
       {voci.map((voce) => (
         <a href={voce.href}>{voce.testo}</a>
       ))}
+      {altra !== undefined && (
+        <a
+          class="lingua"
+          href={path(altra)}
+          lang={altraLingua(lingua)}
+          hreflang={altraLingua(lingua)}
+        >{altraParole.nomeLingua}</a>
+      )}
     </nav>
   </div>
 </header>
@@ -55,6 +66,7 @@ const voci = [
 
   nav {
     display: flex;
+    align-items: center;
     gap: 4px;
   }
 
@@ -72,9 +84,15 @@ const voci = [
     background: var(--superficie);
   }
 
+  /* L'altra lingua: un bottone leggero, distinto dalle voci del sito. */
+  nav .lingua {
+    margin-left: 6px;
+    border: 1px solid var(--bordo);
+  }
+
   @media (max-width: 26rem) {
     nav a {
-      padding: 8px 6px;
+      padding: 8px 8px;
       font-size: 14px;
     }
   }

@@ -18,10 +18,18 @@ import { path } from '../lib/paths';
     <h1>Page not found</h1>
     <p>The page you're looking for doesn't exist.</p>
     <a class="ritorno" href={path('')}>Go to the homepage</a>
+    <p class="italiano" lang="it">
+      La pagina che cerchi non esiste. <a href={path('it/')}>Vai alla pagina iniziale</a>
+    </p>
   </div>
 </Base>
 
 <style>
+  .italiano {
+    margin-top: 32px;
+    color: var(--tenue);
+  }
+
   .contenitore {
     padding-top: 96px;
     padding-bottom: 64px;

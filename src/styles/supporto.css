@@ -1,0 +1,75 @@
+/* La pagina di supporto di Minta, uguale nelle due lingue (app/minta/support/ e support/it/). */
+.supporto .testata {
+  padding: 48px 0 0;
+}
+
+.supporto .testata h1 {
+  margin-bottom: 12px;
+}
+
+
+/* Domande richiuse: da telefono si vede subito l'elenco, e si apre solo
+   quella che serve. <details> e' HTML puro, nessun JavaScript. */
+.supporto .domande {
+  max-width: var(--lettura);
+  margin-top: 4px;
+  border-top: 1px solid var(--bordo);
+}
+
+.supporto .domanda {
+  border-bottom: 1px solid var(--bordo);
+}
+
+.supporto .domanda summary {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 0;
+  cursor: pointer;
+  list-style: none;
+}
+
+.supporto .domanda summary::-webkit-details-marker {
+  display: none;
+}
+
+.supporto .domanda summary::after {
+  content: '+';
+  flex: none;
+  font-size: 1.25rem;
+  line-height: 1;
+  color: var(--accento);
+}
+
+.supporto .domanda[open] summary::after {
+  content: '−';
+}
+
+.supporto .domanda h3 {
+  margin: 0;
+}
+
+.supporto .risposta {
+  padding-bottom: 20px;
+}
+
+.supporto .risposta p {
+  margin: 0 0 10px;
+  color: var(--tenue);
+}
+
+.supporto .risposta p:last-child {
+  margin-bottom: 0;
+}
+
+.supporto .contatto {
+  max-width: var(--lettura);
+  margin: 0;
+}
+
+@media (min-width: 48rem) {
+  .supporto .testata {
+    padding-top: 72px;
+  }
+}

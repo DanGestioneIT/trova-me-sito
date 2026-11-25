@@ -1,20 +1,21 @@
 ---
 import { path } from '../lib/paths';
+import { cornice, type Lingua } from '../lib/lingue';
 
 interface Props {
-  /** Solo sulle pagine non inglesi: il piede resta in inglese e lo dichiara. */
-  lingua?: string;
+  lingua: Lingua;
 }
 
 const { lingua } = Astro.props;
+const parole = cornice[lingua];
 
 const anno = 2026;
 ---
 
-<footer lang={lingua}>
+<footer>
   <p>
-    iPhone apps. &copy; {anno} TROVA.ME Milano
-    &middot; <a href={path('privacy/')}>Privacy</a>
+    {parole.piede} &copy; {anno} TROVA.ME Milano
+    &middot; <a href={path(parole.pathPrivacy)}>{parole.privacy}</a>
   </p>
 </footer>
 

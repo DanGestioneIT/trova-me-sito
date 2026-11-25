@@ -1,0 +1,275 @@
+---
+// La pagina di Minta, uguale nelle due lingue: cambiano solo i testi (src/testi/minta.ts).
+// Le immagini sono le schermate dello Store, con le loro didascalie (decisione del
+// proprietario del 25 novembre 2026): sostituiscono il segnaposto che c'era finche'
+// l'app non era finita.
+import Base from '../layouts/Base.astro';
+import { path } from '../lib/paths';
+import type { Lingua } from '../lib/lingue';
+import { testiMinta } from '../testi/minta';
+
+interface Props {
+  lingua: Lingua;
+}
+
+const { lingua } = Astro.props;
+const t = testiMinta[lingua];
+const altra = lingua === 'en' ? 'app/minta/it/' : 'app/minta/';
+const supporto = lingua === 'en' ? 'app/minta/support/' : 'app/minta/support/it/';
+---
+
+<Base titolo={t.titolo} descrizione={t.descrizione} lingua={lingua} altra={altra}>
+  <div class="contenitore">
+    <div class="testata">
+      <h1>{t.h1}</h1>
+      <p class="stato">{t.stato}</p>
+      <p class="apertura">{t.apertura}</p>
+    </div>
+  </div>
+
+  {/* Fuori dalla colonna: la striscia scorre fino ai bordi dello schermo. Solo CSS. */}
+  <section class="schermate" aria-label={t.schermateEtichetta}>
+    <ul>
+      {t.schermate.map((s, i) => (
+        <li>
+          <img
+            src={path(s.file)}
+            alt={s.alt}
+            width="600"
+            height="1304"
+            loading={i < 3 ? 'eager' : 'lazy'}
+            decoding="async"
+          />
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <div class="contenitore">
+    <section class="sezione">
+      <h2>{t.dueTitolo}</h2>
+      <ol class="due">
+        {t.due.map((voce) => (
+          <li>
+            <h3>{voce.titolo}</h3>
+            <p>{voce.testo}</p>
+            {voce.elenco && (
+              <ul class="elenco">
+                {voce.elenco.map((riga) => <li>{riga}</li>)}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ol>
+      <p class="chiusa">{t.dueChiusa}</p>
+    </section>
+
+    <section class="sezione">
+      <h2>{t.motoriTitolo}</h2>
+      <p class="premessa">{t.motoriPremessa}</p>
+      <div class="motori">
+        {t.motori.map((motore) => (
+          <div class="motore">
+            <h3>{motore.titolo}</h3>
+            <p>{motore.testo}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="sezione">
+      <h2>{t.lingueTitolo}</h2>
+      <p class="lettura">{t.lingueTesto}</p>
+    </section>
+
+    <section class="sezione">
+      <h2>{t.puntiTitolo}</h2>
+      <ul class="punti">
+        {t.punti.map((punto) => <li>{punto}</li>)}
+      </ul>
+    </section>
+
+    <section class="sezione">
+      <h2>{t.serveTitolo}</h2>
+      <p class="lettura">{t.serveTesto}</p>
+    </section>
+
+    {/* L'app apre la pagina di supporto da Impostazioni › Info › Support. */}
+    <p class="aiuto">
+      {t.aiuto} <a href={path(supporto)}>{t.aiutoLink}</a>
+    </p>
+  </div>
+</Base>
+
+<style>
+  .testata {
+    padding: 48px 0 0;
+  }
+
+  .testata .apertura {
+    max-width: 40ch;
+  }
+
+  /* La striscia delle schermate: scorre di lato col dito, si ferma su ogni immagine.
+     A schermo largo le prime si vedono tutte insieme e il resto scorre. */
+  .schermate {
+    margin-top: 32px;
+  }
+
+  .schermate ul {
+    display: flex;
+    gap: 14px;
+    margin: 0;
+    padding: 4px var(--margine) 16px;
+    list-style: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--margine);
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .schermate li {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+  }
+
+  .schermate img {
+    display: block;
+    width: 62vw;
+    max-width: 260px;
+    height: auto;
+    border-radius: 18px;
+    box-shadow: var(--ombra);
+  }
+
+  .lettura,
+  .premessa,
+  .chiusa {
+    max-width: var(--lettura);
+  }
+
+  .due {
+    max-width: var(--lettura);
+    margin: 8px 0 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: due;
+  }
+
+  .due > li {
+    position: relative;
+    padding: 16px 0 16px 44px;
+    border-top: 1px solid var(--bordo);
+    counter-increment: due;
+  }
+
+  .due > li::before {
+    content: counter(due);
+    position: absolute;
+    left: 0;
+    top: 16px;
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    background: var(--accento-piano);
+    color: var(--accento);
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  .due h3 {
+    margin: 0 0 4px;
+  }
+
+  .due p {
+    margin: 0;
+    color: var(--tenue);
+  }
+
+  .elenco {
+    margin: 8px 0 0;
+    padding-left: 1.1em;
+    color: var(--tenue);
+  }
+
+  .elenco li {
+    margin-bottom: 4px;
+  }
+
+  .chiusa {
+    margin-top: 16px;
+  }
+
+  .premessa {
+    margin-top: 0;
+  }
+
+  /* Righe, non schede. */
+  .motori {
+    margin-top: 4px;
+    border-top: 1px solid var(--bordo);
+  }
+
+  .motore {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--bordo);
+  }
+
+  .motore h3 {
+    margin: 0 0 6px;
+  }
+
+  .motore p {
+    margin: 0;
+    color: var(--tenue);
+  }
+
+  /* Le stesse righe dei motori, piu' leggere: un fatto per riga, niente pallini. */
+  .punti {
+    max-width: var(--lettura);
+    margin: 4px 0 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--bordo);
+  }
+
+  .punti li {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--bordo);
+    color: var(--tenue);
+  }
+
+  .aiuto {
+    margin: 48px 0 0;
+    color: var(--tenue);
+  }
+
+  @media (min-width: 48rem) {
+    .testata {
+      padding-top: 72px;
+    }
+
+    .schermate ul {
+      gap: 20px;
+      padding-left: max(var(--margine), calc((100vw - var(--largo)) / 2 + var(--margine)));
+      scroll-padding-inline: max(var(--margine), calc((100vw - var(--largo)) / 2 + var(--margine)));
+    }
+
+    .schermate img {
+      width: 240px;
+    }
+
+    .motore {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 32px;
+      align-items: baseline;
+    }
+
+    .motore h3 {
+      margin: 0;
+    }
+  }
+</style>

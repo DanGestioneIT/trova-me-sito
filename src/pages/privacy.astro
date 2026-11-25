@@ -33,7 +33,6 @@
 // questo sito puo' accorgersi se viene spento. Se tocchi le impostazioni di
 // Groq, rileggi questa pagina.
 import Base from '../layouts/Base.astro';
-import { path } from '../lib/paths';
 import '../styles/informativa.css';
 
 const aggiornata = '22 November 2026';
@@ -42,13 +41,9 @@ const aggiornata = '22 November 2026';
 <Base
   titolo="Privacy — TROVA.ME"
   descrizione="What each TROVA.ME app does with your data, in plain terms. Minta keeps your recordings on your iPhone; they leave only for a job you ask for."
+  altra="privacy/it/"
 >
   <div class="contenitore informativa">
-    <nav class="lingue" aria-label="Language">
-      <span aria-current="page">English</span>
-      <span aria-hidden="true">·</span>
-      <a href={path('privacy/it/')} lang="it" hreflang="it">Italiano</a>
-    </nav>
 
     <h1>Privacy</h1>
 
