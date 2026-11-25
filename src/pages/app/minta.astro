@@ -13,21 +13,22 @@ import { path } from '../../lib/paths';
 //
 // I due motori, nell'ordine in cui li si incontra nel foglio «Elabora»: prima il
 // gratuito, poi il credito. Il gratuito: la trascrizione sul telefono (Lotto 75),
-// il riassunto generico e sei formati in piu' su Apple Private Cloud Compute con
-// iOS 27 (Lotti 36 e 69), fino a circa un'ora di parlato (10.000 parole, Lotto 54);
+// il riassunto generico e sette tipi in piu' su Apple Private Cloud Compute con
+// iOS 27 (Lotti 36, 69 e 132), fino a circa un'ora di parlato (10.000 parole, Lotto 54);
 // senza rete il telefono da solo scrive il riassunto, circa 40 minuti su iOS 27 e 20
 // su iOS 26 (Lotto 68: qui solo «shorter recordings»). Minta Cloud:
-// tutti i formati fino a 3 ore (Lotto 37), Whisper fino a 3 ore (Lotto 52).
+// tutti i tipi fino a 3 ore (Lotto 37), Whisper fino a 3 ore (Lotto 52). Niente prova
+// gratuita (Lotto 128), niente tipi scritti da sé (Lotto 90). Nell'app «tipi», non «formati».
 const motori = [
   {
     titolo: 'Free, with Apple Intelligence',
     testo:
-      'Transcription runs on your iPhone. Online with iOS 27, Apple Intelligence writes a general summary and six more formats on Apple’s Private Cloud Compute, which keeps nothing, for up to about an hour of speech. Offline, the phone writes the summary on its own, for shorter recordings.',
+      'Transcription runs on your iPhone. Online with iOS 27, Apple Intelligence writes a general summary and seven more types of write-up on Apple’s Private Cloud Compute, which keeps nothing, for up to about an hour of speech. Offline, the phone writes the summary on its own, for shorter recordings.',
   },
   {
     titolo: 'Minta Cloud',
     testo:
-      'Anthropic’s AI writes every format, for recordings up to 3 hours. For a noisy room, Whisper can transcribe on the server. Pay as you go, no subscription; new accounts get a free trial. The server transcribes and writes up without storing anything: the result waits in memory for at most 15 minutes, only so your iPhone can collect it.',
+      'Anthropic’s AI writes every type, for recordings up to 3 hours. For a noisy room, Whisper can transcribe on the server. Pay as you go, no subscription. The server transcribes and writes up without storing anything: the result waits in memory for at most 15 minutes, only so your iPhone can collect it.',
   },
 ];
 
@@ -85,15 +86,15 @@ const stato = 'In testing — not on the App Store yet.';
     </section>
 
     <section class="sezione">
-      <h2>A format for each kind of recording.</h2>
+      <h2>A write-up for each kind of recording.</h2>
       <p>
         A meeting becomes minutes with decisions, tasks and owners, or a summary you read in a
         minute. A lecture becomes study notes, formulas included.
       </p>
       <p>
-        There are formats for client meetings, a lawyer or an accountant, job interviews, site
+        There are types for client meetings, a lawyer or an accountant, job interviews, site
         inspections, condominium meetings, interviews and podcasts, brainstorms, a journal, a
-        recipe. Minta suggests the one that fits, and two formats are yours to write.
+        recipe, quick notes. Minta suggests the one that fits.
       </p>
     </section>
 
