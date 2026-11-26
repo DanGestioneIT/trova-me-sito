@@ -6,7 +6,7 @@
 // APPSTORE-TESTI-DEFINITIVI-2026-10-25.md), con i fatti verificati sul codice dell'app:
 // otto tipi gratuiti su Private Cloud Compute (FormatAvailability.freeOnPrivateCloud), circa
 // un'ora di parlato, 3 ore per Minta Cloud e il registratore, 15 minuti in memoria sul
-// server, 16 lingue di trascrizione, iOS 26.4. Se l'app cambia, si rilegge qui.
+// server, 16 lingue di trascrizione, iOS 27. Se l'app cambia, si rilegge qui.
 //
 // Quattro frasi inglesi sono protette dai test parola per parola (tests/sito.test.mjs).
 import type { Lingua } from '../lib/lingue';
@@ -116,7 +116,7 @@ export const testiMinta: Record<Lingua, TestiMinta> = {
       {
         titolo: 'Free, with Apple Intelligence',
         testo:
-          'On any iPhone with Apple Intelligence you record, transcribe and write up without paying anything, with no subscription and no account. Transcription runs on your iPhone. With iOS 27, Apple Intelligence writes eight types of write-up on Apple’s Private Cloud Compute, which keeps nothing, for up to about an hour of speech. Offline, the phone writes the summary on its own, for shorter recordings.',
+          'On any iPhone with Apple Intelligence you record, transcribe and write up without paying anything, with no subscription and no account. Transcription runs on your iPhone. Apple Intelligence writes eight types of write-up on Apple’s Private Cloud Compute, which keeps nothing, for up to about an hour of speech. Offline, the phone writes the summary on its own, for shorter recordings.',
       },
       {
         titolo: 'Minta Cloud',
@@ -130,7 +130,7 @@ export const testiMinta: Record<Lingua, TestiMinta> = {
     puntiTitolo: 'Made for long, real recordings.',
     punti: [
       'Record up to 3 hours, even with the screen locked. Start from the Action button, Control Center or Siri.',
-      'Knows who said what (iOS 27): name the voices, and the minutes use the names.',
+      'Knows who said what: name the voices, and the minutes use the names.',
       'Tap a paragraph to hear that moment again.',
       'Group recordings into a series — a project, a course, a client — and Minta tells you what was decided, what has changed and what is still open.',
       'Import audio, video, text and podcasts.',
@@ -140,7 +140,7 @@ export const testiMinta: Record<Lingua, TestiMinta> = {
     ],
     serveTitolo: 'What you need',
     serveTesto:
-      'An iPhone with iOS 26.4 or later. Free write-ups need Apple Intelligence; speaker names and some features need iOS 27.',
+      'An iPhone with iOS 27 or later. Free write-ups need Apple Intelligence; telling the voices apart needs iPhone 15 Pro or later.',
     aiuto: 'Using Minta and need a hand?',
     aiutoLink: 'Minta support',
   },
@@ -180,7 +180,7 @@ export const testiMinta: Record<Lingua, TestiMinta> = {
       {
         titolo: 'Gratis, con Apple Intelligence',
         testo:
-          'Su ogni iPhone con Apple Intelligence registri, trascrivi ed elabori senza pagare nulla, senza abbonamento e senza account. La trascrizione si fa sull’iPhone. Con iOS 27 Apple Intelligence scrive otto tipi di elaborazione su Private Cloud Compute di Apple, che non conserva nulla, fino a circa un’ora di parlato. Senza rete il telefono scrive da solo il riassunto, per le registrazioni più brevi.',
+          'Su ogni iPhone con Apple Intelligence registri, trascrivi ed elabori senza pagare nulla, senza abbonamento e senza account. La trascrizione si fa sull’iPhone. Apple Intelligence scrive otto tipi di elaborazione su Private Cloud Compute di Apple, che non conserva nulla, fino a circa un’ora di parlato. Senza rete il telefono scrive da solo il riassunto, per le registrazioni più brevi.',
       },
       {
         titolo: 'Minta Cloud',
@@ -194,7 +194,7 @@ export const testiMinta: Record<Lingua, TestiMinta> = {
     puntiTitolo: 'Fatta per registrazioni lunghe e vere.',
     punti: [
       'Registra fino a 3 ore, anche a schermo bloccato. Parti dal tasto Azione, dal Centro di Controllo o da Siri.',
-      'Sa chi ha detto cosa (iOS 27): dai un nome alle voci, e il verbale usa i nomi.',
+      'Sa chi ha detto cosa: dai un nome alle voci, e il verbale usa i nomi.',
       'Tocca un paragrafo per riascoltare quel momento.',
       'Raccogli le registrazioni in una serie — un progetto, un corso, un cliente — e Minta ti dice cosa è stato deciso, cosa è cambiato e cosa resta aperto.',
       'Importa audio, video, testi e podcast.',
@@ -204,7 +204,7 @@ export const testiMinta: Record<Lingua, TestiMinta> = {
     ],
     serveTitolo: 'Cosa serve',
     serveTesto:
-      'Un iPhone con iOS 26.4 o successivo. L’elaborazione gratuita richiede Apple Intelligence; i nomi di chi parla e alcune funzioni richiedono iOS 27.',
+      'Un iPhone con iOS 27 o successivo. L’elaborazione gratuita richiede Apple Intelligence; distinguere le voci richiede un iPhone 15 Pro o successivo.',
     aiuto: 'Usi Minta e ti serve una mano?',
     aiutoLink: 'Supporto di Minta',
   },

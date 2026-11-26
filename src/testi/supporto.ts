@@ -56,13 +56,13 @@ export const testiSupporto: Record<Lingua, TestiSupporto> = {
       {
         domanda: 'Why can’t I choose Free?',
         risposta: [
-          'Free needs an iPhone with Apple Intelligence, turned on in the iPhone’s Settings. The types beyond the General Summary need iOS 27 and an internet connection. For a recording longer than about an hour, use Minta Cloud.',
+          'Free needs an iPhone with Apple Intelligence, turned on in the iPhone’s Settings. The types beyond the General Summary need an internet connection. For a recording longer than about an hour, use Minta Cloud.',
         ],
       },
       {
         domanda: 'How do I see who said what?',
         risposta: [
-          'With iOS 27, Minta tells the voices apart (Settings › Transcription › Recognize speakers). After the transcript, “Name the voices” opens: give each one a name, and the transcript and the minutes use the names.',
+          'On iPhone 15 Pro and later, Minta tells the voices apart (Settings › Transcription › Recognize speakers, on from the start). After the transcript, “Name the voices” opens: give each one a name, and the transcript and the minutes use the names.',
         ],
       },
       {
@@ -152,13 +152,13 @@ export const testiSupporto: Record<Lingua, TestiSupporto> = {
       {
         domanda: 'Perché non posso scegliere Gratis?',
         risposta: [
-          'Gratis richiede un iPhone con Apple Intelligence, accesa nelle Impostazioni dell’iPhone. I tipi oltre il Riassunto generico richiedono iOS 27 e la connessione a internet. Per una registrazione più lunga di circa un’ora, usa Minta Cloud.',
+          'Gratis richiede un iPhone con Apple Intelligence, accesa nelle Impostazioni dell’iPhone. I tipi oltre il Riassunto generico richiedono la connessione a internet. Per una registrazione più lunga di circa un’ora, usa Minta Cloud.',
         ],
       },
       {
         domanda: 'Come vedo chi ha detto cosa?',
         risposta: [
-          'Con iOS 27 Minta distingue le voci (Impostazioni › Trascrizione › Riconosci chi parla). Dopo la trascrizione si apre «Dai nomi alle voci»: dai un nome a ognuna, e trascrizione e verbale usano i nomi.',
+          'Dall’iPhone 15 Pro in poi Minta distingue le voci (Impostazioni › Trascrizione › Riconosci chi parla, acceso di partenza). Dopo la trascrizione si apre «Dai nomi alle voci»: dai un nome a ognuna, e trascrizione e verbale usano i nomi.',
         ],
       },
       {
